@@ -93,7 +93,7 @@ public class GambleSystem {
     }
 
     private void randomEnchant(ItemStack gambleItem, GambleItemInfo itemInfo, int type) {
-        GambleEnchantInfo[] gambleEnchantInfos = GambleEnchantInfo.getGambleEnchants()[type];
+        GambleEnchantInfo[] gambleEnchantInfos = GambleEnchantInfo.getGambleEnchants(type);
 
         String displayName = "";
         ItemMeta meta = gambleItem.getItemMeta();
