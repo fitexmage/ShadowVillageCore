@@ -1,10 +1,41 @@
 # ShadowVillageCore
+
 ## Description
+
 This is a plugin working on Shadow Village Minecraft Server written by Shengguang Bai.
+
 The plugin is based on Minecraft 1.7.10.
 
+## Instruction
+
+### Shadow Man and Shadow Spirit
+
+At a specific minute in every hour, shadow man or shadow spirit will appear and teleport random times. 
+
+* Shadow Man
+Shadow man will teleport to the back of a random player. It never move or attack, and just gaze at target player.
+During a random period, it will detect whether target player move or not. If target player move, it will give him a bad status effect or steal his items.
+
+* Shadow Spirit
+Shadow Spirit will teleport to nearby place of a random player. It will appear as random type of animal entities, such as sheep and cow. It will move and attack target player. If attacking on target player, it will give him a bad status effect or steal his items.
+
+### Shadow Stone
+
+A special currency which can only get by donating.
+
+Players can spend shadow stone on:
+
+* Get Minecraft money (need Vault plugin)
+* Summon Boss
+* Get equipment
+* Get the permission of flying
+* Get the permission of creative mod
+* Get the permission of OP
+
 ## Commands
+
 ### Shadow Village Core
+
 Shadow Village Core provides basic functions for the plugin. 
 
 * /svc empower
@@ -39,7 +70,7 @@ Shadow Village Black Market provides functions about items.
 
 * /svb give shadowstone [number]
 
-  Give self shadow stones. (A special currency)
+  Give self shadow stones.
 
 * /svb lookup shadowstone
 
