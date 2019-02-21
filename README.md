@@ -3,7 +3,7 @@
 This is a plugin working on Shadow Village Minecraft Server written by Shengguang Bai.
 The plugin is based on Minecraft 1.7.10.
 
-## Command
+## Commands
 ### Shadow Village Core
 Shadow Village Core provides basic functions for the plugin. 
 
@@ -68,3 +68,19 @@ Shadow Village Black Market provides functions about items.
 * /svb set damage [number]
 
   Set the damage of item in hand.
+
+## Permissions
+* svc.empower -- OP
+* svc.address -- OP
+* svc.help -- Everyone
+* svc.debug -- OP
+* sve.spawn.shadowman -- OP
+* svc.spawn.shadowspirit -- OP
+* svb.give.shadowstone -- OP
+* svb.lookup.shadowstone -- Everyone
+* svb.gamble.weapon -- Everyone
+* svb.gamble.helmet -- Everyone
+* svb.gamble.chestplate -- Everyone
+* svb.gamble.leggings -- Everyone
+* svb.gamble.boots -- Everyone
+* svb.set.damage -- OP
