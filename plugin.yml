@@ -1,0 +1,64 @@
+name: ShadowVillageCore
+main: com.github.fitexmage.ShadowVillageCore
+version: 1.0.0
+description: This is the Shadow Village Core.
+depend: [Citizens]
+author: Fitexmage
+
+commands:
+  svc:
+    description: Shadow village core system.
+    usage: ???
+  svs:
+    description: Shadow village support system.
+    usage: ???
+  sve:
+    description: Shadow village ecology system.
+    usage: ???
+  svb:
+    description: Shadow village black market.
+    usage: ???
+
+permissions:
+  svc.admin:
+    description: Try to access the core. 
+    default: true 
+  svc.empower:
+    description: Empower to control the core. 
+    default: op
+  svc.address:
+    description: Get address of player. 
+    default: op
+  svc.help:
+    description: Get a helper book.
+    default: true
+  sve.spawn.shadowman:
+    description: Spawn shadow man.
+    default: op
+  sve.spawn.shadowspirit:
+    description: Spawn shadow spirit.
+    default: op
+  svb.give.shadowstone:
+    description: Give shadow stone.
+    default: op
+  svb.lookup.shadowstone:
+    description: Look up shadow stone in inventory.
+    default: true
+  svb.gamble.weapon:
+    description: Gamble a weapon.
+    default: true
+  svb.gamble.helmet:
+    description: Gamble a helmet.
+    default: true
+  svb.gamble.chestplate:
+    description: Gamble a chestplate.
+    default: true
+  svb.gamble.leggings:
+    description: Gamble a pair of leggings.
+    default: true
+  svb.gamble.boots:
+    description: Gamble a pair of boots.
+    default: true
+  svb.set.damage:
+    description: Set the damage of item in hand.
+    default: op

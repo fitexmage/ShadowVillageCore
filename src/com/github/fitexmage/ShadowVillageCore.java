@@ -1,0 +1,87 @@
+package com.github.fitexmage;
+
+import com.github.fitexmage.commands.svc;
+import com.github.fitexmage.commands.sve;
+import com.github.fitexmage.commands.svb;
+import com.github.fitexmage.shadowVillageEcology.ShadowEntity;
+import com.github.fitexmage.shadowVillageEcology.ShadowMan;
+import com.github.fitexmage.shadowVillageEcology.ShadowSpirit;
+import com.github.fitexmage.util.Message;
+
+import net.citizensnpcs.api.event.*;
+import net.citizensnpcs.api.npc.NPC;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class ShadowVillageCore extends JavaPlugin implements Listener {
+    @Override
+    public void onLoad() {
+
+    }
+
+    @Override
+    public void onEnable() {
+        //开关
+        svc.coreOn = true;
+        sve.ecologyOn = true;
+        svb.tradeOn = true;
+
+        //指令
+        this.getCommand("svc").setExecutor(new svc());
+        this.getCommand("sve").setExecutor(new sve(this));
+        this.getCommand("svb").setExecutor(new svb());
+
+        //注册事件
+        Bukkit.getPluginManager().registerEvents(this, this);
+    }
+
+    @Override
+    public void onDisable() {
+
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        if (svc.coreOn) {
+            Player player = event.getPlayer();
+            if (player.getDisplayName().equals("23dexiao")) {
+                Message.broadcastMessage("23dexiao上线了！他是个魔鬼，大家一定要远离！！！");
+            }
+            Message.sendPlayerMessage(player, "影之乡核心正在运行");
+        }
+    }
+
+    @EventHandler
+    public void onNPCDamaged(NPCDamageByEntityEvent event){
+        if (svc.coreOn) {
+            NPC npc = event.getNPC();
+            if(event.getDamage() >= npc.getBukkitEntity().getHealth()){
+                npc.despawn();
+                if (npc.getId() == ShadowMan.id || npc.getId() == ShadowSpirit.id) {
+                    ItemStack dropItem = new ItemStack(Material.DIAMOND_BLOCK, 1);
+                    npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
+                    Message.broadcastMessage("§0影§c消散了，但总感觉它仍注视着你......");
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onEntityAttack(NPCDamageEntityEvent event) {
+        NPC npc = event.getNPC();
+        if (npc.getId() == ShadowSpirit.id) {
+            if (event.getDamaged() instanceof Player) {
+                Player player = (Player) event.getDamaged();
+                if (npc instanceof ShadowEntity) {
+                    ((ShadowEntity) npc).randomShadowAttack(player);
+                }
+            }
+        }
+    }
+}
