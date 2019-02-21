@@ -3,9 +3,7 @@ package com.github.fitexmage.shadowVillageEcology;
 import com.github.fitexmage.util.Message;
 
 import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.api.npc.NPCRegistry;
 import net.citizensnpcs.api.trait.trait.Equipment;
-import net.citizensnpcs.npc.EntityController;
 import net.citizensnpcs.npc.EntityControllers;
 import net.citizensnpcs.trait.LookClose;
 import org.bukkit.Bukkit;

@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.UUID;
 
 public abstract class ShadowEntity extends CitizensNPC {
+    public static final int id = 10011;
+    private static final String name = "影魂";
+    private final double health = 10000.0;
+
     ShadowEntity(UUID uuid, int id, String name, EntityController entityController, NPCRegistry registry) {
         super(uuid, id, name, entityController, registry);
     }

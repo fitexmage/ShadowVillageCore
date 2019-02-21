@@ -1,12 +1,8 @@
 package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.ShadowVillageCore;
-import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.npc.EntityControllers;
 import org.bukkit.entity.EntityType;
 import org.bukkit.scheduler.BukkitScheduler;
-
-import java.util.UUID;
 
 public class ShadowSpiritSpawner {
     private final ShadowVillageCore plugin;
@@ -46,6 +42,7 @@ public class ShadowSpiritSpawner {
                     if (shadowSpirit.isSpawned() && shadowSpirit.count != 0) {
                         shadowSpirit.action();
                     } else {
+                        shadowSpirit.count = 0;
                         shadowSpirit.despawn();
                         scheduler.cancelTask(taskID);
                     }

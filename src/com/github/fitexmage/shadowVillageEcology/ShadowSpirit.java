@@ -2,8 +2,6 @@ package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.util.Message;
 import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.api.npc.NPCRegistry;
-import net.citizensnpcs.npc.EntityController;
 import net.citizensnpcs.npc.EntityControllers;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

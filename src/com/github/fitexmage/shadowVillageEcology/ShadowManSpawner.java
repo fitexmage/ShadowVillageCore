@@ -36,6 +36,7 @@ public class ShadowManSpawner {
                     if (shadowMan.isSpawned() && shadowMan.count != 0) {
                         shadowMan.action();
                     } else {
+                        shadowMan.count = 0;
                         shadowMan.despawn();
                         scheduler.cancelTask(taskID);
                     }
