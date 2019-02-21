@@ -20,18 +20,18 @@ commands:
     usage: ???
 
 permissions:
-  svc.admin:
-    description: Try to access the core. 
-    default: true 
   svc.empower:
     description: Empower to control the core. 
     default: op
   svc.address:
-    description: Get address of player. 
+    description: Get IP address of target player. 
     default: op
   svc.help:
     description: Get a helper book.
     default: true
+  svc.debug:
+    description: Turn on or off debug mod.
+    default: op
   sve.spawn.shadowman:
     description: Spawn shadow man.
     default: op
@@ -39,25 +39,25 @@ permissions:
     description: Spawn shadow spirit.
     default: op
   svb.give.shadowstone:
-    description: Give shadow stone.
+    description: Give self shadow stones.
     default: op
   svb.lookup.shadowstone:
-    description: Look up shadow stone in inventory.
+    description: Look up amount of shadow stones in inventory.
     default: true
   svb.gamble.weapon:
-    description: Gamble a weapon.
+    description: Gamble on weapon.
     default: true
   svb.gamble.helmet:
-    description: Gamble a helmet.
+    description: Gamble on helmet.
     default: true
   svb.gamble.chestplate:
-    description: Gamble a chestplate.
+    description: Gamble on chestplate.
     default: true
   svb.gamble.leggings:
-    description: Gamble a pair of leggings.
+    description: Gamble on leggings.
     default: true
   svb.gamble.boots:
-    description: Gamble a pair of boots.
+    description: Gamble on boots.
     default: true
   svb.set.damage:
     description: Set the damage of item in hand.

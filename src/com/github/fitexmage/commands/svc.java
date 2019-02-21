@@ -47,8 +47,7 @@ public class svc extends ShadowVillageCommand {
                         help(player);
                         break;
                     case "debug":
-                        Message.debug = !Message.debug;
-                        Message.sendPlayerMessage(player, "已切换debug模为" + Message.debug);
+                        turnDebug(player);
                         break;
                     default:
                         penalty(player);
@@ -141,6 +140,15 @@ public class svc extends ShadowVillageCommand {
 
             helperBook.setItemMeta(bookMeta);
             player.getInventory().addItem(helperBook);
+        }
+    }
+
+    private void turnDebug(Player player) {
+        if (player.hasPermission("svc.debug")) {
+            Message.debug = !Message.debug;
+            Message.sendPlayerMessage(player, "已切换debug模式为" + Message.debug);
+        } else {
+            Message.sendPlayerMessage(player, "凡人，你无权这样做！");
         }
     }
 
