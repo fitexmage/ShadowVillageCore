@@ -88,7 +88,7 @@ public class ShadowSoul extends CitizensNPC {
                         message.insert(minHeight + 2, "§a");
                         message.insert(minHeight + 7, "§4");
                         Message.broadcastMessage(message.toString());
-                        stageCount = (int) (Math.random() * 3) + 3;
+                        stageCount = (int) (Math.random() * 2) + 3;
                         break;
                     case 3:
                         Message.broadcastMessage("§4影魂正在召唤咒之力！");
@@ -98,10 +98,8 @@ public class ShadowSoul extends CitizensNPC {
                         break;
                 }
             } else { //阶段开始
-                if (stageCount != 1) {
-                    stageCount--;
-                } else {
-                    stageCount--;
+                stageCount--;
+                if (stageCount == 0) {
                     stageCountDown = (int) (Math.random() * 5) + 3; //到下一阶段时间
                     Location location = this.getBukkitEntity().getLocation();
                     switch (stageNum) {
