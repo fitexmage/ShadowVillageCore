@@ -16,16 +16,16 @@ Version: 1.0.1
 
 ## Instruction
 
-### Shadow Man and Shadow Spirit
+### Shadow Man and Shadow Beast
 
-At a specific minute every hour, shadow man or shadow spirit will appear and teleport random times. 
+At a specific minute every hour, shadow man or shadow beast will appear and teleport random times. 
 
 * Shadow Man
 Shadow man will teleport to the back of a random player. It never move or attack, and just gaze at target player.
 During a random period, it will detect whether target player move or not. If target player move, it will give him a bad status effect or steal his items.
 
-* Shadow Spirit
-Shadow Spirit will teleport to nearby place of a random player. It will appear as random type of animal entities, such as sheep and cow. It will move and attack target player. If attacking on target player, it will give him a bad status effect or steal his items.
+* Shadow Beast
+Shadow beast will teleport to nearby place of a random player. It will appear as random type of animal entities, such as sheep and cow. It will move and attack target player. If attacking on target player, it will give him a bad status effect or steal his items.
 
 ### Shadow Stone
 
@@ -69,9 +69,9 @@ Shadow Village Ecology provides functions about entities.
 
   Spawn shadow man.
 
-* /sve spawn shadowspirit
+* /sve spawn shadowbeast
 
-  Spawn shadow spirit.
+  Spawn shadow beast.
   
 * /sve spawn shadowsoul
 
@@ -124,7 +124,7 @@ Shadow Village Black Market provides functions about items.
 
 * sve.spawn.shadowman -- OP
 
-* svc.spawn.shadowspirit -- OP
+* svc.spawn.shadowbeast -- OP
 
 * svc.spawn.shadowsoul -- OP
 
