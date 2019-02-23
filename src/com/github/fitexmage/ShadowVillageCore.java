@@ -6,7 +6,7 @@ import com.github.fitexmage.commands.svb;
 import com.github.fitexmage.shadowVillageEcology.ShadowEntity;
 import com.github.fitexmage.shadowVillageEcology.ShadowMan;
 import com.github.fitexmage.shadowVillageEcology.ShadowSoul;
-import com.github.fitexmage.shadowVillageEcology.ShadowSpirit;
+import com.github.fitexmage.shadowVillageEcology.ShadowBeast;
 import com.github.fitexmage.util.Message;
 
 import net.citizensnpcs.api.event.*;
@@ -64,7 +64,7 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
             NPC npc = event.getNPC();
             if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
                 npc.despawn();
-                if (npc.getId() == ShadowMan.id || npc.getId() == ShadowSpirit.id) {
+                if (npc.getId() == ShadowMan.id || npc.getId() == ShadowBeast.id) {
                     ItemStack dropItem = new ItemStack(Material.DIAMOND_BLOCK, 1);
                     npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
                 }
@@ -79,7 +79,7 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
     @EventHandler
     public void onEntityAttack(NPCDamageEntityEvent event) {
         NPC npc = event.getNPC();
-        if (npc.getId() == ShadowSpirit.id) {
+        if (npc.getId() == ShadowBeast.id) {
             if (event.getDamaged() instanceof Player) {
                 Player player = (Player) event.getDamaged();
                 if (npc instanceof ShadowEntity) {

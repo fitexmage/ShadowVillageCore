@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class SpawnerController {
     public static ShadowManSpawner shadowManSpawner;
-    public static ShadowSpiritSpawner shadowSpiritSpawner;
+    public static ShadowBeastSpawner shadowBeastSpawner;
     public static ShadowSoulSpawner shadowSoulSpawner;
 
     private static int recordedMinute;
@@ -18,8 +18,8 @@ public class SpawnerController {
         if (shadowManSpawner == null) {
             shadowManSpawner = new ShadowManSpawner(plugin);
         }
-        if (shadowSpiritSpawner == null) {
-            shadowSpiritSpawner = new ShadowSpiritSpawner(plugin);
+        if (shadowBeastSpawner == null) {
+            shadowBeastSpawner = new ShadowBeastSpawner(plugin);
         }
         if (shadowSoulSpawner == null) {
             shadowSoulSpawner = new ShadowSoulSpawner(plugin);
@@ -42,7 +42,7 @@ public class SpawnerController {
                             if (random == 0) {
                                 shadowManSpawner.spawnShadowMan(false);
                             } else {
-                                shadowSpiritSpawner.spawnShadowSpirit(false);
+                                shadowBeastSpawner.spawnShadowSpirit(false);
                             }
                         }
                     }

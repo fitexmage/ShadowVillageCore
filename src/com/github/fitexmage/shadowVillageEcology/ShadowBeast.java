@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ShadowSpirit extends ShadowEntity {
+public class ShadowBeast extends ShadowEntity {
     public static final int id = 10002;
     private static final String name = "影灵";
     private final double health = 200.0;
@@ -26,15 +26,15 @@ public class ShadowSpirit extends ShadowEntity {
     private int prepareCountDown;
     private int teleportCountDown;
 
-    ShadowSpirit(EntityType type) {
+    ShadowBeast(EntityType type) {
         super(UUID.randomUUID(), id, name, EntityControllers.createForType(type), CitizensAPI.getNPCRegistry());
 
         count = 0;
         prepareCountDown = 0;
         teleportCountDown = 0;
 
-        ShadowSpiritTrait shadowSpiritTrait = new ShadowSpiritTrait("shadowSpiritTrait");
-        addTrait(shadowSpiritTrait);
+        ShadowBeastTrait shadowBeastTrait = new ShadowBeastTrait("shadowBeastTrait");
+        addTrait(shadowBeastTrait);
     }
 
     void prepare() {

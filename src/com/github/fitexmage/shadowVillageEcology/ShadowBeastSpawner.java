@@ -4,16 +4,16 @@ import com.github.fitexmage.ShadowVillageCore;
 import org.bukkit.entity.EntityType;
 import org.bukkit.scheduler.BukkitScheduler;
 
-public class ShadowSpiritSpawner {
+public class ShadowBeastSpawner {
     private final ShadowVillageCore plugin;
-    private ShadowSpirit shadowSpirit;
+    private ShadowBeast shadowBeast;
 
     static final long interval = 20L; // 20L = 1s
     private int taskID = -1;
 
-    ShadowSpiritSpawner(ShadowVillageCore plugin) {
+    ShadowBeastSpawner(ShadowVillageCore plugin) {
         this.plugin = plugin;
-        shadowSpirit = new ShadowSpirit(getRandomType());
+        shadowBeast = new ShadowBeast(getRandomType());
     }
 
     private EntityType getRandomType() {
@@ -28,22 +28,22 @@ public class ShadowSpiritSpawner {
     }
 
     public void spawnShadowSpirit(boolean force) {
-        if (shadowSpirit.count == 0) {
+        if (shadowBeast.count == 0) {
             if (force) {
-                shadowSpirit.forcePrepare();
+                shadowBeast.forcePrepare();
             } else {
-                shadowSpirit.prepare();
+                shadowBeast.prepare();
             }
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
                 @Override
                 public void run() {
-                    if (shadowSpirit.isSpawned() && shadowSpirit.count != 0) {
-                        shadowSpirit.action();
+                    if (shadowBeast.isSpawned() && shadowBeast.count != 0) {
+                        shadowBeast.action();
                     } else {
-                        shadowSpirit.count = 0;
-                        shadowSpirit.despawn();
+                        shadowBeast.count = 0;
+                        shadowBeast.despawn();
                         scheduler.cancelTask(taskID);
                     }
                 }

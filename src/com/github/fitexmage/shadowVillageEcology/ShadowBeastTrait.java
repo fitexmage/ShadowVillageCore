@@ -4,11 +4,11 @@ import com.github.fitexmage.util.Message;
 import net.citizensnpcs.api.persistence.Persist;
 import net.citizensnpcs.api.trait.Trait;
 
-public class ShadowSpiritTrait extends Trait {
+public class ShadowBeastTrait extends Trait {
     @Persist
     private boolean data = false;
 
-    ShadowSpiritTrait(String name) {
+    ShadowBeastTrait(String name) {
         super(name);
     }
 

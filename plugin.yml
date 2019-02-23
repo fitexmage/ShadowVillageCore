@@ -35,8 +35,8 @@ permissions:
   sve.spawn.shadowman:
     description: Spawn shadow man.
     default: op
-  sve.spawn.shadowspirit:
-    description: Spawn shadow spirit.
+  sve.spawn.shadowbeast:
+    description: Spawn shadow beast.
     default: op
   sve.spawn.shadowsoul:
     description: Spawn shadow soul.

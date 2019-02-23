@@ -2,8 +2,6 @@ package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.util.Message;
 import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.api.ai.AttackStrategy;
-import net.citizensnpcs.api.ai.goals.TargetNearbyEntityGoal;
 import net.citizensnpcs.npc.CitizensNPC;
 import net.citizensnpcs.npc.EntityControllers;
 import org.bukkit.GameMode;
