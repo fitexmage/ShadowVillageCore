@@ -70,6 +70,10 @@ Shadow Village Ecology provides functions about entities.
 * /sve spawn shadowspirit
 
   Spawn shadow spirit.
+  
+* /sve spawn shadowsoul
+
+  Spawn shadow soul.
 
 ### Shadow Village Black Market
 Shadow Village Black Market provides functions about items.
@@ -119,6 +123,8 @@ Shadow Village Black Market provides functions about items.
 * sve.spawn.shadowman -- OP
 
 * svc.spawn.shadowspirit -- OP
+
+* svc.spawn.shadowsoul -- OP
 
 * svb.give.shadowstone -- OP
 
