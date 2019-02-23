@@ -7,6 +7,7 @@ import net.citizensnpcs.api.trait.trait.Equipment;
 import net.citizensnpcs.npc.EntityControllers;
 import net.citizensnpcs.trait.LookClose;
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -30,15 +31,17 @@ public class ShadowMan extends ShadowEntity {
     private int teleportCountDown;
 
     private Player targetPlayer;
-    private double targetPlayerX, targetPlayerY, targetPlayerZ;
+    private Location recordLocation;
 
     ShadowMan() {
         super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.PLAYER), CitizensAPI.getNPCRegistry());
 
-        targetPlayer = null;
         count = 0;
         prepareCountDown = 0;
         teleportCountDown = 0;
+
+        targetPlayer = null;
+        recordLocation = null;
 
         ShadowManTrait shadowManTrait = new ShadowManTrait("shadowManTrait");
         addTrait(shadowManTrait);
@@ -49,6 +52,7 @@ public class ShadowMan extends ShadowEntity {
         List<Player> realOnlinePlayers = new ArrayList<>();
         for (Player player : onlinePlayers) {
             if (!player.hasMetadata("NPC")) {
+//                player.playSound(player.getLocation(),0);
                 realOnlinePlayers.add(player);
             }
         }
@@ -80,25 +84,34 @@ public class ShadowMan extends ShadowEntity {
     }
 
     void action() {
-        if (prepareCountDown == 0) {
+        if (prepareCountDown > 0) {
+            prepareCountDown--;
+        } else {
             if (teleportCountDown == 0) {
-                List<Player> onlinePlayers = Bukkit.getWorld("world").getPlayers();
                 List<Player> realOnlinePlayers = new ArrayList<>();
-                for (Player player : onlinePlayers) {
+                for (Player player : Bukkit.getWorld("world").getPlayers()) {
                     if (!player.hasMetadata("NPC")) {
                         realOnlinePlayers.add(player);
                     }
                 }
                 if (realOnlinePlayers.size() != 0) {
-                    teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 1;
                     int random = (int) (Math.random() * realOnlinePlayers.size());
                     Player targetPlayer = realOnlinePlayers.get(random);
-                    teleport(targetPlayer);
+
+                    if (targetPlayer.getItemInHand().hasItemMeta() &&
+                            targetPlayer.getItemInHand().getItemMeta().hasLore() &&
+                            targetPlayer.getItemInHand().getItemMeta().getLore().get(0).equals("影无法靠近你。")) {
+                        count--;
+                    } else {
+                        teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 1;
+                        teleport(targetPlayer);
+                    }
+
                 } else {
                     count = 0;
                 }
             } else {
-                if (checkPlayerMove()) {
+                if (isPlayerMove()) {
                     teleportCountDown = 0;
                     count--;
                     detect();
@@ -112,8 +125,6 @@ public class ShadowMan extends ShadowEntity {
                     }
                 }
             }
-        } else {
-            prepareCountDown--;
         }
     }
 
@@ -135,16 +146,12 @@ public class ShadowMan extends ShadowEntity {
     private void recordTargetPlayer(Player player) {
         targetPlayer = player;
         Location location = targetPlayer.getLocation();
-        targetPlayerX = location.getX();
-        targetPlayerY = location.getY();
-        targetPlayerZ = location.getZ();
+        recordLocation = new Location(targetPlayer.getWorld(), location.getX(), location.getY(), location.getZ(), 0f, 0f);
     }
 
-    private boolean checkPlayerMove() {
+    private boolean isPlayerMove() {
         Location location = targetPlayer.getLocation();
-        return !((targetPlayerX == location.getX()) &&
-                (targetPlayerY == location.getY()) &&
-                (targetPlayerZ == location.getZ()));
+        return !(recordLocation.distance(location) <= 0.5);
     }
 
     private void detect() {

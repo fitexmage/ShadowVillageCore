@@ -6,12 +6,13 @@ import org.bukkit.Bukkit;
 
 import java.util.Date;
 
-public class TimeSpawner {
+public class SpawnerController {
     public static ShadowManSpawner shadowManSpawner;
     public static ShadowSpiritSpawner shadowSpiritSpawner;
+    public static ShadowSoulSpawner shadowSoulSpawner;
 
     private static int recordedMinute;
-    private static final long interval = 100L; // 20L = 1s
+    private static final long interval = 200L; // 20L = 1s
 
     public static void startSpawner(ShadowVillageCore plugin) {
         if (shadowManSpawner == null) {
@@ -19,6 +20,9 @@ public class TimeSpawner {
         }
         if (shadowSpiritSpawner == null) {
             shadowSpiritSpawner = new ShadowSpiritSpawner(plugin);
+        }
+        if (shadowSoulSpawner == null) {
+            shadowSoulSpawner = new ShadowSoulSpawner(plugin);
         }
         countTime(plugin);
     }

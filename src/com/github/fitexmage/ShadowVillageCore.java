@@ -5,6 +5,7 @@ import com.github.fitexmage.commands.sve;
 import com.github.fitexmage.commands.svb;
 import com.github.fitexmage.shadowVillageEcology.ShadowEntity;
 import com.github.fitexmage.shadowVillageEcology.ShadowMan;
+import com.github.fitexmage.shadowVillageEcology.ShadowSoul;
 import com.github.fitexmage.shadowVillageEcology.ShadowSpirit;
 import com.github.fitexmage.util.Message;
 
@@ -58,15 +59,18 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onNPCDamaged(NPCDamageByEntityEvent event){
+    public void onNPCDamaged(NPCDamageByEntityEvent event) {
         if (svc.coreOn) {
             NPC npc = event.getNPC();
-            if(event.getDamage() >= npc.getBukkitEntity().getHealth()){
+            if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
                 npc.despawn();
                 if (npc.getId() == ShadowMan.id || npc.getId() == ShadowSpirit.id) {
                     ItemStack dropItem = new ItemStack(Material.DIAMOND_BLOCK, 1);
                     npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
-                    Message.broadcastMessage("§0影§c消散了，但总感觉它仍注视着你......");
+                }
+                if (npc.getId() == ShadowSoul.id) {
+                    ItemStack dropItem = new ItemStack(Material.APPLE, 1);
+                    npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
                 }
             }
         }
@@ -81,6 +85,11 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
                 if (npc instanceof ShadowEntity) {
                     ((ShadowEntity) npc).randomShadowAttack(player);
                 }
+            }
+        } else if (npc.getId() == ShadowSoul.id) {
+            if (event.getDamaged() instanceof Player) {
+                Player player = (Player) event.getDamaged();
+                player.getWorld().strikeLightning(player.getLocation());
             }
         }
     }

@@ -17,6 +17,7 @@ public class ShadowSpirit extends ShadowEntity {
     public static final int id = 10002;
     private static final String name = "影灵";
     private final double health = 200.0;
+    private final float speed = 1.0f;
 
     private final int maxPrepareCountDown = (int) (1200 / ShadowManSpawner.interval); // 60秒
     private final int maxTeleportCountDown = (int) (400 / ShadowManSpawner.interval); // 20秒
@@ -51,7 +52,7 @@ public class ShadowSpirit extends ShadowEntity {
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
-        getNavigator().getLocalParameters().speedModifier(0.9f);
+        getNavigator().getLocalParameters().speedModifier(speed);
 
         Message.broadcastMessage("§0影§c即将降临。");
     }
@@ -64,13 +65,15 @@ public class ShadowSpirit extends ShadowEntity {
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
-        getNavigator().getLocalParameters().speedModifier(0.9f);
+        getNavigator().getLocalParameters().speedModifier(speed);
 
         Message.broadcastMessage("§0影§c即将降临。");
     }
 
     void action() {
-        if (prepareCountDown == 0) {
+        if (prepareCountDown > 0) {
+            prepareCountDown--;
+        } else {
             if (teleportCountDown == 0) {
                 List<Player> onlinePlayers = Bukkit.getWorld("world").getPlayers();
                 List<Player> realOnlinePlayers = new ArrayList<>();
@@ -94,8 +97,6 @@ public class ShadowSpirit extends ShadowEntity {
                     count--;
                 }
             }
-        } else {
-            prepareCountDown--;
         }
     }
 

@@ -38,6 +38,9 @@ permissions:
   sve.spawn.shadowspirit:
     description: Spawn shadow spirit.
     default: op
+  sve.spawn.shadowsoul:
+    description: Spawn shadow soul.
+    default: op
   svb.give.shadowstone:
     description: Give self shadow stones.
     default: op

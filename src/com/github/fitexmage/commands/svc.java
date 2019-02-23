@@ -3,7 +3,9 @@ package com.github.fitexmage.commands;
 import com.github.fitexmage.util.Message;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

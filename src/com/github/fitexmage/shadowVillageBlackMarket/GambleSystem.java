@@ -83,7 +83,10 @@ public class GambleSystem {
                         gambleItemInfo.getId() == 39999 ||
                         gambleItemInfo.getId() == 49999 ||
                         gambleItemInfo.getId() == 59999) {
+                    gambleItem = NBTUtil.getUnbreakableItem(gambleItem);
                     Message.broadcastMessage("腐竹的力量重现于世！");
+                } else if ((int) (Math.random() * 100) == 0) {
+                    gambleItem = NBTUtil.getUnbreakableItem(gambleItem);
                 }
                 break;
             }
@@ -104,15 +107,6 @@ public class GambleSystem {
                 meta.addEnchant(gambleEnchantInfo.getEnchantment(), randomLevel, true);
                 displayName += gambleEnchantInfo.getName();
             }
-        }
-        if (itemInfo.getId() == 19999 ||
-                itemInfo.getId() == 29999 ||
-                itemInfo.getId() == 39999 ||
-                itemInfo.getId() == 49999 ||
-                itemInfo.getId() == 59999) {
-            meta.spigot().setUnbreakable(true);
-        } else if ((int) (Math.random() * 100) == 0) {
-            meta.spigot().setUnbreakable(true);
         }
         displayName += itemInfo.getItemName();
         meta.setDisplayName(displayName);

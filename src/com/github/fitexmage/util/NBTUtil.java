@@ -1,9 +1,6 @@
 package com.github.fitexmage.util;
 
-import net.minecraft.server.v1_7_R4.NBTTagCompound;
-import net.minecraft.server.v1_7_R4.NBTTagInt;
-import net.minecraft.server.v1_7_R4.NBTTagList;
-import net.minecraft.server.v1_7_R4.NBTTagString;
+import net.minecraft.server.v1_7_R4.*;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
@@ -21,6 +18,15 @@ public class NBTUtil {
         return item;
     }
 
+    public static ItemStack getUnbreakableItem(ItemStack item) {
+        net.minecraft.server.v1_7_R4.ItemStack NMSItem = CraftItemStack.asNMSCopy(item);
+        NBTTagCompound compound = (NMSItem.hasTag()) ? NMSItem.getTag() : new NBTTagCompound();
+        compound.set("Unbreakable", new NBTTagByte((byte) 1));
+        NMSItem.setTag(compound);
+        item = CraftItemStack.asBukkitCopy(NMSItem);
+        return item;
+    }
+
     public static NBTTagCompound damageTag(int damage) {
         NBTTagCompound damageCompound = new NBTTagCompound();
         damageCompound.set("AttributeName", new NBTTagString("generic.attackDamage"));
@@ -31,4 +37,6 @@ public class NBTUtil {
         damageCompound.set("UUIDMost", new NBTTagInt(1));
         return damageCompound;
     }
+
+
 }

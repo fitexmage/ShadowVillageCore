@@ -12,7 +12,7 @@ public class sve extends ShadowVillageCommand {
     public static boolean ecologyOn;
 
     public sve(ShadowVillageCore plugin) {
-        TimeSpawner.startSpawner(plugin);
+        SpawnerController.startSpawner(plugin);
     }
 
     @Override
@@ -58,14 +58,11 @@ public class sve extends ShadowVillageCommand {
             switch (args[0]) {
                 case "start":
                     ecologyOn = true;
-                    Message.sendPlayerMessage(sender, "影之乡核心已启动！");
+                    Message.sendPlayerMessage(sender, "影之乡生态系统已启动！");
                     break;
                 case "stop":
                     ecologyOn = false;
-                    Message.sendPlayerMessage(sender, "影之乡核心已关闭。");
-                    break;
-                case "spawn":
-                    spawn(args, sender);
+                    Message.sendPlayerMessage(sender, "影之乡生态系统已关闭。");
                     break;
                 default:
                     Message.sendPlayerMessage(sender, "未知指令！");
@@ -74,27 +71,39 @@ public class sve extends ShadowVillageCommand {
         }
     }
 
-    private void spawn(String[] args, CommandSender sender) {
+    private void spawn(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendPlayerMessage(sender, "请选择要生成的生物！");
+            Message.sendPlayerMessage(player, "请选择要生成的生物！");
         } else if (args.length == 2) {
-            if (args[1].equals("shadowman")) {
-                if (sender.hasPermission("sve.spawn.shadowman")) {
-                    TimeSpawner.shadowManSpawner.spawnShadowMan(true);
-                } else {
-                    Message.sendPlayerMessage(sender, "你无权这样做！");
-                }
-            } else if (args[1].equals("shadowspirit")) {
-                if (sender.hasPermission("sve.spawn.shadowspirit")) {
-                    TimeSpawner.shadowSpiritSpawner.spawnShadowSpirit(true);
-                } else {
-                    Message.sendPlayerMessage(sender, "你无权这样做！");
-                }
-            } else {
-                Message.sendPlayerMessage(sender, "未知指令！");
+            switch (args[1]) {
+                case "shadowman":
+                    if (player.hasPermission("sve.spawn.shadowman")) {
+                        SpawnerController.shadowManSpawner.spawnShadowMan(true);
+                    } else {
+                        Message.sendPlayerMessage(player, "你无权这样做！");
+                    }
+                    break;
+                case "shadowspirit":
+                    if (player.hasPermission("sve.spawn.shadowspirit")) {
+                        SpawnerController.shadowSpiritSpawner.spawnShadowSpirit(true);
+                    } else {
+                        Message.sendPlayerMessage(player, "你无权这样做！");
+                    }
+                    break;
+                case "shadowsoul":
+                    if (player.hasPermission("sve.spawn.shadowsoul")) {
+                        SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
+
+                    } else {
+                        Message.sendPlayerMessage(player, "你无权这样做！");
+                    }
+                    break;
+                default:
+                    Message.sendPlayerMessage(player, "未知指令！");
+                    break;
             }
         } else {
-            Message.sendPlayerMessage(sender, "未知指令！");
+            Message.sendPlayerMessage(player, "未知指令！");
         }
     }
 }
