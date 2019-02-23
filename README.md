@@ -6,6 +6,8 @@ This is a plugin working on Shadow Village Minecraft Server written by Shengguan
 
 The plugin is based on Minecraft 1.7.10.
 
+Version: 1.0.1
+
 ## Library
 
 * Spigot 1.7.10
@@ -16,7 +18,7 @@ The plugin is based on Minecraft 1.7.10.
 
 ### Shadow Man and Shadow Spirit
 
-At a specific minute in every hour, shadow man or shadow spirit will appear and teleport random times. 
+At a specific minute every hour, shadow man or shadow spirit will appear and teleport random times. 
 
 * Shadow Man
 Shadow man will teleport to the back of a random player. It never move or attack, and just gaze at target player.
@@ -70,6 +72,10 @@ Shadow Village Ecology provides functions about entities.
 * /sve spawn shadowspirit
 
   Spawn shadow spirit.
+  
+* /sve spawn shadowsoul
+
+  Spawn shadow soul.
 
 ### Shadow Village Black Market
 Shadow Village Black Market provides functions about items.
@@ -119,6 +125,8 @@ Shadow Village Black Market provides functions about items.
 * sve.spawn.shadowman -- OP
 
 * svc.spawn.shadowspirit -- OP
+
+* svc.spawn.shadowsoul -- OP
 
 * svb.give.shadowstone -- OP
 
