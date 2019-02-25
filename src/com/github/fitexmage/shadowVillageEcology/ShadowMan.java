@@ -7,7 +7,6 @@ import net.citizensnpcs.api.trait.trait.Equipment;
 import net.citizensnpcs.npc.EntityControllers;
 import net.citizensnpcs.trait.LookClose;
 import org.bukkit.Bukkit;
-import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -59,7 +58,7 @@ public class ShadowMan extends ShadowEntity {
         count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
         prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
 
-        spawn(new Location(Bukkit.getWorld("world"), -281, 69, -25, 0f, 0f));
+        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 10, 0));
         getTrait(LookClose.class).lookClose(true);
         getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.SKULL_ITEM, 1, (short) 1));
         setProtected(false);
@@ -73,7 +72,7 @@ public class ShadowMan extends ShadowEntity {
         count = 5;
         prepareCountDown = 1;
 
-        spawn(new Location(Bukkit.getWorld("world"), -281, 69, -25, 0f, 0f));
+        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 10, 0));
         getTrait(LookClose.class).lookClose(true);
         getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.SKULL_ITEM, 1, (short) 1));
         setProtected(false);

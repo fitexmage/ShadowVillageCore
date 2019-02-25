@@ -215,13 +215,35 @@ public class svb extends ShadowVillageCommand {
                         int damage = Tool.getNumber(args[2]);
                         damage = damage > 999 ? 999 : damage;
                         ItemStack itemInHand = player.getItemInHand();
-                        itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
-                        player.setItemInHand(itemInHand);
+                        if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                            itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
+                            player.setItemInHand(itemInHand);
+                        } else {
+                            Message.sendPlayerMessage(player, "你的手上没有东西！");
+                        }
                     } else {
                         Message.sendPlayerMessage(player, "请输入伤害量！");
                     }
                 } else {
                     Message.sendPlayerMessage(player, "你无权这样做！");
+                }
+            } else if (args[1].equals("name")) {
+                if (player.hasPermission("svb.set.name")) {
+                    if (args.length != 2) {
+                        String name = args[2];
+                        name = name.replaceAll("&", "§");
+                        ItemStack itemInHand = player.getItemInHand();
+                        if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                            ItemMeta itemMeta = itemInHand.getItemMeta();
+                            itemMeta.setDisplayName(name);
+                            itemInHand.setItemMeta(itemMeta);
+                            player.setItemInHand(itemInHand);
+                        } else {
+                            Message.sendPlayerMessage(player, "你的手上没有东西！");
+                        }
+                    } else {
+                        Message.sendPlayerMessage(player, "请输入名字！");
+                    }
                 }
             } else {
                 Message.sendPlayerMessage(player, "未知指令！");

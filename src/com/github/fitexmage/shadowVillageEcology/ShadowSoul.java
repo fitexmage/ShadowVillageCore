@@ -79,7 +79,7 @@ public class ShadowSoul extends CitizensNPC {
                         break;
                     case 1:
                         Message.broadcastMessage("§4影魂正在召唤空之力！");
-                        stageCount = (int) (Math.random() * 2) + 2;
+                        stageCount = (int) (Math.random() * 2) + 1;
                         break;
                     case 2:
                         StringBuilder message = new StringBuilder("§4影魂正在召唤磁之力！");
@@ -91,7 +91,7 @@ public class ShadowSoul extends CitizensNPC {
                         break;
                     case 3:
                         Message.broadcastMessage("§4影魂正在召唤咒之力！");
-                        stageCount = (int) (Math.random() * 2) + 2;
+                        stageCount = (int) (Math.random() * 2) + 1;
                         break;
                     default:
                         break;
@@ -136,14 +136,12 @@ public class ShadowSoul extends CitizensNPC {
                                     Location playerLocation = player.getLocation();
                                     if (location.distance(playerLocation) <= range) {
                                         //消除状态
-                                        PotionEffect removedPotionEffect = null;
-                                        for (PotionEffect potionEffect : player.getActivePotionEffects()) {
-                                            if ((int) (Math.random() * 3) == 0) {
-                                                removedPotionEffect = potionEffect;
+                                        if (!player.getActivePotionEffects().isEmpty()) {
+                                            for (PotionEffect potionEffect : player.getActivePotionEffects()) {
+                                                if ((int) (Math.random() * 3) == 0) {
+                                                    player.removePotionEffect(potionEffect.getType());
+                                                }
                                             }
-                                        }
-                                        if (removedPotionEffect != null) {
-                                            player.getActivePotionEffects().remove(removedPotionEffect);
                                         }
 
                                         //添加状态
