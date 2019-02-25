@@ -55,9 +55,6 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         if (svc.coreOn) {
             Player player = event.getPlayer();
-            if (player.getDisplayName().equals("23dexiao")) {
-                Message.broadcastMessage("23dexiao上线了！他是个魔鬼，大家一定要远离！！！");
-            }
             Message.sendPlayerMessage(player, "影之乡核心正在运行");
         }
     }
@@ -95,16 +92,6 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
                 Player player = (Player) event.getDamaged();
                 player.getWorld().strikeLightning(player.getLocation());
             }
-        }
-    }
-
-    HashMap<String, Integer> map = new HashMap<>();
-
-    @EventHandler
-    public void onEntityDeath(EntityDeathEvent event) {
-        if (event.getEntity().getType().equals(EntityType.COW)) {
-            String name = event.getEntity().getKiller().getDisplayName();
-            map.put(name, map.getOrDefault(name, 0) + 1);
         }
     }
 }
