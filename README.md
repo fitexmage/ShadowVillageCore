@@ -111,6 +111,10 @@ Shadow Village Black Market provides functions about items.
 * /svb set damage [number]
 
   Set the damage of item in hand.
+  
+* /svb set name [name]
+
+  Set the name of item in hand.
 
 ## Permissions
 
@@ -143,3 +147,5 @@ Shadow Village Black Market provides functions about items.
 * svb.gamble.boots -- Everyone
 
 * svb.set.damage -- OP
+
+* svb.set.name -- OP
