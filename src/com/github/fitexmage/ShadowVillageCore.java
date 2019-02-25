@@ -13,12 +13,16 @@ import net.citizensnpcs.api.event.*;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.HashMap;
 
 public class ShadowVillageCore extends JavaPlugin implements Listener {
     @Override
@@ -91,6 +95,16 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
                 Player player = (Player) event.getDamaged();
                 player.getWorld().strikeLightning(player.getLocation());
             }
+        }
+    }
+
+    HashMap<String, Integer> map = new HashMap<>();
+
+    @EventHandler
+    public void onEntityDeath(EntityDeathEvent event) {
+        if (event.getEntity().getType().equals(EntityType.COW)) {
+            String name = event.getEntity().getKiller().getDisplayName();
+            map.put(name, map.getOrDefault(name, 0) + 1);
         }
     }
 }

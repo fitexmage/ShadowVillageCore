@@ -20,6 +20,7 @@ public class ShadowSoul extends CitizensNPC {
     private static final String name = "影魂";
     private final double health = 5000.0;
     private final float speed = 1.0f;
+    private final int range = 20;
 
     private int totalCount; //总计时
     private int stageCountDown; //距离下一阶段开始时间
@@ -117,7 +118,7 @@ public class ShadowSoul extends CitizensNPC {
                             for (Player player : location.getWorld().getPlayers()) {
                                 if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
                                     Location playerLocation = player.getLocation();
-                                    if (location.distance(playerLocation) <= 20) {
+                                    if (location.distance(playerLocation) <= range) {
                                         if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
                                             if (player.getHealth() > 16) {
                                                 player.setHealth(player.getHealth() - 16);
@@ -133,7 +134,7 @@ public class ShadowSoul extends CitizensNPC {
                             for (Player player : location.getWorld().getPlayers()) {
                                 if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
                                     Location playerLocation = player.getLocation();
-                                    if (location.distance(playerLocation) <= 20) {
+                                    if (location.distance(playerLocation) <= range) {
                                         //消除状态
                                         PotionEffect removedPotionEffect = null;
                                         for (PotionEffect potionEffect : player.getActivePotionEffects()) {

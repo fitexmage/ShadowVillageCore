@@ -143,7 +143,7 @@ public class svb extends ShadowVillageCommand {
         } else {
             GambleSystem gambleSystem = new GambleSystem();
             switch (args[1]) {
-                case "weapon":
+                case "1":
                     if (player.hasPermission("svb.gamble.weapon")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 1, "diamond", 1);
@@ -154,7 +154,7 @@ public class svb extends ShadowVillageCommand {
                         Message.sendPlayerMessage(player, "你无权这样做！");
                     }
                     break;
-                case "helmet":
+                case "2":
                     if (player.hasPermission("svb.gamble.helmet")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 2, "diamond", 1);
@@ -165,7 +165,7 @@ public class svb extends ShadowVillageCommand {
                         Message.sendPlayerMessage(player, "你无权这样做！");
                     }
                     break;
-                case "chestplate":
+                case "3":
                     if (player.hasPermission("svb.gamble.chestplate")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 3, "diamond", 1);
@@ -176,7 +176,7 @@ public class svb extends ShadowVillageCommand {
                         Message.sendPlayerMessage(player, "你无权这样做！");
                     }
                     break;
-                case "leggings":
+                case "4":
                     if (player.hasPermission("svb.gamble.leggings")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 4, "diamond", 1);
@@ -187,7 +187,7 @@ public class svb extends ShadowVillageCommand {
                         Message.sendPlayerMessage(player, "你无权这样做！");
                     }
                     break;
-                case "boots":
+                case "5":
                     if (player.hasPermission("svb.gamble.boots")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 5, "diamond", 1);
