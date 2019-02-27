@@ -14,10 +14,6 @@ import java.util.List;
 import java.util.UUID;
 
 public abstract class ShadowEntity extends CitizensNPC {
-    public static final int id = 10011;
-    private static final String name = "影魂";
-    private final double health = 10000.0;
-
     ShadowEntity(UUID uuid, int id, String name, EntityController entityController, NPCRegistry registry) {
         super(uuid, id, name, entityController, registry);
     }
@@ -36,27 +32,27 @@ public abstract class ShadowEntity extends CitizensNPC {
         switch (randomAction) {
             case 0:
                 player.setFireTicks(200);
-                Message.broadcastMessage(player.getDisplayName() + "被" + name + "点燃了!");
+                Message.broadcastMessage("§4" + player.getDisplayName() + "被" + name + "点燃了!");
                 break;
             case 1:
                 player.setFoodLevel(1);
-                Message.broadcastMessage(player.getDisplayName() + "被" + name + "榨干了!");
+                Message.broadcastMessage("§4" + player.getDisplayName() + "被" + name + "榨干了!");
                 break;
             case 2:
                 player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 1200, 100));
-                Message.broadcastMessage(player.getDisplayName() + "被" + name + "致盲了!");
+                Message.broadcastMessage("§4" + player.getDisplayName() + "被" + name + "致盲了!");
                 break;
             case 3:
                 player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 1200, 3));
-                Message.broadcastMessage(player.getDisplayName() + "被" + name + "缠住了!");
+                Message.broadcastMessage("§4" + player.getDisplayName() + "被" + name + "缠住了!");
                 break;
             case 4:
                 player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1200, 3));
-                Message.broadcastMessage(player.getDisplayName() + "被" + name + "缠住了!");
+                Message.broadcastMessage("§4" + player.getDisplayName() + "被" + name + "缠住了!");
                 break;
             case 5:
                 player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 200, 3));
-                Message.broadcastMessage(player.getDisplayName() + "被" + name + "缠住了!");
+                Message.broadcastMessage("§4" + player.getDisplayName() + "被" + name + "缠住了!");
                 break;
             default:
                 List<ItemStack> targetPlayerItems = Tool.getPlayerItems(player);
@@ -65,7 +61,7 @@ public abstract class ShadowEntity extends CitizensNPC {
                     int removedAmount = (int) (Math.random() * removedItem.getAmount()) + 1;
                     removedItem.setAmount(removedAmount);
                     player.getInventory().removeItem(removedItem);
-                    Message.broadcastMessage(player.getDisplayName() + "被" + name + "掠夺走" + removedItem.getType() + " " + removedAmount + "个！");
+                    Message.broadcastMessage("§4" + player.getDisplayName() + "被" + name + "掠夺走" + removedItem.getType() + " " + removedAmount + "个！");
                 }
                 break;
         }

@@ -71,6 +71,7 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
                 }
                 if (npc.getId() == ShadowSoul.id) {
                     ItemStack dropItem = new ItemStack(Material.APPLE, 1);
+                    ShadowSoul.deathReason = 1;
                     npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
                 }
             }
