@@ -58,7 +58,7 @@ public class ShadowMan extends ShadowEntity {
         count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
         prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
 
-        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 10, 0));
+        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         getTrait(LookClose.class).lookClose(true);
         getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.SKULL_ITEM, 1, (short) 1));
         setProtected(false);
@@ -72,7 +72,7 @@ public class ShadowMan extends ShadowEntity {
         count = 5;
         prepareCountDown = 1;
 
-        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 10, 0));
+        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         getTrait(LookClose.class).lookClose(true);
         getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.SKULL_ITEM, 1, (short) 1));
         setProtected(false);

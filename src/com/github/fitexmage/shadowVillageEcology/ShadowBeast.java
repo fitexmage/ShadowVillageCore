@@ -48,7 +48,7 @@ public class ShadowBeast extends ShadowEntity {
         count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
         prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
 
-        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 10, 0));
+        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
@@ -61,7 +61,7 @@ public class ShadowBeast extends ShadowEntity {
         count = 5;
         prepareCountDown = 1;
 
-        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 10, 0));
+        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);

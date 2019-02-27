@@ -47,7 +47,13 @@ public class svb extends ShadowVillageCommand {
                         case "lookup":
                             lookup(args, player);
                             break;
+                        case "l":
+                            lookup(args, player);
+                            break;
                         case "gamble":
+                            gamble(args, player);
+                            break;
+                        case "g":
                             gamble(args, player);
                             break;
                         case "set":
