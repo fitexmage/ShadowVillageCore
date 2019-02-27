@@ -17,18 +17,20 @@ public class ShadowSoulSpawner {
     }
 
     public void spawnShadowSoul(Player player) {
-        shadowSoul.spawn(player);
-        BukkitScheduler scheduler = plugin.getServer().getScheduler();
-        taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
-            @Override
-            public void run() {
-                if (shadowSoul.isSpawned()) {
-                    shadowSoul.action();
-                } else {
-                    shadowSoul.despawn();
-                    scheduler.cancelTask(taskID);
+        if (!shadowSoul.isSpawned()) {
+            shadowSoul.spawn(player);
+            BukkitScheduler scheduler = plugin.getServer().getScheduler();
+            taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    if (shadowSoul.isSpawned()) {
+                        shadowSoul.action();
+                    } else {
+                        shadowSoul.despawn();
+                        scheduler.cancelTask(taskID);
+                    }
                 }
-            }
-        }, 0L, interval);
+            }, 0L, interval);
+        }
     }
 }

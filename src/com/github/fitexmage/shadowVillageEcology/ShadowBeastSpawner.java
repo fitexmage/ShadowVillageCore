@@ -27,8 +27,8 @@ public class ShadowBeastSpawner {
         }
     }
 
-    public void spawnShadowSpirit(boolean force) {
-        if (shadowBeast.count == 0) {
+    public void spawnShadowBeast(boolean force) {
+        if (!shadowBeast.isSpawned()) {
             if (force) {
                 shadowBeast.forcePrepare();
             } else {

@@ -85,7 +85,7 @@ public class sve extends ShadowVillageCommand {
                     break;
                 case "shadowbeast":
                     if (player.hasPermission("sve.spawn.shadowbeast")) {
-                        SpawnerController.shadowBeastSpawner.spawnShadowSpirit(true);
+                        SpawnerController.shadowBeastSpawner.spawnShadowBeast(true);
                     } else {
                         Message.sendPlayerMessage(player, "你无权这样做！");
                     }

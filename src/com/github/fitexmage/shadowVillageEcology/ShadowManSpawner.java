@@ -22,7 +22,7 @@ public class ShadowManSpawner {
     }
 
     public void spawnShadowMan(boolean force) {
-        if (shadowMan.count == 0) {
+        if (!shadowMan.isSpawned()) {
             if (force) {
                 shadowMan.forcePrepare();
             } else {
