@@ -22,7 +22,7 @@ public class ShadowSoul extends CitizensNPC {
     public static int deathReason = 0;
     private final double health = 5000.0;
     private final float speed = 1.0f;
-    private final int range = 20;
+    private final double range = 20.0;
 
     private int totalCount; //总计时
     private int stageCountDown; //距离下一阶段开始时间
@@ -180,7 +180,7 @@ public class ShadowSoul extends CitizensNPC {
     }
 
     private Player getNearestPlayer() {
-        double min = 50.0;
+        double min = range;
         Player nearestPlayer = null;
         for (Player player : getBukkitEntity().getWorld().getPlayers()) {
             if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
