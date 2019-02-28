@@ -13,6 +13,7 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.LinkedList;
 import java.util.UUID;
 
 public class ShadowSoul extends CitizensNPC {
@@ -71,107 +72,111 @@ public class ShadowSoul extends CitizensNPC {
         if (stageCountDown > 0) { //阶段未开始
             stageCountDown--;
         } else { //阶段准备
-            if (stageCount == 0) {
+            if (stageNum == -1) {
                 stageNum = (int) (Math.random() * 4);
-                switch (stageNum) {
-                    case 0:
-                        Message.broadcastMessage("§4影魂已如同幻影！");
-                        getNavigator().getLocalParameters().speedModifier(5.0f);
-                        stageCount = (int) (Math.random() * 5) + 5;
-                        break;
-                    case 1:
-                        Message.broadcastMessage("§4影魂正在召唤空之力！");
-                        stageCount = (int) (Math.random() * 2) + 1;
-                        break;
-                    case 2:
-                        StringBuilder message = new StringBuilder("§4影魂正在召唤磁之力！");
-                        minHeight = (int) (Math.random() * 5) + 1;
-                        message.insert(minHeight + 2, "§a");
-                        message.insert(minHeight + 7, "§4");
-                        Message.broadcastMessage(message.toString());
-                        stageCount = (int) (Math.random() * 2) + 3;
-                        break;
-                    case 3:
-                        Message.broadcastMessage("§4影魂正在召唤咒之力！");
-                        stageCount = (int) (Math.random() * 2) + 1;
-                        break;
-                    default:
-                        break;
-                }
-            } else { //阶段开始
-                stageCount--;
-                if (stageCount == 0) {
-                    stageCountDown = (int) (Math.random() * 5) + 3; //到下一阶段时间
-                    Location location = this.getBukkitEntity().getLocation();
-                    switch (stageNum) {
-                        case 0:
-                            getNavigator().getLocalParameters().speedModifier(speed);
-                            break;
-                        case 1:
-                            World world = location.getWorld();
-                            for (int x = -10; x <= 10; x += 5) {
-                                for (int z = -10; z <= 10; z += 5) {
-                                    Location tntLocation = new Location(world, (double) (location.getBlockX() + x), (double) (world.getHighestBlockYAt(location) + 64), (double) (location.getBlockZ() + z));
-                                    world.spawn(tntLocation, TNTPrimed.class);
-                                }
-                            }
-                            break;
-                        case 2:
-                            for (Player player : location.getWorld().getPlayers()) {
-                                if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
-                                    Location playerLocation = player.getLocation();
-                                    if (location.distance(playerLocation) <= range) {
-                                        if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
-                                            if (player.getHealth() > 16) {
-                                                player.setHealth(player.getHealth() - 16);
-                                            } else {
-                                                player.setHealth(0);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                        case 3:
-                            for (Player player : location.getWorld().getPlayers()) {
-                                if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
-                                    Location playerLocation = player.getLocation();
-                                    if (location.distance(playerLocation) <= range) {
-                                        //消除状态
-                                        if (!player.getActivePotionEffects().isEmpty()) {
-                                            for (PotionEffect potionEffect : player.getActivePotionEffects()) {
-                                                if ((int) (Math.random() * 3) == 0) {
-                                                    player.removePotionEffect(potionEffect.getType());
-                                                }
-                                            }
-                                        }
+            } else {
+                stage(stageNum);
+            }
+        }
+    }
 
-                                        //添加状态
-                                        switch ((int) (Math.random() * 5)) {
-                                            case 0:
-                                                player.setFireTicks(100);
-                                                break;
-                                            case 1:
-                                                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 100));
-                                                break;
-                                            case 2:
-                                                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 100));
-                                                break;
-                                            case 3:
-                                                player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 100, 100));
-                                                break;
-                                            case 4:
-                                                player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 100));
-                                                break;
-                                        }
-                                    }
-                                }
-                            }
-                            break;
+    private void stage(int num) {
+        if (stageCount == 0) {
+            if (num == 1) stage1(1);
+            else if (num == 2) stage2(1);
+            else if (num == 3) stage3(1);
+            else if (num == 4) stage4(1);
+        } else {
+            stageCount--;
+            if (stageCount == 0) {
+                stageCountDown = (int) (Math.random() * 5) + 3; //到下一阶段时间
+                stageNum = -1;
+                if (num == 1) stage1(2);
+                else if (num == 2) stage2(2);
+                else if (num == 3) stage3(2);
+                else if (num == 4) stage4(2);
+            }
+        }
+    }
+
+    private void stage1(int subStage) {
+        if (subStage == 1) {
+            Message.broadcastMessage("§4影魂已如同幻影！");
+            getNavigator().getLocalParameters().speedModifier(5.0f);
+            stageCount = (int) (Math.random() * 5) + 5;
+        } else {
+            getNavigator().getLocalParameters().speedModifier(speed);
+        }
+    }
+
+    private void stage2(int subStage) {
+        if (subStage == 1) {
+            Message.broadcastMessage("§4影魂正在召唤空之力！");
+            stageCount = (int) (Math.random() * 2) + 1;
+        } else {
+            setNuke();
+        }
+    }
+
+    private void stage3(int subStage) {
+        if (subStage == 1) {
+            StringBuilder message = new StringBuilder("§4影魂正在召唤磁之力！");
+            minHeight = (int) (Math.random() * 5) + 1;
+            message.insert(minHeight + 2, "§a");
+            message.insert(minHeight + 7, "§4");
+            Message.broadcastMessage(message.toString());
+            stageCount = (int) (Math.random() * 2) + 3;
+        } else {
+            Location location = this.getBukkitEntity().getLocation();
+            for (Player player : getNearPlayers()) {
+                Location playerLocation = player.getLocation();
+                if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
+                    if (player.getHealth() > 16) {
+                        player.setHealth(player.getHealth() - 16);
+                    } else {
+                        player.setHealth(0);
                     }
                 }
             }
         }
+    }
+
+    private void stage4(int subStage) {
+        if (subStage == 1) {
+            Message.broadcastMessage("§4影魂正在召唤咒之力！");
+            stageCount = (int) (Math.random() * 2) + 2;
+        } else {
+            dispel();
+            for (Player player : getNearPlayers()) {
+                removePotionEffect(player);
+                addPotionEffect(player);
+            }
+        }
+    }
+
+    private void setNuke() {
+        Location location = this.getBukkitEntity().getLocation();
+        World world = location.getWorld();
+        for (int x = -10; x <= 10; x += 5) {
+            for (int z = -10; z <= 10; z += 5) {
+                Location tntLocation = new Location(world, (double) (location.getBlockX() + x), (double) (world.getHighestBlockYAt(location) + 64), (double) (location.getBlockZ() + z));
+                world.spawn(tntLocation, TNTPrimed.class);
+            }
+        }
+    }
+
+    private LinkedList<Player> getNearPlayers() {
+        Location location = this.getBukkitEntity().getLocation();
+        LinkedList<Player> list = new LinkedList<>();
+        for (Player player : location.getWorld().getPlayers()) {
+            if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
+                Location playerLocation = player.getLocation();
+                if (location.distance(playerLocation) <= range) {
+                    list.add(player);
+                }
+            }
+        }
+        return list;
     }
 
     private Player getNearestPlayer() {
@@ -188,5 +193,41 @@ public class ShadowSoul extends CitizensNPC {
             }
         }
         return nearestPlayer;
+    }
+
+    private void dispel() {
+        for (PotionEffect potionEffect : this.getBukkitEntity().getActivePotionEffects()) {
+            this.getBukkitEntity().removePotionEffect(potionEffect.getType());
+        }
+    }
+
+    private void removePotionEffect(Player player) {
+        if (!player.getActivePotionEffects().isEmpty()) {
+            for (PotionEffect potionEffect : player.getActivePotionEffects()) {
+                if ((int) (Math.random() * 3) == 0) {
+                    player.removePotionEffect(potionEffect.getType());
+                }
+            }
+        }
+    }
+
+    private void addPotionEffect(Player player) {
+        switch ((int) (Math.random() * 5)) {
+            case 0:
+                player.setFireTicks(100);
+                break;
+            case 1:
+                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 100));
+                break;
+            case 2:
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 100));
+                break;
+            case 3:
+                player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 100, 100));
+                break;
+            case 4:
+                player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 100));
+                break;
+        }
     }
 }

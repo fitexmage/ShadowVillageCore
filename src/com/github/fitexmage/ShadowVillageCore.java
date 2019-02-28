@@ -64,16 +64,17 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
         if (svc.coreOn) {
             NPC npc = event.getNPC();
             if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
-                npc.despawn();
                 if (npc.getId() == ShadowMan.id || npc.getId() == ShadowBeast.id) {
-                    ItemStack dropItem = new ItemStack(Material.DIAMOND_BLOCK, 1);
-                    npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
+                    ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, 1);
+//                    ItemStack dropItem2 = new ItemStack(Material.BOOK, 1);
+                    npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem1);
                 }
                 if (npc.getId() == ShadowSoul.id) {
                     ItemStack dropItem = new ItemStack(Material.APPLE, 1);
                     ShadowSoul.deathReason = 1;
                     npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
                 }
+                npc.despawn();
             }
         }
     }
