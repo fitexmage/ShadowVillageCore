@@ -42,7 +42,7 @@ public class SpawnerController {
                             if (random == 0) {
                                 shadowManSpawner.spawnShadowMan(false);
                             } else {
-                                shadowBeastSpawner.spawnShadowSpirit(false);
+                                shadowBeastSpawner.spawnShadowBeast(false);
                             }
                         }
                     }

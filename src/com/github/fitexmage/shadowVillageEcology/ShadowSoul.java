@@ -131,13 +131,14 @@ public class ShadowSoul extends CitizensNPC {
             for (Player player : getNearPlayers()) {
                 Location playerLocation = player.getLocation();
                 if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
-                    if (player.getHealth() > 16) {
-                        player.setHealth(player.getHealth() - 16);
+                    if (player.getHealth() > 19) {
+                        player.setHealth(player.getHealth() - 19);
                     } else {
                         player.setHealth(0);
                     }
                 }
             }
+            Message.broadcastMessage("§4磁场扭曲了！");
         }
     }
 
@@ -163,36 +164,6 @@ public class ShadowSoul extends CitizensNPC {
                 world.spawn(tntLocation, TNTPrimed.class);
             }
         }
-    }
-
-    private LinkedList<Player> getNearPlayers() {
-        Location location = this.getBukkitEntity().getLocation();
-        LinkedList<Player> list = new LinkedList<>();
-        for (Player player : location.getWorld().getPlayers()) {
-            if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
-                Location playerLocation = player.getLocation();
-                if (location.distance(playerLocation) <= range) {
-                    list.add(player);
-                }
-            }
-        }
-        return list;
-    }
-
-    private Player getNearestPlayer() {
-        double min = range;
-        Player nearestPlayer = null;
-        for (Player player : getBukkitEntity().getWorld().getPlayers()) {
-            if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
-                Location playerLocation = player.getLocation();
-                double distance = getBukkitEntity().getLocation().distance(playerLocation);
-                if (distance <= min) {
-                    min = distance;
-                    nearestPlayer = player;
-                }
-            }
-        }
-        return nearestPlayer;
     }
 
     private void dispel() {
@@ -229,5 +200,35 @@ public class ShadowSoul extends CitizensNPC {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 100));
                 break;
         }
+    }
+
+    private LinkedList<Player> getNearPlayers() {
+        Location location = this.getBukkitEntity().getLocation();
+        LinkedList<Player> list = new LinkedList<>();
+        for (Player player : location.getWorld().getPlayers()) {
+            if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
+                Location playerLocation = player.getLocation();
+                if (location.distance(playerLocation) <= range) {
+                    list.add(player);
+                }
+            }
+        }
+        return list;
+    }
+
+    private Player getNearestPlayer() {
+        double min = range;
+        Player nearestPlayer = null;
+        for (Player player : getBukkitEntity().getWorld().getPlayers()) {
+            if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
+                Location playerLocation = player.getLocation();
+                double distance = getBukkitEntity().getLocation().distance(playerLocation);
+                if (distance <= min) {
+                    min = distance;
+                    nearestPlayer = player;
+                }
+            }
+        }
+        return nearestPlayer;
     }
 }
