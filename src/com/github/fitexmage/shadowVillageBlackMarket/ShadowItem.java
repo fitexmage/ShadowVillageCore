@@ -11,7 +11,7 @@ public class ShadowItem {
     public static ItemStack shadowStone(int amount) {
         ItemStack shadowStone = new ItemStack(Material.EMERALD, amount);
         ItemMeta meta = shadowStone.getItemMeta();
-        meta.setDisplayName("§0影之石");
+        meta.setDisplayName("§5影之石");
         meta.setLore(Collections.singletonList("影之乡货币"));
         shadowStone.setItemMeta(meta);
         return shadowStone;
@@ -29,7 +29,7 @@ public class ShadowItem {
     public static ItemStack shadowSoulBook() {
         ItemStack shadowSoulBook = new ItemStack(Material.BOOK, 1);
         ItemMeta itemMeta = shadowSoulBook.getItemMeta();
-        itemMeta.setDisplayName("§0影魂之书");
+        itemMeta.setDisplayName("§5影魂之书");
         itemMeta.setLore(Collections.singletonList("以虚空为影，以力量为魂。"));
         shadowSoulBook.setItemMeta(itemMeta);
         return shadowSoulBook;

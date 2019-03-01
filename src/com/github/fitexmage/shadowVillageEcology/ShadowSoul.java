@@ -74,9 +74,9 @@ public class ShadowSoul extends CitizensNPC {
 
         if (stageCountDown > 0) { //阶段未开始
             stageCountDown--;
-        } else { //阶段准备
+        } else {
             if (stageNum == -1) {
-                stageNum = (int) (Math.random() * 4);
+                stageNum = (int) (Math.random() * 4); //阶段选择
             } else {
                 stage(stageNum);
             }
