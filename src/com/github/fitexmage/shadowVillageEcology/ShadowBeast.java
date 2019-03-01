@@ -5,13 +5,14 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.npc.EntityControllers;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class ShadowBeast extends ShadowEntity {
     public static final int id = 10002;
@@ -111,5 +112,19 @@ public class ShadowBeast extends ShadowEntity {
         if (Message.debug) {
             Message.broadcastMessage("传送至" + player.getDisplayName());
         }
+    }
+
+    public static List<ItemStack> dropItem() {
+        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, 1);
+
+        ItemStack dropItem2 = new ItemStack(Material.BOOK, 1);
+        ItemMeta itemMeta = dropItem2.getItemMeta();
+        itemMeta.setDisplayName("影魄之书");
+        itemMeta.setLore(Collections.singletonList("以混沌为影，以源能为魄。"));
+
+        LinkedList<ItemStack> list = new LinkedList<>();
+        list.add(dropItem1);
+        list.add(dropItem2);
+        return list;
     }
 }

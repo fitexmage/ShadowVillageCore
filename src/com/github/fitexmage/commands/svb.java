@@ -1,6 +1,7 @@
 package com.github.fitexmage.commands;
 
 import com.github.fitexmage.shadowVillageBlackMarket.GambleSystem;
+import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.util.Message;
 
 import com.github.fitexmage.util.NBTUtil;
@@ -97,24 +98,30 @@ public class svb extends ShadowVillageCommand {
         if (args.length == 1) {
             Message.sendPlayerMessage(player, "请选择要给予的物品！");
         } else {
-            if (args[1].equals("shadowstone")) {
-                if (player.hasPermission("svb.give.shadowstone")) {
-                    ItemStack shadowstone;
-                    if (args.length == 2) {
-                        shadowstone = new ItemStack(Material.EMERALD);
+            switch (args[1]) {
+                case "shadowstone":
+                    if (player.hasPermission("svb.give.shadowstone")) {
+                        ItemStack shadowStone;
+                        if (args.length == 2) {
+                            shadowStone = ShadowItem.shadowStone(1);
+                        } else {
+                            shadowStone = ShadowItem.shadowStone(Tool.getNumber(args[2]));
+                        }
+                        player.getInventory().addItem(shadowStone);
                     } else {
-                        shadowstone = new ItemStack(Material.EMERALD, Tool.getNumber(args[2]));
+                        Message.sendPlayerMessage(player, "你无权这样做！");
                     }
-                    ItemMeta meta = shadowstone.getItemMeta();
-                    meta.setDisplayName("影之石");
-                    meta.setLore(Collections.singletonList("影之乡货币"));
-                    shadowstone.setItemMeta(meta);
-                    player.getInventory().addItem(shadowstone);
-                } else {
-                    Message.sendPlayerMessage(player, "你无权这样做！");
-                }
-            } else {
-                Message.sendPlayerMessage(player, "未知指令！");
+                    break;
+                case "shadowsoulbook":
+                    if (player.hasPermission("svb.give.shadowsoulbook")) {
+                        player.getInventory().addItem(ShadowItem.shadowSoulBook());
+                    } else {
+                        Message.sendPlayerMessage(player, "你无权这样做！");
+                    }
+                    break;
+                default:
+                    Message.sendPlayerMessage(player, "未知指令！");
+                    break;
             }
         }
     }
@@ -126,11 +133,10 @@ public class svb extends ShadowVillageCommand {
             if (args[1].equals("shadowstone")) {
                 if (player.hasPermission("svb.lookup.shadowstone")) {
                     int shadowstoneCount = 0;
-                    for (ItemStack item : player.getInventory()) {
-                        if (item != null && item.getType().equals(Material.EMERALD)) {
-                            if (item.hasItemMeta() && !item.getItemMeta().getLore().isEmpty()) {
-                                shadowstoneCount += item.getAmount();
-                            }
+
+                    for (ItemStack item : Tool.getPlayerItems(player)) {
+                        if (ShadowItem.isShadowStone(item)) {
+                            shadowstoneCount += item.getAmount();
                         }
                     }
                     Message.sendPlayerMessage(player, "你拥有" + shadowstoneCount + "个影之石。");
@@ -215,44 +221,48 @@ public class svb extends ShadowVillageCommand {
         if (args.length == 1) {
             Message.sendPlayerMessage(player, "请选择想要设置的属性");
         } else {
-            if (args[1].equals("damage")) {
-                if (player.hasPermission("svb.set.damage")) {
-                    if (args.length != 2) {
-                        int damage = Tool.getNumber(args[2]);
-                        damage = damage > 999 ? 999 : damage;
-                        ItemStack itemInHand = player.getItemInHand();
-                        if (itemInHand != null && itemInHand.getType() != Material.AIR) {
-                            itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
-                            player.setItemInHand(itemInHand);
+            switch (args[1]) {
+                case "damage":
+                    if (player.hasPermission("svb.set.damage")) {
+                        if (args.length != 2) {
+                            int damage = Tool.getNumber(args[2]);
+                            damage = damage > 999 ? 999 : damage;
+                            ItemStack itemInHand = player.getItemInHand();
+                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                                itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
+                                player.setItemInHand(itemInHand);
+                            } else {
+                                Message.sendPlayerMessage(player, "你的手上没有东西！");
+                            }
                         } else {
-                            Message.sendPlayerMessage(player, "你的手上没有东西！");
+                            Message.sendPlayerMessage(player, "请输入伤害量！");
                         }
                     } else {
-                        Message.sendPlayerMessage(player, "请输入伤害量！");
+                        Message.sendPlayerMessage(player, "你无权这样做！");
                     }
-                } else {
-                    Message.sendPlayerMessage(player, "你无权这样做！");
-                }
-            } else if (args[1].equals("name")) {
-                if (player.hasPermission("svb.set.name")) {
-                    if (args.length != 2) {
-                        String name = args[2];
-                        name = name.replaceAll("&", "§");
-                        ItemStack itemInHand = player.getItemInHand();
-                        if (itemInHand != null && itemInHand.getType() != Material.AIR) {
-                            ItemMeta itemMeta = itemInHand.getItemMeta();
-                            itemMeta.setDisplayName(name);
-                            itemInHand.setItemMeta(itemMeta);
-                            player.setItemInHand(itemInHand);
+                    break;
+                case "name":
+                    if (player.hasPermission("svb.set.name")) {
+                        if (args.length != 2) {
+                            String name = args[2];
+                            name = name.replaceAll("&", "§");
+                            ItemStack itemInHand = player.getItemInHand();
+                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                                ItemMeta itemMeta = itemInHand.getItemMeta();
+                                itemMeta.setDisplayName(name);
+                                itemInHand.setItemMeta(itemMeta);
+                                player.setItemInHand(itemInHand);
+                            } else {
+                                Message.sendPlayerMessage(player, "你的手上没有东西！");
+                            }
                         } else {
-                            Message.sendPlayerMessage(player, "你的手上没有东西！");
+                            Message.sendPlayerMessage(player, "请输入名字！");
                         }
-                    } else {
-                        Message.sendPlayerMessage(player, "请输入名字！");
                     }
-                }
-            } else {
-                Message.sendPlayerMessage(player, "未知指令！");
+                    break;
+                default:
+                    Message.sendPlayerMessage(player, "未知指令！");
+                    break;
             }
         }
     }

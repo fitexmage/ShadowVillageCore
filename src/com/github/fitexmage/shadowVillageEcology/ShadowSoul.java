@@ -1,6 +1,8 @@
 package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.util.Message;
+import com.github.fitexmage.util.Tool;
+
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.npc.CitizensNPC;
 import net.citizensnpcs.npc.EntityControllers;
@@ -132,11 +134,7 @@ public class ShadowSoul extends CitizensNPC {
             for (Player player : getNearPlayers()) {
                 Location playerLocation = player.getLocation();
                 if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
-                    if (player.getHealth() > 19) {
-                        player.setHealth(player.getHealth() - 19);
-                    } else {
-                        player.setHealth(0);
-                    }
+                    Tool.damagePlayer(player, 19);
                 }
             }
             Message.broadcastMessage("§4磁场扭曲了！");

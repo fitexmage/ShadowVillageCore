@@ -2,6 +2,7 @@ package com.github.fitexmage.shadowVillageBlackMarket;
 
 import com.github.fitexmage.util.NBTUtil;
 import com.github.fitexmage.util.Message;
+import com.github.fitexmage.util.Tool;
 
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import org.bukkit.Material;
@@ -17,13 +18,11 @@ public class GambleSystem {
             if (costType.equals("diamond")) {
                 int diamondCount = 0;
                 int diamondBlockCount = 0;
-                for (ItemStack item : player.getInventory()) {
-                    if (item != null) {
-                        if (item.getType().equals(Material.DIAMOND)) {
-                            diamondCount += item.getAmount();
-                        } else if (item.getType().equals(Material.DIAMOND_BLOCK)) {
-                            diamondBlockCount += item.getAmount();
-                        }
+                for (ItemStack item : Tool.getPlayerItems(player)) {
+                    if (item.getType().equals(Material.DIAMOND)) {
+                        diamondCount += item.getAmount();
+                    } else if (item.getType().equals(Material.DIAMOND_BLOCK)) {
+                        diamondBlockCount += item.getAmount();
                     }
                 }
 

@@ -3,21 +3,19 @@ package com.github.fitexmage;
 import com.github.fitexmage.commands.svc;
 import com.github.fitexmage.commands.sve;
 import com.github.fitexmage.commands.svb;
-import com.github.fitexmage.shadowVillageEcology.ShadowEntity;
-import com.github.fitexmage.shadowVillageEcology.ShadowMan;
-import com.github.fitexmage.shadowVillageEcology.ShadowSoul;
-import com.github.fitexmage.shadowVillageEcology.ShadowBeast;
+import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
+import com.github.fitexmage.shadowVillageEcology.*;
 import com.github.fitexmage.util.Message;
 
 import net.citizensnpcs.api.event.*;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -64,10 +62,15 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
         if (svc.coreOn) {
             NPC npc = event.getNPC();
             if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
-                if (npc.getId() == ShadowMan.id || npc.getId() == ShadowBeast.id) {
-                    ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, 1);
-//                    ItemStack dropItem2 = new ItemStack(Material.BOOK, 1);
-                    npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem1);
+                if (npc.getId() == ShadowMan.id) {
+                    for (ItemStack item : ShadowMan.dropItem()) {
+                        npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), item);
+                    }
+                }
+                if (npc.getId() == ShadowBeast.id) {
+                    for (ItemStack item : ShadowBeast.dropItem()) {
+                        npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), item);
+                    }
                 }
                 if (npc.getId() == ShadowSoul.id) {
                     ItemStack dropItem = new ItemStack(Material.APPLE, 1);
@@ -93,6 +96,25 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
             if (event.getDamaged() instanceof Player) {
                 Player player = (Player) event.getDamaged();
                 player.getWorld().strikeLightning(player.getLocation());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteraction(PlayerInteractEvent event) {
+        if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (event.hasItem()) {
+                ItemStack item = event.getItem();
+                if (ShadowItem.isShadowSoulBook(item)) {
+                    Player player = event.getPlayer();
+                    SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
+                    if (item.getAmount() > 1) {
+                        item.setAmount(item.getAmount() - 1);
+                        player.setItemInHand(item);
+                    } else {
+                        player.setItemInHand(null);
+                    }
+                }
             }
         }
     }

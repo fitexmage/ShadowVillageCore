@@ -13,6 +13,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import java.util.*;
@@ -51,7 +53,6 @@ public class ShadowMan extends ShadowEntity {
         List<Player> realOnlinePlayers = new ArrayList<>();
         for (Player player : onlinePlayers) {
             if (!player.hasMetadata("NPC")) {
-//                player.playSound(player.getLocation(),0);
                 realOnlinePlayers.add(player);
             }
         }
@@ -156,5 +157,19 @@ public class ShadowMan extends ShadowEntity {
     private void detect() {
         Message.broadcastMessage(targetPlayer.getDisplayName() + "被影者发现了!");
         randomShadowAttack(targetPlayer);
+    }
+
+    public static List<ItemStack> dropItem() {
+        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, 1);
+
+        ItemStack dropItem2 = new ItemStack(Material.BOOK, 1);
+        ItemMeta itemMeta = dropItem2.getItemMeta();
+        itemMeta.setDisplayName("影魂之书");
+        itemMeta.setLore(Collections.singletonList("以虚空为影，以力量为魂。"));
+
+        LinkedList<ItemStack> list = new LinkedList<>();
+        list.add(dropItem1);
+        list.add(dropItem2);
+        return list;
     }
 }
