@@ -2,12 +2,7 @@ package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.ShadowVillageCore;
 
-import net.citizensnpcs.api.CitizensAPI;
-import net.citizensnpcs.npc.EntityControllers;
-import org.bukkit.entity.EntityType;
 import org.bukkit.scheduler.BukkitScheduler;
-
-import java.util.UUID;
 
 public class ShadowManSpawner {
     private final ShadowVillageCore plugin;

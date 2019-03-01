@@ -28,25 +28,21 @@ public class sve extends ShadowVillageCommand {
     @Override
     protected void playerCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        if (svc.coreOn) {
-            if (ecologyOn) {
-                if (args.length == 0) {
-                    Message.sendPlayerMessage(player, "这里是影之乡生态系统！");
-                } else {
-                    switch (args[0]) {
-                        case "summon":
-                            summon(args, player);
-                            break;
-                        default:
-                            Message.sendPlayerMessage(player, "未知指令！");
-                            break;
-                    }
-                }
+        if (ecologyOn) {
+            if (args.length == 0) {
+                Message.sendPlayerMessage(player, "这里是影之乡生态系统！");
             } else {
-                Message.sendPlayerMessage(player, "影之乡生态系统未启动。");
+                switch (args[0]) {
+                    case "summon":
+                        summon(args, player);
+                        break;
+                    default:
+                        Message.sendPlayerMessage(player, "未知指令！");
+                        break;
+                }
             }
         } else {
-            Message.sendPlayerMessage(player, "影之乡核心未启动。");
+            Message.sendPlayerMessage(player, "影之乡生态系统未启动。");
         }
     }
 

@@ -20,8 +20,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
-
 public class ShadowVillageCore extends JavaPlugin implements Listener {
     @Override
     public void onLoad() {
@@ -51,67 +49,59 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (svc.coreOn) {
-            Player player = event.getPlayer();
-            Message.sendPlayerMessage(player, "影之乡核心正在运行");
-        }
+        Player player = event.getPlayer();
+        Message.sendPlayerMessage(player, "影之乡核心正在运行");
     }
 
     @EventHandler
     public void onNPCDamaged(NPCDamageByEntityEvent event) {
-        if (svc.coreOn) {
-            NPC npc = event.getNPC();
-            if (!npc.isProtected()) {
-                if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
-                    if (npc instanceof ShadowMan) {
-                        ((ShadowMan) npc).dropItem();
-                    } else if (npc instanceof ShadowBeast) {
-                        ((ShadowBeast) npc).dropItem();
-                    } else if (npc instanceof ShadowSoul) {
-                        ItemStack dropItem = new ItemStack(Material.APPLE, 1);
-                        ShadowSoul.deathReason = 1;
-                        npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
-                    }
-                    npc.despawn();
+        NPC npc = event.getNPC();
+        if (!npc.isProtected()) {
+            if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
+                if (npc instanceof ShadowMan) {
+                    ((ShadowMan) npc).dropItem();
+                } else if (npc instanceof ShadowBeast) {
+                    ((ShadowBeast) npc).dropItem();
+                } else if (npc instanceof ShadowSoul) {
+                    ItemStack dropItem = new ItemStack(Material.APPLE, 1);
+                    ShadowSoul.deathReason = 1;
+                    npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
                 }
+                npc.despawn();
             }
         }
     }
 
     @EventHandler
     public void onEntityAttack(NPCDamageEntityEvent event) {
-        if (svc.coreOn) {
-            NPC npc = event.getNPC();
-            if (npc instanceof ShadowBeast) {
-                if (event.getDamaged() instanceof Player) {
-                    Player player = (Player) event.getDamaged();
-                    ((ShadowBeast) npc).randomShadowAttack(player);
-                }
-            } else if (npc instanceof ShadowSoul) {
-                if (event.getDamaged() instanceof Player) {
-                    Player player = (Player) event.getDamaged();
-                    player.getWorld().strikeLightning(player.getLocation());
-                }
+        NPC npc = event.getNPC();
+        if (npc instanceof ShadowBeast) {
+            if (event.getDamaged() instanceof Player) {
+                Player player = (Player) event.getDamaged();
+                ((ShadowBeast) npc).randomShadowAttack(player);
+            }
+        } else if (npc instanceof ShadowSoul) {
+            if (event.getDamaged() instanceof Player) {
+                Player player = (Player) event.getDamaged();
+                player.getWorld().strikeLightning(player.getLocation());
             }
         }
     }
 
     @EventHandler
     public void onPlayerInteraction(PlayerInteractEvent event) {
-        if (svc.coreOn) {
-            if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                if (event.hasItem()) {
-                    ItemStack item = event.getItem();
-                    if (ShadowItem.isShadowSoulBook(item)) {
-                        Player player = event.getPlayer();
-                        SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
-                        if (item.getAmount() > 1) {
-                            item.setAmount(item.getAmount() - 1);
-                            player.setItemInHand(item);
-                        } else {
-                            player.setItemInHand(null);
-                        }
+        if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (event.hasItem()) {
+                ItemStack item = event.getItem();
+                if (ShadowItem.isShadowSoulBook(item)) {
+                    Player player = event.getPlayer();
+                    if (item.getAmount() > 1) {
+                        item.setAmount(item.getAmount() - 1);
+                        player.setItemInHand(item);
+                    } else {
+                        player.setItemInHand(null);
                     }
+                    SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
                 }
             }
         }

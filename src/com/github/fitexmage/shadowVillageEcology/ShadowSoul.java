@@ -24,7 +24,7 @@ public class ShadowSoul extends CitizensNPC {
     private static final String name = "影魂";
     public static int deathReason = 0;
     private final double health = 5000.0;
-    private final float speed = 1.0f;
+    private final float speed = 1.1f;
     private final double range = 20.0;
 
     private int totalCount; //总计时
@@ -34,7 +34,7 @@ public class ShadowSoul extends CitizensNPC {
     private int minHeight; //最小安全高度
 
     ShadowSoul() {
-        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.PIG), CitizensAPI.getNPCRegistry());
+        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.CREEPER), CitizensAPI.getNPCRegistry());
 
         totalCount = 0;
         stageCountDown = 0;
@@ -58,6 +58,7 @@ public class ShadowSoul extends CitizensNPC {
         getNavigator().getLocalParameters().speedModifier(speed);
         getNavigator().setTarget(getNearestPlayer(), true);
         Message.broadcastMessage("§4" + player.getDisplayName() + "召唤出了" + name + "!");
+        Message.broadcastMessage("<" + "§2" + name + "§f" + ">" + " 为了埃索泰尔！");
     }
 
     void action() {

@@ -14,8 +14,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Collections;
-
 public class svb extends ShadowVillageCommand {
     public static boolean tradeOn;
 
@@ -36,40 +34,36 @@ public class svb extends ShadowVillageCommand {
     @Override
     protected void playerCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        if (svc.coreOn) {
-            if (tradeOn) {
-                if (args.length == 0) {
-                    Message.sendPlayerMessage(player, "这里是影之乡黑市！");
-                } else {
-                    switch (args[0]) {
-                        case "give":
-                            give(args, player);
-                            break;
-                        case "lookup":
-                            lookup(args, player);
-                            break;
-                        case "l":
-                            lookup(args, player);
-                            break;
-                        case "gamble":
-                            gamble(args, player);
-                            break;
-                        case "g":
-                            gamble(args, player);
-                            break;
-                        case "set":
-                            set(args, player);
-                            break;
-                        default:
-                            Message.sendPlayerMessage(player, "未知指令！");
-                            break;
-                    }
-                }
+        if (tradeOn) {
+            if (args.length == 0) {
+                Message.sendPlayerMessage(player, "这里是影之乡黑市！");
             } else {
-                Message.sendPlayerMessage(player, "影之乡黑市未启动。");
+                switch (args[0]) {
+                    case "give":
+                        give(args, player);
+                        break;
+                    case "lookup":
+                        lookup(args, player);
+                        break;
+                    case "l":
+                        lookup(args, player);
+                        break;
+                    case "gamble":
+                        gamble(args, player);
+                        break;
+                    case "g":
+                        gamble(args, player);
+                        break;
+                    case "set":
+                        set(args, player);
+                        break;
+                    default:
+                        Message.sendPlayerMessage(player, "未知指令！");
+                        break;
+                }
             }
         } else {
-            Message.sendPlayerMessage(player, "影之乡核心未启动。");
+            Message.sendPlayerMessage(player, "影之乡黑市未启动。");
         }
     }
 

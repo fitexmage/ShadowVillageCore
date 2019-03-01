@@ -4,7 +4,6 @@ import com.github.fitexmage.util.Message;
 import net.citizensnpcs.api.persistence.Persist;
 import net.citizensnpcs.api.trait.Trait;
 
-
 public class ShadowSoulTrait extends Trait {
     @Persist
     private boolean data = false;

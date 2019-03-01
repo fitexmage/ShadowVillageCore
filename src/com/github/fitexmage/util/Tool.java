@@ -1,6 +1,5 @@
 package com.github.fitexmage.util;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
