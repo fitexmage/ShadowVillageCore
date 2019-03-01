@@ -23,11 +23,7 @@ public class ShadowManSpawner {
 
     public void spawnShadowMan(boolean force) {
         if (!shadowMan.isSpawned()) {
-            if (force) {
-                shadowMan.forcePrepare();
-            } else {
-                shadowMan.prepare();
-            }
+            shadowMan.spawn(force);
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {

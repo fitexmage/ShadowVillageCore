@@ -2,6 +2,7 @@ package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.util.Message;
+import com.github.fitexmage.util.Tool;
 
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.trait.Equipment;
@@ -48,31 +49,15 @@ public class ShadowMan extends ShadowEntity {
     }
 
     @Override
-    void prepare() {
-        List<Player> onlinePlayers = Bukkit.getWorld("world").getPlayers();
-        List<Player> realOnlinePlayers = new ArrayList<>();
-        for (Player player : onlinePlayers) {
-            if (!player.hasMetadata("NPC")) {
-                realOnlinePlayers.add(player);
-            }
+    void spawn(boolean force) {
+        if (force) {
+            count = 5;
+            prepareCountDown = 1;
+        } else {
+            List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
+            count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
+            prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
         }
-        count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
-        prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
-
-        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
-        getTrait(LookClose.class).lookClose(true);
-        getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.SKULL_ITEM, 1, (short) 1));
-        setProtected(false);
-        getBukkitEntity().setMaxHealth(health);
-        getBukkitEntity().setHealth(health);
-
-        Message.broadcastMessage("§0影§c即将降临。");
-    }
-
-    @Override
-    void forcePrepare() {
-        count = 5;
-        prepareCountDown = 1;
 
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         getTrait(LookClose.class).lookClose(true);
@@ -154,7 +139,7 @@ public class ShadowMan extends ShadowEntity {
     }
 
     private void detect() {
-        Message.broadcastMessage("§4" + targetPlayer.getDisplayName() + "被影者发现了!");
+        Message.broadcastMessage("§4" + targetPlayer.getDisplayName() + "被" + name + "发现了!");
         randomShadowAttack(targetPlayer);
     }
 
@@ -163,7 +148,7 @@ public class ShadowMan extends ShadowEntity {
         ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 2) + 1);
         getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
 
-        if((int) (Math.random() * 3) == 0){
+        if ((int) (Math.random() * 3) == 0) {
             ItemStack dropItem2 = ShadowItem.shadowSoulBook();
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem2);
         }

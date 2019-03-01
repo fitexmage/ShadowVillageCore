@@ -1,6 +1,8 @@
 package com.github.fitexmage.util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -18,6 +20,17 @@ public class Tool {
         return 1;
     }
 
+    public static List<Player> getRealPlayers(World world) {
+        List<Player> onlinePlayers = world.getPlayers();
+        List<Player> realOnlinePlayers = new ArrayList<>();
+        for (Player player : onlinePlayers) {
+            if (!player.hasMetadata("NPC")) {
+                realOnlinePlayers.add(player);
+            }
+        }
+        return realOnlinePlayers;
+    }
+
     public static List<ItemStack> getPlayerItems(Player player) {
         List<ItemStack> playerItems = new ArrayList<>();
         for (ItemStack item : player.getInventory()) {
@@ -28,7 +41,7 @@ public class Tool {
         return playerItems;
     }
 
-    public static void damagePlayer(Player player, int damage){
+    public static void damagePlayer(Player player, int damage) {
         if (player.getHealth() > damage) {
             player.setHealth(player.getHealth() - damage);
         } else {

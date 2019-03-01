@@ -57,7 +57,7 @@ public class ShadowSoul extends CitizensNPC {
         getBukkitEntity().setHealth(health);
         getNavigator().getLocalParameters().speedModifier(speed);
         getNavigator().setTarget(getNearestPlayer(), true);
-        Message.broadcastMessage("§4" + player.getDisplayName() + "召唤出了影魂！");
+        Message.broadcastMessage("§4" + player.getDisplayName() + "召唤出了" + name + "!");
     }
 
     void action() {
@@ -105,7 +105,7 @@ public class ShadowSoul extends CitizensNPC {
 
     private void stage1(int subStage) {
         if (subStage == 1) {
-            Message.broadcastMessage("§4影魂已如同幻影！");
+            Message.broadcastMessage("§4" + name + "已如同幻影！");
             teleport(getNavigator().getTargetAsLocation(), PlayerTeleportEvent.TeleportCause.PLUGIN);
             getNavigator().getLocalParameters().speedModifier(5.0f);
             stageCount = (int) (Math.random() * 5) + 5;
@@ -116,7 +116,7 @@ public class ShadowSoul extends CitizensNPC {
 
     private void stage2(int subStage) {
         if (subStage == 1) {
-            Message.broadcastMessage("§4影魂正在召唤空之力！");
+            Message.broadcastMessage("§4" + name + "正在召唤空之力！");
             stageCount = (int) (Math.random() * 2) + 1;
         } else {
             setNuke();
@@ -125,7 +125,7 @@ public class ShadowSoul extends CitizensNPC {
 
     private void stage3(int subStage) {
         if (subStage == 1) {
-            StringBuilder message = new StringBuilder("§4影魂正在召唤磁之力！");
+            StringBuilder message = new StringBuilder("§4" + name + "正在召唤磁之力！");
             minHeight = (int) (Math.random() * 5) + 1;
             message.insert(minHeight + 2, "§a");
             message.insert(minHeight + 7, "§4");
@@ -145,7 +145,7 @@ public class ShadowSoul extends CitizensNPC {
 
     private void stage4(int subStage) {
         if (subStage == 1) {
-            Message.broadcastMessage("§4影魂正在召唤咒之力！");
+            Message.broadcastMessage("§4" + name + "正在召唤咒之力！");
             stageCount = (int) (Math.random() * 2) + 2;
         } else {
             dispel();

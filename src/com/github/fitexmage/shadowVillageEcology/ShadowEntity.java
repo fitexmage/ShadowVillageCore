@@ -18,9 +18,7 @@ public abstract class ShadowEntity extends CitizensNPC {
         super(uuid, id, name, entityController, registry);
     }
 
-    abstract void prepare();
-
-    abstract void forcePrepare();
+    abstract void spawn(boolean force);
 
     abstract void action();
 

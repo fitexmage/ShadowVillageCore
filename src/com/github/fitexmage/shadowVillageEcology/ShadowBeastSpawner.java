@@ -29,11 +29,7 @@ public class ShadowBeastSpawner {
 
     public void spawnShadowBeast(boolean force) {
         if (!shadowBeast.isSpawned()) {
-            if (force) {
-                shadowBeast.forcePrepare();
-            } else {
-                shadowBeast.prepare();
-            }
+            shadowBeast.spawn(force);
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {

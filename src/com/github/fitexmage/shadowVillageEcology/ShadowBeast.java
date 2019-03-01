@@ -2,6 +2,8 @@ package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.util.Message;
+import com.github.fitexmage.util.Tool;
+
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.npc.EntityControllers;
 import org.bukkit.Bukkit;
@@ -11,7 +13,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
@@ -40,30 +41,15 @@ public class ShadowBeast extends ShadowEntity {
     }
 
     @Override
-    void prepare() {
-        List<Player> onlinePlayers = Bukkit.getWorld("world").getPlayers();
-        List<Player> realOnlinePlayers = new ArrayList<>();
-        for (Player player : onlinePlayers) {
-            if (!player.hasMetadata("NPC")) {
-                realOnlinePlayers.add(player);
-            }
+    void spawn(boolean force) {
+        if (force) {
+            count = 5;
+            prepareCountDown = 1;
+        } else {
+            List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
+            count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
+            prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
         }
-        count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
-        prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
-
-        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
-        setProtected(false);
-        getBukkitEntity().setMaxHealth(health);
-        getBukkitEntity().setHealth(health);
-        getNavigator().getLocalParameters().speedModifier(speed);
-
-        Message.broadcastMessage("§0影§c即将降临。");
-    }
-
-    @Override
-    void forcePrepare() {
-        count = 5;
-        prepareCountDown = 1;
 
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         setProtected(false);
