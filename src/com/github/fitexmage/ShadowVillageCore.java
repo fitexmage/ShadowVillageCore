@@ -63,15 +63,11 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
             NPC npc = event.getNPC();
             if (!npc.isProtected()) {
                 if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
-                    if (npc.getId() == ShadowMan.id) {
-                        for (ItemStack item : ShadowMan.dropItem()) {
-                            npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), item);
-                        }
-                    } else if (npc.getId() == ShadowBeast.id) {
-                        for (ItemStack item : ShadowBeast.dropItem()) {
-                            npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), item);
-                        }
-                    } else if (npc.getId() == ShadowSoul.id) {
+                    if (npc instanceof ShadowMan) {
+                        ((ShadowMan) npc).dropItem();
+                    } else if (npc instanceof ShadowBeast) {
+                        ((ShadowBeast) npc).dropItem();
+                    } else if (npc instanceof ShadowSoul) {
                         ItemStack dropItem = new ItemStack(Material.APPLE, 1);
                         ShadowSoul.deathReason = 1;
                         npc.getEntity().getWorld().dropItem(npc.getEntity().getLocation(), dropItem);
@@ -86,14 +82,12 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
     public void onEntityAttack(NPCDamageEntityEvent event) {
         if (svc.coreOn) {
             NPC npc = event.getNPC();
-            if (npc.getId() == ShadowBeast.id) {
+            if (npc instanceof ShadowBeast) {
                 if (event.getDamaged() instanceof Player) {
                     Player player = (Player) event.getDamaged();
-                    if (npc instanceof ShadowEntity) {
-                        ((ShadowEntity) npc).randomShadowAttack(player);
-                    }
+                    ((ShadowBeast) npc).randomShadowAttack(player);
                 }
-            } else if (npc.getId() == ShadowSoul.id) {
+            } else if (npc instanceof ShadowSoul) {
                 if (event.getDamaged() instanceof Player) {
                     Player player = (Player) event.getDamaged();
                     player.getWorld().strikeLightning(player.getLocation());

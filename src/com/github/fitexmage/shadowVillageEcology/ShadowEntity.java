@@ -26,6 +26,8 @@ public abstract class ShadowEntity extends CitizensNPC {
 
     abstract void teleport(Player player);
 
+    public abstract void dropItem();
+
     public void randomShadowAttack(Player player) {
         String name = getFullName();
         String playerName = player.getDisplayName();

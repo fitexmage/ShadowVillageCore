@@ -1,5 +1,6 @@
 package com.github.fitexmage.shadowVillageEcology;
 
+import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.util.Message;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.npc.EntityControllers;
@@ -15,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.*;
 
 public class ShadowBeast extends ShadowEntity {
-    public static final int id = 10002;
+    private static final int id = 10002;
     private static final String name = "影灵";
     private final double health = 200.0;
     private final float speed = 1.0f;
@@ -38,6 +39,7 @@ public class ShadowBeast extends ShadowEntity {
         addTrait(shadowBeastTrait);
     }
 
+    @Override
     void prepare() {
         List<Player> onlinePlayers = Bukkit.getWorld("world").getPlayers();
         List<Player> realOnlinePlayers = new ArrayList<>();
@@ -58,6 +60,7 @@ public class ShadowBeast extends ShadowEntity {
         Message.broadcastMessage("§0影§c即将降临。");
     }
 
+    @Override
     void forcePrepare() {
         count = 5;
         prepareCountDown = 1;
@@ -71,6 +74,7 @@ public class ShadowBeast extends ShadowEntity {
         Message.broadcastMessage("§0影§c即将降临。");
     }
 
+    @Override
     void action() {
         if (prepareCountDown > 0) {
             prepareCountDown--;
@@ -101,6 +105,7 @@ public class ShadowBeast extends ShadowEntity {
         }
     }
 
+    @Override
     void teleport(Player player) {
         Location location = new Location(player.getWorld(),
                 player.getLocation().getX() + (int) (Math.random() * 10) - 5,
@@ -114,17 +119,14 @@ public class ShadowBeast extends ShadowEntity {
         }
     }
 
-    public static List<ItemStack> dropItem() {
-        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, 1);
+    @Override
+    public void dropItem() {
+        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 2) + 1);
+        getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
 
-        ItemStack dropItem2 = new ItemStack(Material.BOOK, 1);
-        ItemMeta itemMeta = dropItem2.getItemMeta();
-        itemMeta.setDisplayName("§0影魄之书");
-        itemMeta.setLore(Collections.singletonList("以混沌为影，以源能为魄。"));
-
-        LinkedList<ItemStack> list = new LinkedList<>();
-        list.add(dropItem1);
-        list.add(dropItem2);
-        return list;
+        if ((int) (Math.random() * 3) == 0) {
+            ItemStack dropItem2 = ShadowItem.shadowSoulBook();
+            getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem2);
+        }
     }
 }

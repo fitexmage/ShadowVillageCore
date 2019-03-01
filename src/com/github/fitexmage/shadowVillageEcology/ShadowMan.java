@@ -14,14 +14,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import java.util.*;
 
 public class ShadowMan extends ShadowEntity {
-    public static final int id = 10001;
+    private static final int id = 10001;
     private static final String name = "影者";
     private final double health = 200.0;
 
@@ -49,6 +47,7 @@ public class ShadowMan extends ShadowEntity {
         addTrait(shadowManTrait);
     }
 
+    @Override
     void prepare() {
         List<Player> onlinePlayers = Bukkit.getWorld("world").getPlayers();
         List<Player> realOnlinePlayers = new ArrayList<>();
@@ -70,6 +69,7 @@ public class ShadowMan extends ShadowEntity {
         Message.broadcastMessage("§0影§c即将降临。");
     }
 
+    @Override
     void forcePrepare() {
         count = 5;
         prepareCountDown = 1;
@@ -84,6 +84,7 @@ public class ShadowMan extends ShadowEntity {
         Message.broadcastMessage("§0影§c即将降临。");
     }
 
+    @Override
     void action() {
         if (prepareCountDown > 0) {
             prepareCountDown--;
@@ -100,7 +101,6 @@ public class ShadowMan extends ShadowEntity {
                     Player targetPlayer = realOnlinePlayers.get(random);
 
                     if (targetPlayer.getItemInHand().hasItemMeta() &&
-                            targetPlayer.getItemInHand().getItemMeta().hasLore() &&
                             targetPlayer.getItemInHand().getItemMeta().getLore().get(0).equals("影无法靠近你。")) {
                         count--;
                     } else {
@@ -116,9 +116,6 @@ public class ShadowMan extends ShadowEntity {
                     teleportCountDown = 0;
                     count--;
                     detect();
-                    if (Message.debug) {
-                        Message.broadcastMessage("检测到移动实体。"); //测试用
-                    }
                 } else {
                     teleportCountDown--;
                     if (teleportCountDown == 0) {
@@ -129,6 +126,7 @@ public class ShadowMan extends ShadowEntity {
         }
     }
 
+    @Override
     void teleport(Player player) {
         recordTargetPlayer(player);
         Vector direction = player.getLocation().getDirection();
@@ -160,14 +158,14 @@ public class ShadowMan extends ShadowEntity {
         randomShadowAttack(targetPlayer);
     }
 
-    public static List<ItemStack> dropItem() {
-        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, 1);
+    @Override
+    public void dropItem() {
+        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 2) + 1);
+        getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
 
-        ItemStack dropItem2 = ShadowItem.shadowSoulBook();
-
-        LinkedList<ItemStack> list = new LinkedList<>();
-        list.add(dropItem1);
-        list.add(dropItem2);
-        return list;
+        if((int) (Math.random() * 3) == 0){
+            ItemStack dropItem2 = ShadowItem.shadowSoulBook();
+            getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem2);
+        }
     }
 }

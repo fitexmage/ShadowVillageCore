@@ -12,6 +12,7 @@ import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -19,7 +20,7 @@ import java.util.LinkedList;
 import java.util.UUID;
 
 public class ShadowSoul extends CitizensNPC {
-    public static final int id = 10011;
+    private static final int id = 10011;
     private static final String name = "影魂";
     public static int deathReason = 0;
     private final double health = 5000.0;
@@ -105,6 +106,7 @@ public class ShadowSoul extends CitizensNPC {
     private void stage1(int subStage) {
         if (subStage == 1) {
             Message.broadcastMessage("§4影魂已如同幻影！");
+            teleport(getNavigator().getTargetAsLocation(), PlayerTeleportEvent.TeleportCause.PLUGIN);
             getNavigator().getLocalParameters().speedModifier(5.0f);
             stageCount = (int) (Math.random() * 5) + 5;
         } else {
@@ -134,7 +136,7 @@ public class ShadowSoul extends CitizensNPC {
             for (Player player : getNearPlayers()) {
                 Location playerLocation = player.getLocation();
                 if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
-                    Tool.damagePlayer(player, 19);
+                    Tool.damagePlayer(player, 20);
                 }
             }
             Message.broadcastMessage("§4磁场扭曲了！");

@@ -43,4 +43,22 @@ public class ShadowItem {
         }
         return false;
     }
+
+    public static ItemStack shadowSpiritBook() {
+        ItemStack shadowSpiritBook = new ItemStack(Material.BOOK, 1);
+        ItemMeta itemMeta = shadowSpiritBook.getItemMeta();
+        itemMeta.setDisplayName("§0影魄之书");
+        itemMeta.setLore(Collections.singletonList("以混沌为影，以源能为魄。"));
+        shadowSpiritBook.setItemMeta(itemMeta);
+        return shadowSpiritBook;
+    }
+
+    public static boolean isShadowSpiritBook(ItemStack item) {
+        if (item.getType().equals(Material.BOOK)) {
+            if (item.hasItemMeta() && item.getItemMeta().getLore().get(0).equals("以混沌为影，以源能为魄。")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
