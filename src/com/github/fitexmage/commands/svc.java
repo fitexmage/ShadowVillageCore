@@ -116,13 +116,13 @@ public class svc extends ShadowVillageCommand {
             bookMeta.setTitle("影之乡核心百科");
 
             StringBuilder text101 = new StringBuilder();
-            text101.append("     影之乡核心系统\n\n");
+            text101.append("      影之乡核心系统\n\n");
             text101.append("1.获得《影之乡核心百科》：\n");
             text101.append("/svc help\n\n");
             bookMeta.addPage(text101.toString());
 
             StringBuilder text201 = new StringBuilder();
-            text201.append("影之乡生态系统\n\n");
+            text201.append("      影之乡生态系统\n\n");
             text201.append("1.影者\n");
             text201.append("隐藏在影之乡暗面的人类。\n\n");
             text201.append("2.影灵\n");
@@ -134,7 +134,7 @@ public class svc extends ShadowVillageCommand {
             bookMeta.addPage(text201.toString());
 
             StringBuilder text301 = new StringBuilder();
-            text301.append("影之乡黑市系统\n\n");
+            text301.append("      影之乡黑市系统\n\n");
             text301.append("1.武器抽奖：\n");
             text301.append("/svb g 1 钻石数\n\n");
             text301.append("2.头盔抽奖：\n");
@@ -146,7 +146,7 @@ public class svc extends ShadowVillageCommand {
             bookMeta.addPage(text301.toString());
 
             StringBuilder text302 = new StringBuilder();
-            text302.append("影之乡黑市系统\n\n");
+            text302.append("      影之乡黑市系统\n\n");
             text302.append("5.靴子抽奖：\n");
             text302.append("/svb g 5 钻石数\n\n");
             text302.append("6.影之石数量查询：\n");
@@ -154,7 +154,7 @@ public class svc extends ShadowVillageCommand {
             bookMeta.addPage(text302.toString());
 
             StringBuilder text303 = new StringBuilder();
-            text303.append("影之乡黑市系统\n\n");
+            text303.append("      影之乡黑市系统\n\n");
             text303.append("影之石:\n\n");
             text303.append("影之石是影之乡服务器的通用货币，可通过赞助获得。\n");
             text303.append("1影之石 = 1RMB。\n");

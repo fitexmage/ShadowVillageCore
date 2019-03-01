@@ -17,10 +17,10 @@ public class Message {
     }
 
     public static void sendUnknown(CommandSender sender) {
-        sendPlayerMessage(sender, "§4未知指令！");
+        sendPlayerMessage(sender, "未知指令！");
     }
 
     public static void sendNoPermission(CommandSender sender) {
-        sendPlayerMessage(sender, "§4你无权这样做！");
+        sendPlayerMessage(sender, "你无权这样做！");
     }
 }
