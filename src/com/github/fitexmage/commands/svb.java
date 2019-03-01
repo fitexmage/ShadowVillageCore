@@ -58,7 +58,7 @@ public class svb extends ShadowVillageCommand {
                         set(args, player);
                         break;
                     default:
-                        Message.sendPlayerMessage(player, "未知指令！");
+                        Message.sendUnknown(player);
                         break;
                 }
             }
@@ -82,7 +82,7 @@ public class svb extends ShadowVillageCommand {
                     Message.sendPlayerMessage(sender, "影之乡黑市已关闭。");
                     break;
                 default:
-                    Message.sendPlayerMessage(sender, "未知指令！");
+                    Message.sendUnknown(sender);
                     break;
             }
         }
@@ -103,18 +103,18 @@ public class svb extends ShadowVillageCommand {
                         }
                         player.getInventory().addItem(shadowStone);
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 case "shadowsoulbook":
                     if (player.hasPermission("svb.give.shadowsoulbook")) {
                         player.getInventory().addItem(ShadowItem.shadowSoulBook());
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 default:
-                    Message.sendPlayerMessage(player, "未知指令！");
+                    Message.sendUnknown(player);
                     break;
             }
         }
@@ -135,10 +135,10 @@ public class svb extends ShadowVillageCommand {
                     }
                     Message.sendPlayerMessage(player, "你拥有" + shadowStoneCount + "个影之石。");
                 } else {
-                    Message.sendPlayerMessage(player, "你无权这样做！");
+                    Message.sendNoPermission(player);
                 }
             } else {
-                Message.sendPlayerMessage(player, "未知指令！");
+                Message.sendUnknown(player);
             }
         }
     }
@@ -157,7 +157,7 @@ public class svb extends ShadowVillageCommand {
                             gambleSystem.gambleItem(player, 1, "diamond", Tool.getNumber(args[2]));
                         }
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 case "2":
@@ -168,7 +168,7 @@ public class svb extends ShadowVillageCommand {
                             gambleSystem.gambleItem(player, 2, "diamond", Tool.getNumber(args[2]));
                         }
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 case "3":
@@ -179,7 +179,7 @@ public class svb extends ShadowVillageCommand {
                             gambleSystem.gambleItem(player, 3, "diamond", Tool.getNumber(args[2]));
                         }
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 case "4":
@@ -190,7 +190,7 @@ public class svb extends ShadowVillageCommand {
                             gambleSystem.gambleItem(player, 4, "diamond", Tool.getNumber(args[2]));
                         }
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 case "5":
@@ -201,11 +201,11 @@ public class svb extends ShadowVillageCommand {
                             gambleSystem.gambleItem(player, 5, "diamond", Tool.getNumber(args[2]));
                         }
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 default:
-                    Message.sendPlayerMessage(player, "未知指令！");
+                    Message.sendUnknown(player);
                     break;
             }
         }
@@ -232,7 +232,7 @@ public class svb extends ShadowVillageCommand {
                             Message.sendPlayerMessage(player, "请输入伤害量！");
                         }
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 case "name":
@@ -255,7 +255,7 @@ public class svb extends ShadowVillageCommand {
                     }
                     break;
                 default:
-                    Message.sendPlayerMessage(player, "未知指令！");
+                    Message.sendUnknown(player);
                     break;
             }
         }

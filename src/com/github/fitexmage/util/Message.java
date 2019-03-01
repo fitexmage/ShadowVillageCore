@@ -15,4 +15,12 @@ public class Message {
     public static void broadcastMessage(String message) {
         Bukkit.getServer().broadcastMessage(kernelTitle + message);
     }
+
+    public static void sendUnknown(CommandSender sender) {
+        sendPlayerMessage(sender, "§4未知指令！");
+    }
+
+    public static void sendNoPermission(CommandSender sender) {
+        sendPlayerMessage(sender, "§4你无权这样做！");
+    }
 }

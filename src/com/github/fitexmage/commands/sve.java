@@ -37,7 +37,7 @@ public class sve extends ShadowVillageCommand {
                         summon(args, player);
                         break;
                     default:
-                        Message.sendPlayerMessage(player, "未知指令！");
+                        Message.sendUnknown(player);
                         break;
                 }
             }
@@ -61,7 +61,7 @@ public class sve extends ShadowVillageCommand {
                     Message.sendPlayerMessage(sender, "影之乡生态系统已关闭。");
                     break;
                 default:
-                    Message.sendPlayerMessage(sender, "未知指令！");
+                    Message.sendUnknown(sender);
                     break;
             }
         }
@@ -76,30 +76,29 @@ public class sve extends ShadowVillageCommand {
                     if (player.hasPermission("sve.summon.shadowman")) {
                         SpawnerController.shadowManSpawner.spawnShadowMan(true);
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 case "shadowbeast":
                     if (player.hasPermission("sve.summon.shadowbeast")) {
                         SpawnerController.shadowBeastSpawner.spawnShadowBeast(true);
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 case "shadowsoul":
                     if (player.hasPermission("sve.summon.shadowsoul")) {
                         SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
-
                     } else {
-                        Message.sendPlayerMessage(player, "你无权这样做！");
+                        Message.sendNoPermission(player);
                     }
                     break;
                 default:
-                    Message.sendPlayerMessage(player, "未知指令！");
+                    Message.sendUnknown(player);
                     break;
             }
         } else {
-            Message.sendPlayerMessage(player, "未知指令！");
+            Message.sendUnknown(player);
         }
     }
 }

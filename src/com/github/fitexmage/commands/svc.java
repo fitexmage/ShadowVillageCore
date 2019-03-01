@@ -74,7 +74,7 @@ public class svc extends ShadowVillageCommand {
                     Message.sendPlayerMessage(sender, "影之乡核心已关闭。");
                     break;
                 default:
-                    Message.sendPlayerMessage(sender, "未知指令！");
+                    Message.sendUnknown(sender);
                     break;
             }
         }
@@ -84,7 +84,7 @@ public class svc extends ShadowVillageCommand {
         if (player.hasPermission("svc.empower")) {
             Message.sendPlayerMessage(player, "凡人，从现在起，我将赋予你神的能力！");
         } else {
-            Message.sendPlayerMessage(player, "凡人，你无权这样做！");
+            Message.sendNoPermission(player);
         }
     }
 
@@ -100,10 +100,10 @@ public class svc extends ShadowVillageCommand {
                     Message.sendPlayerMessage(player, "未发现该玩家！");
                 }
             } else {
-                Message.sendPlayerMessage(player, "未知指令！");
+                Message.sendUnknown(player);
             }
         } else {
-            Message.sendPlayerMessage(player, "凡人，你无权这样做！");
+            Message.sendNoPermission(player);
         }
     }
 
@@ -173,7 +173,7 @@ public class svc extends ShadowVillageCommand {
             Message.debug = !Message.debug;
             Message.sendPlayerMessage(player, "已切换debug模式为" + Message.debug);
         } else {
-            Message.sendPlayerMessage(player, "凡人，你无权这样做！");
+            Message.sendNoPermission(player);
         }
     }
 
