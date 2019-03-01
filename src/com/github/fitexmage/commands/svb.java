@@ -132,14 +132,14 @@ public class svb extends ShadowVillageCommand {
         } else {
             if (args[1].equals("shadowstone")) {
                 if (player.hasPermission("svb.lookup.shadowstone")) {
-                    int shadowstoneCount = 0;
+                    int shadowStoneCount = 0;
 
                     for (ItemStack item : Tool.getPlayerItems(player)) {
                         if (ShadowItem.isShadowStone(item)) {
-                            shadowstoneCount += item.getAmount();
+                            shadowStoneCount += item.getAmount();
                         }
                     }
-                    Message.sendPlayerMessage(player, "你拥有" + shadowstoneCount + "个影之石。");
+                    Message.sendPlayerMessage(player, "你拥有" + shadowStoneCount + "个影之石。");
                 } else {
                     Message.sendPlayerMessage(player, "你无权这样做！");
                 }

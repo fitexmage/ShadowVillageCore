@@ -119,7 +119,7 @@ public class ShadowBeast extends ShadowEntity {
 
         ItemStack dropItem2 = new ItemStack(Material.BOOK, 1);
         ItemMeta itemMeta = dropItem2.getItemMeta();
-        itemMeta.setDisplayName("影魄之书");
+        itemMeta.setDisplayName("§0影魄之书");
         itemMeta.setLore(Collections.singletonList("以混沌为影，以源能为魄。"));
 
         LinkedList<ItemStack> list = new LinkedList<>();

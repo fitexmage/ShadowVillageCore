@@ -33,13 +33,13 @@ permissions:
     description: Turn on or off debug mod.
     default: op
   sve.summon.shadowman:
-    description: Spawn shadow man.
+    description: Summon shadow man.
     default: op
   sve.summon.shadowbeast:
-    description: Spawn shadow beast.
+    description: Summon shadow beast.
     default: op
   sve.summon.shadowsoul:
-    description: Spawn shadow soul.
+    description: Summon shadow soul.
     default: op
   svb.give.shadowstone:
     description: Give self shadow stones.

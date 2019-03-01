@@ -1,5 +1,6 @@
 package com.github.fitexmage.shadowVillageEcology;
 
+import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.util.Message;
 
 import net.citizensnpcs.api.CitizensAPI;
@@ -155,17 +156,14 @@ public class ShadowMan extends ShadowEntity {
     }
 
     private void detect() {
-        Message.broadcastMessage(targetPlayer.getDisplayName() + "被影者发现了!");
+        Message.broadcastMessage("§4" + targetPlayer.getDisplayName() + "被影者发现了!");
         randomShadowAttack(targetPlayer);
     }
 
     public static List<ItemStack> dropItem() {
         ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, 1);
 
-        ItemStack dropItem2 = new ItemStack(Material.BOOK, 1);
-        ItemMeta itemMeta = dropItem2.getItemMeta();
-        itemMeta.setDisplayName("影魂之书");
-        itemMeta.setLore(Collections.singletonList("以虚空为影，以力量为魂。"));
+        ItemStack dropItem2 = ShadowItem.shadowSoulBook();
 
         LinkedList<ItemStack> list = new LinkedList<>();
         list.add(dropItem1);
