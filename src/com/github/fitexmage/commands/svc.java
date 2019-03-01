@@ -131,6 +131,7 @@ public class svc extends ShadowVillageCommand {
             text201.append("埃索泰尔守护者。\n\n");
             text201.append("4.影魄\n");
             text201.append("埃索泰尔监督者。\n\n");
+            bookMeta.addPage(text201.toString());
 
             StringBuilder text301 = new StringBuilder();
             text301.append("影之乡黑市系统\n\n");
