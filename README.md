@@ -22,10 +22,10 @@ At a specific minute every hour, shadow man or shadow beast will appear and tele
 
 * Shadow Man
 Shadow man will teleport to the back of a random player. It never move or attack, and just gaze at target player.
-During a random period, it will detect whether target player move or not. If target player move, it will give him a bad status effect or steal his items.
+During a random period, it will detect whether target player move or not. If target player move, it will give him a bad status effect or steal his items. When defeated, it will drop diamond block and shadow soul book.
 
 * Shadow Beast
-Shadow beast will teleport to nearby place of a random player. It will appear as random type of animal entities, such as sheep and cow. It will move and attack target player. If attacking on target player, it will give him a bad status effect or steal his items.
+Shadow beast will teleport to nearby place of a random player. It will appear as random type of animal entities, such as sheep and cow. It will move and attack target player. If attacking on target player, it will give him a bad status effect or steal his items. When defeated, it will drop diamond block and shadow spirit book.
 
 ### Shadow Stone
 
@@ -65,17 +65,17 @@ Shadow Village Core provides basic functions for the plugin.
 ### Shadow Village Ecology
 Shadow Village Ecology provides functions about entities.
 
-* /sve spawn shadowman
+* /sve summon shadowman
 
-  Spawn shadow man.
+  Summon shadow man.
 
-* /sve spawn shadowbeast
+* /sve summon shadowbeast
 
-  Spawn shadow beast.
+  Summon shadow beast.
   
-* /sve spawn shadowsoul
+* /sve summon shadowsoul
 
-  Spawn shadow soul.
+  Summon shadow soul.
 
 ### Shadow Village Black Market
 Shadow Village Black Market provides functions about items.
@@ -83,6 +83,10 @@ Shadow Village Black Market provides functions about items.
 * /svb give shadowstone [number]
 
   Give self shadow stones.
+  
+* /svb give shadowsoulbook
+
+  Give self a shadow soul book.
 
 * /svb lookup shadowstone (/svb l shadowstone)
 
@@ -126,13 +130,15 @@ Shadow Village Black Market provides functions about items.
 
 * svc.debug -- OP
 
-* sve.spawn.shadowman -- OP
+* sve.summon.shadowman -- OP
 
-* svc.spawn.shadowbeast -- OP
+* svc.summon.shadowbeast -- OP
 
-* svc.spawn.shadowsoul -- OP
+* svc.summon.shadowsoul -- OP
 
 * svb.give.shadowstone -- OP
+
+* svb.give.shadowsoulbook -- OP
 
 * svb.lookup.shadowstone -- Everyone
 
