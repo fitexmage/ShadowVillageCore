@@ -32,13 +32,13 @@ permissions:
   svc.debug:
     description: Turn on or off debug mod.
     default: op
-  sve.spawn.shadowman:
+  sve.summon.shadowman:
     description: Spawn shadow man.
     default: op
-  sve.spawn.shadowbeast:
+  sve.summon.shadowbeast:
     description: Spawn shadow beast.
     default: op
-  sve.spawn.shadowsoul:
+  sve.summon.shadowsoul:
     description: Spawn shadow soul.
     default: op
   svb.give.shadowstone:

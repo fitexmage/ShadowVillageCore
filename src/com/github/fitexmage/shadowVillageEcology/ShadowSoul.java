@@ -54,6 +54,7 @@ public class ShadowSoul extends CitizensNPC {
         getBukkitEntity().setHealth(health);
         getNavigator().getLocalParameters().speedModifier(speed);
         getNavigator().setTarget(getNearestPlayer(), true);
+        Message.broadcastMessage("§4" + player.getDisplayName() + "召唤出了影魂！");
     }
 
     void action() {

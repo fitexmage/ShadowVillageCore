@@ -38,8 +38,7 @@ public class SpawnerController {
                     if (recordedMinute != currertMinute) {
                         recordedMinute = currertMinute;
                         if (recordedMinute == 42) {
-                            int random = (int) (Math.random() * 2);
-                            if (random == 0) {
+                            if ((int) (Math.random() * 2) == 0) {
                                 shadowManSpawner.spawnShadowMan(false);
                             } else {
                                 shadowBeastSpawner.spawnShadowBeast(false);

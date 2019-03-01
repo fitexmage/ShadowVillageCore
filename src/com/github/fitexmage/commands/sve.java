@@ -34,8 +34,8 @@ public class sve extends ShadowVillageCommand {
                     Message.sendPlayerMessage(player, "这里是影之乡生态系统！");
                 } else {
                     switch (args[0]) {
-                        case "spawn":
-                            spawn(args, player);
+                        case "summon":
+                            summon(args, player);
                             break;
                         default:
                             Message.sendPlayerMessage(player, "未知指令！");
@@ -71,27 +71,27 @@ public class sve extends ShadowVillageCommand {
         }
     }
 
-    private void spawn(String[] args, Player player) {
+    private void summon(String[] args, Player player) {
         if (args.length == 1) {
             Message.sendPlayerMessage(player, "请选择要生成的生物！");
         } else if (args.length == 2) {
             switch (args[1]) {
                 case "shadowman":
-                    if (player.hasPermission("sve.spawn.shadowman")) {
+                    if (player.hasPermission("sve.summon.shadowman")) {
                         SpawnerController.shadowManSpawner.spawnShadowMan(true);
                     } else {
                         Message.sendPlayerMessage(player, "你无权这样做！");
                     }
                     break;
                 case "shadowbeast":
-                    if (player.hasPermission("sve.spawn.shadowbeast")) {
+                    if (player.hasPermission("sve.summon.shadowbeast")) {
                         SpawnerController.shadowBeastSpawner.spawnShadowBeast(true);
                     } else {
                         Message.sendPlayerMessage(player, "你无权这样做！");
                     }
                     break;
                 case "shadowsoul":
-                    if (player.hasPermission("sve.spawn.shadowsoul")) {
+                    if (player.hasPermission("sve.summon.shadowsoul")) {
                         SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
 
                     } else {

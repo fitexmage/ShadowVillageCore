@@ -102,9 +102,9 @@ public class ShadowBeast extends ShadowEntity {
 
     void teleport(Player player) {
         Location location = new Location(player.getWorld(),
-                player.getLocation().getX() + (int) (Math.random() * 20) - 10,
+                player.getLocation().getX() + (int) (Math.random() * 10) - 5,
                 player.getLocation().getY(),
-                player.getLocation().getZ() + (int) (Math.random() * 20) - 10,
+                player.getLocation().getZ() + (int) (Math.random() * 10) - 5,
                 0f,
                 0f);
         teleport(location, PlayerTeleportEvent.TeleportCause.PLUGIN);
