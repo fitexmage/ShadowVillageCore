@@ -161,7 +161,7 @@ public class ShadowSoul extends CitizensNPC {
         World world = location.getWorld();
         for (int x = -10; x <= 10; x += 5) {
             for (int z = -10; z <= 10; z += 5) {
-                Location tntLocation = new Location(world, (double) (location.getBlockX() + x), (double) (world.getHighestBlockYAt(location) + 64), (double) (location.getBlockZ() + z));
+                Location tntLocation = new Location(world, (double) (location.getBlockX() + x), (double) (world.getHighestBlockYAt(location) + 5), (double) (location.getBlockZ() + z));
                 world.spawn(tntLocation, TNTPrimed.class);
             }
         }
