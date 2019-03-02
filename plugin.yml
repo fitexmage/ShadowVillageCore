@@ -50,6 +50,9 @@ permissions:
   svb.lookup.shadowstone:
     description: Look up amount of shadow stones in inventory.
     default: true
+  svb.lookup.possibilities:
+      description: Look up possibilities of gamble items.
+      default: op
   svb.gamble.weapon:
     description: Gamble on weapon.
     default: true
