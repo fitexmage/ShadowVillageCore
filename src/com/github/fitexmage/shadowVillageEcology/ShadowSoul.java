@@ -66,8 +66,8 @@ public class ShadowSoul extends CitizensNPC {
         if (totalCount % 10 == 0) {
             Player nearestPlayer = getNearestPlayer();
             if (nearestPlayer == null) {
-                despawn();
                 deathReason = 2;
+                despawn();
                 return;
             } else {
                 getNavigator().setTarget(nearestPlayer, true);
@@ -79,6 +79,9 @@ public class ShadowSoul extends CitizensNPC {
         } else {
             if (stageNum == -1) {
                 stageNum = (int) (Math.random() * 4); //阶段选择
+                if (Message.debug) {
+                    Message.broadcastMessage(name + "选择了" + (stageNum + 1) + "阶段!");
+                }
             } else {
                 stageOn();
             }

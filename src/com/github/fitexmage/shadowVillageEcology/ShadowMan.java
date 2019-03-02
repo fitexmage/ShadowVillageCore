@@ -84,6 +84,7 @@ public class ShadowMan extends ShadowEntity {
                     Player targetPlayer = realOnlinePlayers.get(random);
 
                     if (targetPlayer.getItemInHand().hasItemMeta() &&
+                            targetPlayer.getItemInHand().getItemMeta().hasLore() &&
                             targetPlayer.getItemInHand().getItemMeta().getLore().get(0).equals("影无法靠近你。")) {
                         count--;
                     } else {
