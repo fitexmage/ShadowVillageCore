@@ -21,7 +21,6 @@ class GambleEnchantInfo {
                         new GambleEnchantInfo(Enchantment.FIRE_ASPECT, "火焰附加之", 2),
                         new GambleEnchantInfo(Enchantment.KNOCKBACK, "击退之", 2),
                         new GambleEnchantInfo(Enchantment.LOOT_BONUS_MOBS, "掠夺之", 3),
-                        new GambleEnchantInfo(Enchantment.DAMAGE_ALL, "锋利之", 5),
                         new GambleEnchantInfo(Enchantment.DAMAGE_UNDEAD, "亡灵杀手之", 5),
                         new GambleEnchantInfo(Enchantment.DURABILITY, "耐久之", 3)
                 };
