@@ -160,6 +160,9 @@ public class svb extends ShadowVillageCommand {
                                     case "5":
                                         gambleSystem.getPossibilities(player, 5, Tool.getNumber(args[3]));
                                         break;
+                                    case "6":
+                                        gambleSystem.getPossibilities(player, 6, Tool.getNumber(args[3]));
+                                        break;
                                     default:
                                         Message.sendUnknown(player);
                                         break;
@@ -197,7 +200,7 @@ public class svb extends ShadowVillageCommand {
                     }
                     break;
                 case "2":
-                    if (player.hasPermission("svb.gamble.helmet")) {
+                    if (player.hasPermission("svb.gamble.bow")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 2, "diamond", 1);
                         } else {
@@ -208,7 +211,7 @@ public class svb extends ShadowVillageCommand {
                     }
                     break;
                 case "3":
-                    if (player.hasPermission("svb.gamble.chestplate")) {
+                    if (player.hasPermission("svb.gamble.helmet")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 3, "diamond", 1);
                         } else {
@@ -219,7 +222,7 @@ public class svb extends ShadowVillageCommand {
                     }
                     break;
                 case "4":
-                    if (player.hasPermission("svb.gamble.leggings")) {
+                    if (player.hasPermission("svb.gamble.chestplate")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 4, "diamond", 1);
                         } else {
@@ -230,11 +233,22 @@ public class svb extends ShadowVillageCommand {
                     }
                     break;
                 case "5":
-                    if (player.hasPermission("svb.gamble.boots")) {
+                    if (player.hasPermission("svb.gamble.leggings")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 5, "diamond", 1);
                         } else {
                             gambleSystem.gambleItem(player, 5, "diamond", Tool.getNumber(args[2]));
+                        }
+                    } else {
+                        Message.sendNoPermission(player);
+                    }
+                    break;
+                case "6":
+                    if (player.hasPermission("svb.gamble.boots")) {
+                        if (args.length == 2) {
+                            gambleSystem.gambleItem(player, 6, "diamond", 1);
+                        } else {
+                            gambleSystem.gambleItem(player, 6, "diamond", Tool.getNumber(args[2]));
                         }
                     } else {
                         Message.sendNoPermission(player);

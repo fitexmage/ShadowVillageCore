@@ -6,6 +6,7 @@ import com.github.fitexmage.util.Tool;
 
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -95,10 +96,11 @@ public class GambleSystem {
                         gambleItemInfo.getId() == 29999 ||
                         gambleItemInfo.getId() == 39999 ||
                         gambleItemInfo.getId() == 49999 ||
-                        gambleItemInfo.getId() == 59999) {
+                        gambleItemInfo.getId() == 59999 ||
+                        gambleItemInfo.getId() == 69999) {
                     gambleItem = NBTUtil.getUnbreakableItem(gambleItem);
                     Message.broadcastMessage("腐竹的力量重现于世！");
-                } else if ((int) (Math.random() * 100) == 0) {
+                } else if ((int) (Math.random() * 50) == 0) {
                     gambleItem = NBTUtil.getUnbreakableItem(gambleItem);
                 }
                 break;
@@ -108,7 +110,7 @@ public class GambleSystem {
         return gambleItem;
     }
 
-    private void randomEnchant(ItemStack gambleItem, GambleItemInfo itemInfo, int type) {
+    private void randomEnchant(ItemStack gambleItem, GambleItemInfo gambleItemInfos, int type) {
         GambleEnchantInfo[] gambleEnchantInfos = GambleEnchantInfo.getGambleEnchants(type);
 
         String displayName = "";
@@ -121,7 +123,13 @@ public class GambleSystem {
                 displayName += gambleEnchantInfo.getName();
             }
         }
-        displayName += itemInfo.getItemName();
+        if (gambleItemInfos.getId() == 39999 ||
+                gambleItemInfos.getId() == 49999 ||
+                gambleItemInfos.getId() == 59999 ||
+                gambleItemInfos.getId() == 69999) {
+            meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true);
+        }
+        displayName += gambleItemInfos.getItemName();
         meta.setDisplayName(displayName);
         gambleItem.setItemMeta(meta);
     }

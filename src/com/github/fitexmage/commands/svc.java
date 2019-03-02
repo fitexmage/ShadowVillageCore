@@ -137,19 +137,21 @@ public class svc extends ShadowVillageCommand {
             text301.append("      影之乡黑市系统\n\n");
             text301.append("1. 武器抽奖：\n");
             text301.append("/svb g 1 钻石数\n\n");
-            text301.append("2. 头盔抽奖：\n");
+            text301.append("2. 弓抽奖：\n");
             text301.append("/svb g 2 钻石数\n\n");
-            text301.append("3. 胸甲抽奖：\n");
+            text301.append("3. 头盔抽奖：\n");
             text301.append("/svb g 3 钻石数\n\n");
-            text301.append("4. 护腿抽奖：\n");
+            text301.append("4. 胸甲抽奖：\n");
             text301.append("/svb g 4 钻石数\n\n");
             bookMeta.addPage(text301.toString());
 
             StringBuilder text302 = new StringBuilder();
             text302.append("      影之乡黑市系统\n\n");
-            text302.append("5. 靴子抽奖：\n");
+            text302.append("5. 护腿抽奖：\n");
             text302.append("/svb g 5 钻石数\n\n");
-            text302.append("6. 影之石数量查询：\n");
+            text302.append("6. 靴子抽奖：\n");
+            text302.append("/svb g 6 钻石数\n\n");
+            text302.append("7. 影之石数量查询：\n");
             text302.append("/svb l shadowstone");
             bookMeta.addPage(text302.toString());
 
