@@ -24,7 +24,7 @@ public class ShadowSoul extends CitizensNPC {
     private static final int id = 10011;
     private static final String name = "影魂";
     public static int deathReason = 0;
-    private final double health = 5000.0;
+    private final double health = 6000.0;
     private final float speed = 1.1f;
     private final double range = 20.0;
 
@@ -59,7 +59,7 @@ public class ShadowSoul extends CitizensNPC {
         getBukkitEntity().setHealth(health);
         getNavigator().getLocalParameters().speedModifier(speed);
         getNavigator().setTarget(getNearestPlayer(), true);
-        Message.entityBroadcastMessage(name, "为了埃索泰尔！");
+        Message.entitySendMessage(name, player, "为了埃索泰尔！");
     }
 
     void action() {

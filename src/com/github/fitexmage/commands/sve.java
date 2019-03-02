@@ -30,7 +30,7 @@ public class sve extends ShadowVillageCommand {
         Player player = (Player) sender;
         if (ecologyOn) {
             if (args.length == 0) {
-                Message.sendPlayerMessage(player, "这里是影之乡生态系统！");
+                Message.sendMessage(player, "这里是影之乡生态系统！");
             } else {
                 switch (args[0]) {
                     case "summon":
@@ -42,23 +42,23 @@ public class sve extends ShadowVillageCommand {
                 }
             }
         } else {
-            Message.sendPlayerMessage(player, "影之乡生态系统未启动。");
+            Message.sendMessage(player, "影之乡生态系统未启动。");
         }
     }
 
     @Override
     protected void serverCommand(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            Message.sendPlayerMessage(sender, "影之乡生态系统正在待命！");
+            Message.sendMessage(sender, "影之乡生态系统正在待命！");
         } else {
             switch (args[0]) {
                 case "start":
                     ecologyOn = true;
-                    Message.sendPlayerMessage(sender, "影之乡生态系统已启动！");
+                    Message.sendMessage(sender, "影之乡生态系统已启动！");
                     break;
                 case "stop":
                     ecologyOn = false;
-                    Message.sendPlayerMessage(sender, "影之乡生态系统已关闭。");
+                    Message.sendMessage(sender, "影之乡生态系统已关闭。");
                     break;
                 default:
                     Message.sendUnknown(sender);
@@ -69,7 +69,7 @@ public class sve extends ShadowVillageCommand {
 
     private void summon(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendPlayerMessage(player, "请选择要生成的生物！");
+            Message.sendMessage(player, "请选择要生成的生物！");
         } else if (args.length == 2) {
             switch (args[1]) {
                 case "shadowman":

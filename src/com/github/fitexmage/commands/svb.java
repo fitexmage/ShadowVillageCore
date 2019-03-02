@@ -36,7 +36,7 @@ public class svb extends ShadowVillageCommand {
         Player player = (Player) sender;
         if (tradeOn) {
             if (args.length == 0) {
-                Message.sendPlayerMessage(player, "这里是影之乡黑市！");
+                Message.sendMessage(player, "这里是影之乡黑市！");
             } else {
                 switch (args[0]) {
                     case "give":
@@ -63,23 +63,23 @@ public class svb extends ShadowVillageCommand {
                 }
             }
         } else {
-            Message.sendPlayerMessage(player, "影之乡黑市未启动。");
+            Message.sendMessage(player, "影之乡黑市未启动。");
         }
     }
 
     @Override
     protected void serverCommand(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            Message.sendPlayerMessage(sender, "影之乡黑市正在待命！");
+            Message.sendMessage(sender, "影之乡黑市正在待命！");
         } else {
             switch (args[0]) {
                 case "start":
                     tradeOn = true;
-                    Message.sendPlayerMessage(sender, "影之乡黑市已启动！");
+                    Message.sendMessage(sender, "影之乡黑市已启动！");
                     break;
                 case "stop":
                     tradeOn = false;
-                    Message.sendPlayerMessage(sender, "影之乡黑市已关闭。");
+                    Message.sendMessage(sender, "影之乡黑市已关闭。");
                     break;
                 default:
                     Message.sendUnknown(sender);
@@ -90,7 +90,7 @@ public class svb extends ShadowVillageCommand {
 
     private void give(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendPlayerMessage(player, "请选择要给予的物品！");
+            Message.sendMessage(player, "请选择要给予的物品！");
         } else {
             switch (args[1]) {
                 case "shadowstone":
@@ -122,7 +122,7 @@ public class svb extends ShadowVillageCommand {
 
     private void lookup(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendPlayerMessage(player, "请选择要查询的物品！");
+            Message.sendMessage(player, "请选择要查询的物品！");
         } else {
             if (args[1].equals("shadowstone")) {
                 if (player.hasPermission("svb.lookup.shadowstone")) {
@@ -133,7 +133,7 @@ public class svb extends ShadowVillageCommand {
                             shadowStoneCount += item.getAmount();
                         }
                     }
-                    Message.sendPlayerMessage(player, "你拥有" + shadowStoneCount + "个影之石。");
+                    Message.sendMessage(player, "你拥有" + shadowStoneCount + "个影之石。");
                 } else {
                     Message.sendNoPermission(player);
                 }
@@ -145,7 +145,7 @@ public class svb extends ShadowVillageCommand {
 
     private void gamble(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendPlayerMessage(player, "请选择要得到的物品！");
+            Message.sendMessage(player, "请选择要得到的物品！");
         } else {
             GambleSystem gambleSystem = new GambleSystem();
             switch (args[1]) {
@@ -213,7 +213,7 @@ public class svb extends ShadowVillageCommand {
 
     private void set(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendPlayerMessage(player, "请选择想要设置的属性");
+            Message.sendMessage(player, "请选择想要设置的属性!");
         } else {
             switch (args[1]) {
                 case "damage":
@@ -226,10 +226,10 @@ public class svb extends ShadowVillageCommand {
                                 itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
                                 player.setItemInHand(itemInHand);
                             } else {
-                                Message.sendPlayerMessage(player, "你的手上没有东西！");
+                                Message.sendMessage(player, "你的手上没有东西！");
                             }
                         } else {
-                            Message.sendPlayerMessage(player, "请输入伤害量！");
+                            Message.sendMessage(player, "请输入伤害量！");
                         }
                     } else {
                         Message.sendNoPermission(player);
@@ -247,10 +247,10 @@ public class svb extends ShadowVillageCommand {
                                 itemInHand.setItemMeta(itemMeta);
                                 player.setItemInHand(itemInHand);
                             } else {
-                                Message.sendPlayerMessage(player, "你的手上没有东西！");
+                                Message.sendMessage(player, "你的手上没有东西！");
                             }
                         } else {
-                            Message.sendPlayerMessage(player, "请输入名字！");
+                            Message.sendMessage(player, "请输入名字！");
                         }
                     }
                     break;

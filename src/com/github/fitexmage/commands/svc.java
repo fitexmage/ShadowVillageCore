@@ -3,7 +3,6 @@ package com.github.fitexmage.commands;
 import com.github.fitexmage.util.Message;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -35,7 +34,7 @@ public class svc extends ShadowVillageCommand {
         Player player = (Player) sender;
         if (coreOn) {
             if (args.length == 0) {
-                Message.sendPlayerMessage(player, "凡人，你为何呼唤我？");
+                Message.sendMessage(player, "凡人，你为何呼唤我？");
             } else {
                 switch (args[0]) {
                     case "empower":
@@ -56,23 +55,23 @@ public class svc extends ShadowVillageCommand {
                 }
             }
         } else {
-            Message.sendPlayerMessage(player, "影之乡核心未启动。");
+            Message.sendMessage(player, "影之乡核心未启动。");
         }
     }
 
     @Override
     protected void serverCommand(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            Message.sendPlayerMessage(sender, "影之乡核心正在待命！");
+            Message.sendMessage(sender, "影之乡核心正在待命！");
         } else {
             switch (args[0]) {
                 case "start":
                     coreOn = true;
-                    Message.sendPlayerMessage(sender, "影之乡核心已启动！");
+                    Message.sendMessage(sender, "影之乡核心已启动！");
                     break;
                 case "stop":
                     coreOn = false;
-                    Message.sendPlayerMessage(sender, "影之乡核心已关闭。");
+                    Message.sendMessage(sender, "影之乡核心已关闭。");
                     break;
                 default:
                     Message.sendUnknown(sender);
@@ -83,7 +82,7 @@ public class svc extends ShadowVillageCommand {
 
     private void empower(String[] args, Player player) {
         if (player.hasPermission("svc.empower")) {
-            Message.sendPlayerMessage(player, "凡人，从现在起，我将赋予你神的能力！");
+            Message.sendMessage(player, "凡人，从现在起，我将赋予你神的能力！");
         } else {
             Message.sendNoPermission(player);
         }
@@ -92,13 +91,13 @@ public class svc extends ShadowVillageCommand {
     private void getAddress(String[] args, Player player) {
         if (player.hasPermission("svc.address")) {
             if (args.length == 1) {
-                Message.sendPlayerMessage(player, "请选择想要查的人！");
+                Message.sendMessage(player, "请选择想要查的人！");
             } else if (args.length == 2) {
                 Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
                 if (targetPlayer != null) {
-                    Message.sendPlayerMessage(player, "该玩家的地址是" + targetPlayer.getAddress());
+                    Message.sendMessage(player, "该玩家的地址是" + targetPlayer.getAddress());
                 } else {
-                    Message.sendPlayerMessage(player, "未发现该玩家！");
+                    Message.sendMessage(player, "未发现该玩家！");
                 }
             } else {
                 Message.sendUnknown(player);
@@ -172,7 +171,7 @@ public class svc extends ShadowVillageCommand {
     private void turnDebug(Player player) {
         if (player.hasPermission("svc.debug")) {
             Message.debug = !Message.debug;
-            Message.sendPlayerMessage(player, "已切换debug模式为" + Message.debug);
+            Message.sendMessage(player, "已切换debug模式为" + Message.debug);
         } else {
             Message.sendNoPermission(player);
         }
@@ -182,6 +181,6 @@ public class svc extends ShadowVillageCommand {
         player.getWorld().strikeLightning(player.getLocation());
         player.setFireTicks(1000);
         player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1000, 100));
-        Message.sendPlayerMessage(player, "凡人，你怎敢在此胡作非为，你将受到惩罚！");
+        Message.sendMessage(player, "凡人，你怎敢在此胡作非为，你将受到惩罚！");
     }
 }

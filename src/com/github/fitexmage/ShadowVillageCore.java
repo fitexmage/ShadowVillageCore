@@ -51,7 +51,7 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Message.sendPlayerMessage(player, "影之乡核心正在运行");
+        Message.sendMessage(player, "影之乡核心正在运行");
     }
 
     @EventHandler
@@ -104,7 +104,7 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
                     }
                     SpawnerController.shadowSoulSpawner.spawnShadowSoul(player, event.getClickedBlock().getLocation().add(0, 1, 0));
                 } else {
-                    Message.sendPlayerMessage(player, "你需要召唤法阵！");
+                    Message.sendMessage(player, "你需要召唤法阵！");
                 }
             }
         }

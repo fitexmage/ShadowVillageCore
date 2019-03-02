@@ -31,13 +31,13 @@ public class GambleSystem {
                     int[] weights = getWeights(gambleItemInfos, cost); //根据钻石数决定品质的权重
                     ItemStack gambleItem = getGambleItem(gambleItemInfos, weights, gambleType); //根据权重选取物品
                     exchangeDiamond(player, cost, diamondBlockCount, gambleItem); //给予玩家物品
-                    Message.sendPlayerMessage(player, "恭喜你！抽到了好东西！");
+                    Message.sendMessage(player, "恭喜你！抽到了好东西！");
                 } else {
-                    Message.sendPlayerMessage(player, "你没有这么多钻石！");
+                    Message.sendMessage(player, "你没有这么多钻石！");
                 }
             }
         } else {
-            Message.sendPlayerMessage(player, "数量必须为正数！");
+            Message.sendMessage(player, "数量必须为正数！");
         }
     }
 
