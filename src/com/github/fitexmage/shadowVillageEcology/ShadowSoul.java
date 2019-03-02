@@ -8,6 +8,7 @@ import net.citizensnpcs.npc.CitizensNPC;
 import net.citizensnpcs.npc.EntityControllers;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -154,6 +155,19 @@ public class ShadowSoul extends CitizensNPC {
                 addPotionEffect(player);
             }
         }
+    }
+
+    public static boolean isShadowSoulCircle(Location blockLocation) {
+        for (int i = -2; i <= 2; i++) {
+            for (int j = -2; j <= 2; j++) {
+                if (Math.abs(i) + Math.abs(j) == 0 && !blockLocation.getBlock().getType().equals(Material.REDSTONE_BLOCK) ||
+                        (Math.abs(i) + Math.abs(j) == 1 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.DIAMOND_BLOCK)) ||
+                        (Math.abs(i) + Math.abs(j) == 2 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.BEDROCK))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void setNuke() {

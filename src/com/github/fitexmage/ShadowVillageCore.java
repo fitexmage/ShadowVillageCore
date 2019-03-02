@@ -95,7 +95,7 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
             ItemStack item = event.getItem();
             if (ShadowItem.isShadowSoulBook(item)) {
                 Player player = event.getPlayer();
-                if (isShadowSoulCircle(event.getClickedBlock().getLocation())) {
+                if (ShadowSoul.isShadowSoulCircle(event.getClickedBlock().getLocation())) {
                     if (item.getAmount() > 1) {
                         item.setAmount(item.getAmount() - 1);
                         player.setItemInHand(item);
@@ -108,18 +108,5 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
                 }
             }
         }
-    }
-
-    public boolean isShadowSoulCircle(Location blockLocation) {
-        for (int i = -2; i <= 2; i++) {
-            for (int j = -2; j <= 2; j++) {
-                if (Math.abs(i) + Math.abs(j) == 0 && !blockLocation.getBlock().getType().equals(Material.REDSTONE_BLOCK) ||
-                        (Math.abs(i) + Math.abs(j) == 1 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.DIAMOND_BLOCK)) ||
-                        (Math.abs(i) + Math.abs(j) == 2 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.BEDROCK))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
