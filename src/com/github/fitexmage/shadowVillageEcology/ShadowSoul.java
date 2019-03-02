@@ -35,7 +35,7 @@ public class ShadowSoul extends CitizensNPC {
     private int minHeight; //最小安全高度
 
     ShadowSoul() {
-        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.CREEPER), CitizensAPI.getNPCRegistry());
+        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.PIG), CitizensAPI.getNPCRegistry());
 
         totalCount = 0;
         stageCountDown = 0;
@@ -51,13 +51,14 @@ public class ShadowSoul extends CitizensNPC {
         totalCount = 0;
         stageCountDown = (int) (Math.random() * 5) + 5;
         stageCount = 0;
+        stageNum = -1;
 
         spawn(blockLocation);
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
         getNavigator().getLocalParameters().speedModifier(speed);
-        getNavigator().setTarget(player, true);
+        getNavigator().setTarget(getNearestPlayer(), true);
         Message.entityBroadcastMessage(name, "为了埃索泰尔！");
     }
 

@@ -20,8 +20,8 @@ public class ShadowSoulSpawner {
 
     public void spawnShadowSoul(Player player, Location blockLocation) {
         if (!shadowSoul.isSpawned()) {
+            Message.broadcastMessage(player.getDisplayName() + "召唤出了" + shadowSoul.getName() + "!");
             shadowSoul.spawn(player, blockLocation);
-            Message.broadcastMessage("§4" + player.getDisplayName() + "召唤出了" + shadowSoul.getName() + "!");
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
