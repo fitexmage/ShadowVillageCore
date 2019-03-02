@@ -51,7 +51,7 @@ public class ShadowSoul extends CitizensNPC {
         totalCount = 0;
         stageCountDown = (int) (Math.random() * 5) + 5;
         stageCount = 0;
-        stageNum = -1;
+        stageNum = 0;
 
         spawn(blockLocation);
         setProtected(false);
@@ -78,8 +78,8 @@ public class ShadowSoul extends CitizensNPC {
         if (stageCountDown > 0) { //阶段未开始
             stageCountDown--;
         } else {
-            if (stageNum == -1) {
-                stageNum = (int) (Math.random() * 4); //阶段选择
+            if (stageNum == 0) {
+                stageNum = (int) (Math.random() * 4) + 1; //阶段选择
                 if (Message.debug) {
                     Message.broadcastMessage(name + "选择了" + (stageNum + 1) + "阶段!");
                 }
