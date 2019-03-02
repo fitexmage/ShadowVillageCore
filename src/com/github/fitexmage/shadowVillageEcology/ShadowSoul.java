@@ -80,26 +80,26 @@ public class ShadowSoul extends CitizensNPC {
             if (stageNum == -1) {
                 stageNum = (int) (Math.random() * 4); //阶段选择
             } else {
-                stage(stageNum);
+                stageOn();
             }
         }
     }
 
-    private void stage(int num) {
+    private void stageOn() {
         if (stageCount == 0) {
-            if (num == 1) stage1(1);
-            else if (num == 2) stage2(1);
-            else if (num == 3) stage3(1);
-            else if (num == 4) stage4(1);
+            if (stageNum == 1) stage1(1);
+            else if (stageNum == 2) stage2(1);
+            else if (stageNum == 3) stage3(1);
+            else if (stageNum == 4) stage4(1);
         } else {
             stageCount--;
             if (stageCount == 0) {
+                if (stageNum == 1) stage1(2);
+                else if (stageNum == 2) stage2(2);
+                else if (stageNum == 3) stage3(2);
+                else if (stageNum == 4) stage4(2);
                 stageCountDown = (int) (Math.random() * 5) + 3; //到下一阶段时间
                 stageNum = -1;
-                if (num == 1) stage1(2);
-                else if (num == 2) stage2(2);
-                else if (num == 3) stage3(2);
-                else if (num == 4) stage4(2);
             }
         }
     }
