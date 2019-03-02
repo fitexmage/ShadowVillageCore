@@ -91,6 +91,10 @@ Shadow Village Black Market provides functions about items.
 * /svb lookup shadowstone (/svb l shadowstone)
 
   Look up amount of shadow stones in inventory.
+  
+* /svb lookup possibilities (/svb l shadowstone)
+
+  Look up possibilities of gamble items.
 
 * /svb gamble 1 [number] (/svb g 1 [number])
 
@@ -141,6 +145,8 @@ Shadow Village Black Market provides functions about items.
 * svb.give.shadowsoulbook -- OP
 
 * svb.lookup.shadowstone -- Everyone
+
+* svb.lookup.possibilities -- OP
 
 * svb.gamble.weapon -- Everyone
 
