@@ -95,13 +95,15 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
                 ItemStack item = event.getItem();
                 if (ShadowItem.isShadowSoulBook(item)) {
                     Player player = event.getPlayer();
-                    if (item.getAmount() > 1) {
-                        item.setAmount(item.getAmount() - 1);
-                        player.setItemInHand(item);
-                    } else {
-                        player.setItemInHand(null);
+                    if (player.getLocation().subtract(0, 1, 0).getBlock().getType().equals(Material.REDSTONE_BLOCK)) {
+                        if (item.getAmount() > 1) {
+                            item.setAmount(item.getAmount() - 1);
+                            player.setItemInHand(item);
+                        } else {
+                            player.setItemInHand(null);
+                        }
+                        SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
                     }
-                    SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
                 }
             }
         }

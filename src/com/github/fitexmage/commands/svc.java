@@ -3,6 +3,7 @@ package com.github.fitexmage.commands;
 import com.github.fitexmage.util.Message;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -117,39 +118,39 @@ public class svc extends ShadowVillageCommand {
 
             StringBuilder text101 = new StringBuilder();
             text101.append("      影之乡核心系统\n\n");
-            text101.append("1.获得《影之乡核心百科》：\n");
+            text101.append("1. 获得《影之乡核心百科》：\n");
             text101.append("/svc help\n\n");
             bookMeta.addPage(text101.toString());
 
             StringBuilder text201 = new StringBuilder();
             text201.append("      影之乡生态系统\n\n");
-            text201.append("1.影者\n");
+            text201.append("1. 影者\n");
             text201.append("隐藏在影之乡暗面的人类。\n\n");
-            text201.append("2.影灵\n");
+            text201.append("2. 影灵\n");
             text201.append("隐藏在影之乡暗面的生物。\n\n");
-            text201.append("3.影魂\n");
+            text201.append("3. 影魂\n");
             text201.append("埃索泰尔守护者。\n\n");
-            text201.append("4.影魄\n");
+            text201.append("4. 影魄\n");
             text201.append("埃索泰尔监督者。\n\n");
             bookMeta.addPage(text201.toString());
 
             StringBuilder text301 = new StringBuilder();
             text301.append("      影之乡黑市系统\n\n");
-            text301.append("1.武器抽奖：\n");
+            text301.append("1. 武器抽奖：\n");
             text301.append("/svb g 1 钻石数\n\n");
-            text301.append("2.头盔抽奖：\n");
+            text301.append("2. 头盔抽奖：\n");
             text301.append("/svb g 2 钻石数\n\n");
-            text301.append("3.胸甲抽奖：\n");
+            text301.append("3. 胸甲抽奖：\n");
             text301.append("/svb g 3 钻石数\n\n");
-            text301.append("4.护腿抽奖：\n");
+            text301.append("4. 护腿抽奖：\n");
             text301.append("/svb g 4 钻石数\n\n");
             bookMeta.addPage(text301.toString());
 
             StringBuilder text302 = new StringBuilder();
             text302.append("      影之乡黑市系统\n\n");
-            text302.append("5.靴子抽奖：\n");
+            text302.append("5. 靴子抽奖：\n");
             text302.append("/svb g 5 钻石数\n\n");
-            text302.append("6.影之石数量查询：\n");
+            text302.append("6. 影之石数量查询：\n");
             text302.append("/svb l shadowstone");
             bookMeta.addPage(text302.toString());
 

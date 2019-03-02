@@ -23,4 +23,8 @@ public class Message {
     public static void sendNoPermission(CommandSender sender) {
         sendPlayerMessage(sender, "你无权这样做！");
     }
+
+    public static void entityBroadcastMessage(String name, String message) {
+        Bukkit.getServer().broadcastMessage("<" + "§2" + name + "§f" + ">" + " " + message);
+    }
 }

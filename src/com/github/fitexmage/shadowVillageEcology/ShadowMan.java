@@ -129,8 +129,7 @@ public class ShadowMan extends ShadowEntity {
 
     private void recordTargetPlayer(Player player) {
         targetPlayer = player;
-        Location location = targetPlayer.getLocation();
-        recordLocation = new Location(targetPlayer.getWorld(), location.getX(), location.getY(), location.getZ(), 0f, 0f);
+        recordLocation = targetPlayer.getLocation();
     }
 
     private boolean isPlayerMove() {

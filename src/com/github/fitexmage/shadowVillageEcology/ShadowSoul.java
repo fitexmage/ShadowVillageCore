@@ -58,7 +58,7 @@ public class ShadowSoul extends CitizensNPC {
         getNavigator().getLocalParameters().speedModifier(speed);
         getNavigator().setTarget(getNearestPlayer(), true);
         Message.broadcastMessage("§4" + player.getDisplayName() + "召唤出了" + name + "!");
-        Message.broadcastMessage("<" + "§2" + name + "§f" + ">" + " 为了埃索泰尔！");
+        Message.entityBroadcastMessage(name, "为了埃索泰尔！");
     }
 
     void action() {
