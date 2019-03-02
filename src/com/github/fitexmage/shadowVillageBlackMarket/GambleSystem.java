@@ -41,19 +41,33 @@ public class GambleSystem {
         }
     }
 
-    private int[] getWeights(GambleItemInfo[] gambleItemInfos, int amount) {
+    public void getPossibilities(Player player, int gambleType, int cost) {
+        GambleItemInfo[] gambleItemInfos = GambleItemInfo.getGambleItemInfos(gambleType);
+        int[] weights = getWeights(gambleItemInfos, cost);
+        int sum = 0;
+        for (int weight : weights) {
+            sum += weight;
+        }
+        StringBuilder possibilities = new StringBuilder();
+        for (int i = 0; i < gambleItemInfos.length; i++) {
+            possibilities.append(gambleItemInfos[i].getItemName() + ": " + ((double) weights[i] / sum) * 100 + "%\n");
+        }
+        Message.sendMessage(player, possibilities.toString());
+    }
+
+    private int[] getWeights(GambleItemInfo[] gambleItemInfos, int cost) {
         int[] weights = new int[gambleItemInfos.length];
         for (int i = 0; i < gambleItemInfos.length; i++) {
             if (i == gambleItemInfos.length - 1) {
-                if (amount > gambleItemInfos[i].getLimit()) {
+                if (cost > gambleItemInfos[i].getLimit()) {
                     for (int j = 0; j < i + 1; j++) {
-                        weights[j] = (amount - gambleItemInfos[j].getLimit()) * gambleItemInfos[j].getBasicWeight();
+                        weights[j] = (cost - gambleItemInfos[j].getLimit()) * gambleItemInfos[j].getBasicWeight();
                     }
                 }
             } else {
-                if (amount > gambleItemInfos[i].getLimit() && amount <= gambleItemInfos[i + 1].getLimit()) {
+                if (cost > gambleItemInfos[i].getLimit() && cost <= gambleItemInfos[i + 1].getLimit()) {
                     for (int j = 0; j < i + 1; j++) {
-                        weights[j] = (amount - gambleItemInfos[j].getLimit()) * gambleItemInfos[j].getBasicWeight();
+                        weights[j] = (cost - gambleItemInfos[j].getLimit()) * gambleItemInfos[j].getBasicWeight();
                     }
                     break;
                 }
@@ -123,16 +137,16 @@ public class GambleSystem {
         return gambleWeapon;
     }
 
-    private void exchangeDiamond(Player player, int amount, int diamondBlockCount, ItemStack gambleWeapon) {
+    private void exchangeDiamond(Player player, int cost, int diamondBlockCount, ItemStack gambleWeapon) {
         Inventory inventory = player.getInventory();
-        if (amount <= diamondBlockCount * 9) {
-            inventory.removeItem(new ItemStack(Material.DIAMOND_BLOCK, amount / 9));
-            if (amount % 9 != 0) {
+        if (cost <= diamondBlockCount * 9) {
+            inventory.removeItem(new ItemStack(Material.DIAMOND_BLOCK, cost / 9));
+            if (cost % 9 != 0) {
                 inventory.removeItem(new ItemStack(Material.DIAMOND_BLOCK, 1));
-                inventory.addItem(new ItemStack(Material.DIAMOND, 9 - amount % 9));
+                inventory.addItem(new ItemStack(Material.DIAMOND, 9 - cost % 9));
             }
         } else {
-            inventory.removeItem(new ItemStack(Material.DIAMOND, amount));
+            inventory.removeItem(new ItemStack(Material.DIAMOND, cost));
         }
         inventory.addItem(gambleWeapon);
     }

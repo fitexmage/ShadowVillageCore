@@ -124,21 +124,57 @@ public class svb extends ShadowVillageCommand {
         if (args.length == 1) {
             Message.sendMessage(player, "请选择要查询的物品！");
         } else {
-            if (args[1].equals("shadowstone")) {
-                if (player.hasPermission("svb.lookup.shadowstone")) {
-                    int shadowStoneCount = 0;
+            switch (args[1]) {
+                case "shadowstone":
+                    if (player.hasPermission("svb.lookup.shadowstone")) {
+                        int shadowStoneCount = 0;
 
-                    for (ItemStack item : Tool.getPlayerItems(player)) {
-                        if (ShadowItem.isShadowStone(item)) {
-                            shadowStoneCount += item.getAmount();
+                        for (ItemStack item : Tool.getPlayerItems(player)) {
+                            if (ShadowItem.isShadowStone(item)) {
+                                shadowStoneCount += item.getAmount();
+                            }
+                        }
+                        Message.sendMessage(player, "你拥有" + shadowStoneCount + "个影之石。");
+                    } else {
+                        Message.sendNoPermission(player);
+                    }
+                    break;
+                case "possibilities":
+                    if (player.hasPermission("svb.lookup.possibilities")) {
+                        if (args.length != 2) {
+                            if (args.length != 3) {
+                                GambleSystem gambleSystem = new GambleSystem();
+                                switch (args[2]) {
+                                    case "1":
+                                        gambleSystem.getPossibilities(player, 1, Tool.getNumber(args[3]));
+                                        break;
+                                    case "2":
+                                        gambleSystem.getPossibilities(player, 2, Tool.getNumber(args[3]));
+                                        break;
+                                    case "3":
+                                        gambleSystem.getPossibilities(player, 3, Tool.getNumber(args[3]));
+                                        break;
+                                    case "4":
+                                        gambleSystem.getPossibilities(player, 4, Tool.getNumber(args[3]));
+                                        break;
+                                    case "5":
+                                        gambleSystem.getPossibilities(player, 5, Tool.getNumber(args[3]));
+                                        break;
+                                    default:
+                                        Message.sendUnknown(player);
+                                        break;
+                                }
+                            } else {
+                                Message.sendMessage(player, "请输入数量！");
+                            }
+                        } else {
+                            Message.sendMessage(player, "请选择物品！");
                         }
                     }
-                    Message.sendMessage(player, "你拥有" + shadowStoneCount + "个影之石。");
-                } else {
-                    Message.sendNoPermission(player);
-                }
-            } else {
-                Message.sendUnknown(player);
+                    break;
+                default:
+                    Message.sendUnknown(player);
+                    break;
             }
         }
     }
