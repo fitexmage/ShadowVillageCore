@@ -88,7 +88,7 @@ public class sve extends ShadowVillageCommand {
                     break;
                 case "shadowsoul":
                     if (player.hasPermission("sve.summon.shadowsoul")) {
-                        SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
+                        SpawnerController.shadowSoulSpawner.spawnShadowSoul(player, player.getLocation());
                     } else {
                         Message.sendNoPermission(player);
                     }

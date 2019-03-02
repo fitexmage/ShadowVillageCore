@@ -46,18 +46,17 @@ public class ShadowSoul extends CitizensNPC {
         addTrait(shadowSoulTrait);
     }
 
-    void spawn(Player player) {
+    void spawn(Player player, Location blockLocation) {
         totalCount = 0;
         stageCountDown = (int) (Math.random() * 5) + 5;
         stageCount = 0;
 
-        spawn(player.getLocation());
+        spawn(blockLocation);
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
         getNavigator().getLocalParameters().speedModifier(speed);
-        getNavigator().setTarget(getNearestPlayer(), true);
-        Message.broadcastMessage("§4" + player.getDisplayName() + "召唤出了" + name + "!");
+        getNavigator().setTarget(player, true);
         Message.entityBroadcastMessage(name, "为了埃索泰尔！");
     }
 

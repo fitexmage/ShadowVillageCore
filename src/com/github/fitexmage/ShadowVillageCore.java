@@ -10,6 +10,7 @@ import com.github.fitexmage.util.Message;
 import net.citizensnpcs.api.event.*;
 import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -90,22 +91,35 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerInteraction(PlayerInteractEvent event) {
-        if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (event.hasItem()) {
-                ItemStack item = event.getItem();
-                if (ShadowItem.isShadowSoulBook(item)) {
-                    Player player = event.getPlayer();
-                    if (player.getLocation().subtract(0, 1, 0).getBlock().getType().equals(Material.REDSTONE_BLOCK)) {
-                        if (item.getAmount() > 1) {
-                            item.setAmount(item.getAmount() - 1);
-                            player.setItemInHand(item);
-                        } else {
-                            player.setItemInHand(null);
-                        }
-                        SpawnerController.shadowSoulSpawner.spawnShadowSoul(player);
+        if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.hasItem()) {
+            ItemStack item = event.getItem();
+            if (ShadowItem.isShadowSoulBook(item)) {
+                Player player = event.getPlayer();
+                if (isShadowSoulCircle(event.getClickedBlock().getLocation())) {
+                    if (item.getAmount() > 1) {
+                        item.setAmount(item.getAmount() - 1);
+                        player.setItemInHand(item);
+                    } else {
+                        player.setItemInHand(null);
                     }
+                    SpawnerController.shadowSoulSpawner.spawnShadowSoul(player, event.getClickedBlock().getLocation().add(0, 1, 0));
+                } else {
+                    Message.sendPlayerMessage(player, "你需要召唤法阵！");
                 }
             }
         }
+    }
+
+    public boolean isShadowSoulCircle(Location blockLocation) {
+        for (int i = -2; i <= 2; i++) {
+            for (int j = -2; j <= 2; j++) {
+                if (Math.abs(i) + Math.abs(j) == 0 && !blockLocation.getBlock().getType().equals(Material.REDSTONE_BLOCK) ||
+                        (Math.abs(i) + Math.abs(j) == 1 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.DIAMOND_BLOCK)) ||
+                        (Math.abs(i) + Math.abs(j) == 2 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.BEDROCK))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

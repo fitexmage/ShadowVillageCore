@@ -65,8 +65,6 @@ public class ShadowMan extends ShadowEntity {
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
-
-        Message.broadcastMessage("§0影§c即将降临。");
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.ShadowVillageCore;
+import com.github.fitexmage.util.Message;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -30,6 +32,7 @@ public class ShadowBeastSpawner {
     public void spawnShadowBeast(boolean force) {
         if (!shadowBeast.isSpawned()) {
             shadowBeast.spawn(force);
+            Message.broadcastMessage("§0影§c即将降临。");
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {

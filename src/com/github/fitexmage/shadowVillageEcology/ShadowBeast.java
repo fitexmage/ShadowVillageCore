@@ -56,8 +56,6 @@ public class ShadowBeast extends ShadowEntity {
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
         getNavigator().getLocalParameters().speedModifier(speed);
-
-        Message.broadcastMessage("§0影§c即将降临。");
     }
 
     @Override
