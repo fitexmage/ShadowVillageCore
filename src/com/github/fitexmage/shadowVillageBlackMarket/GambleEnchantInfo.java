@@ -26,8 +26,11 @@ class GambleEnchantInfo {
                 };
             case 2:
                 return new GambleEnchantInfo[]{ //弓
-                        new GambleEnchantInfo(Enchantment.WATER_WORKER, "水下速掘之", 1),
-                        new GambleEnchantInfo(Enchantment.PROTECTION_EXPLOSIONS, "爆炸保护之", 10)
+                        new GambleEnchantInfo(Enchantment.ARROW_FIRE, "火矢之", 1),
+                        new GambleEnchantInfo(Enchantment.ARROW_INFINITE, "无限之", 1),
+                        new GambleEnchantInfo(Enchantment.ARROW_DAMAGE, "力量之", 5),
+                        new GambleEnchantInfo(Enchantment.ARROW_KNOCKBACK, "冲击之", 2),
+                        new GambleEnchantInfo(Enchantment.ARROW_KNOCKBACK, "耐久之", 3)
                 };
             case 3:
                 return new GambleEnchantInfo[]{ //头盔

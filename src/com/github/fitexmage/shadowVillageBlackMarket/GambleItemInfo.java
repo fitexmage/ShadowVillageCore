@@ -31,8 +31,8 @@ class GambleItemInfo {
                 };
             case 2:
                 return new GambleItemInfo[]{
-                        new GambleItemInfo(20001, "影之弓", Material.LEATHER_HELMET, 100, 0, 4),
-                        new GambleItemInfo(29999, "§5腐竹的精准", Material.DIAMOND_HELMET, 1000, 100, 7)
+                        new GambleItemInfo(20001, "影之弓", Material.BOW, 100, 0, 4),
+                        new GambleItemInfo(29999, "§5腐竹的精准", Material.BOW, 1000, 100, 7)
                 };
             case 3:
                 return new GambleItemInfo[]{

@@ -110,26 +110,38 @@ public class GambleSystem {
         return gambleItem;
     }
 
-    private void randomEnchant(ItemStack gambleItem, GambleItemInfo gambleItemInfos, int type) {
+    private void randomEnchant(ItemStack gambleItem, GambleItemInfo gambleItemInfo, int type) {
         GambleEnchantInfo[] gambleEnchantInfos = GambleEnchantInfo.getGambleEnchants(type);
 
         String displayName = "";
         ItemMeta meta = gambleItem.getItemMeta();
-        for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
-            int randomChoice = (int) (Math.random() * 8);
-            if (randomChoice == 0) {
-                int randomLevel = (int) (Math.random() * gambleEnchantInfo.getMaxLevel()) + 1;
-                meta.addEnchant(gambleEnchantInfo.getEnchantment(), randomLevel, true);
-                displayName += gambleEnchantInfo.getName();
+
+        if (gambleItemInfo.getId() == 19999 ||
+                gambleItemInfo.getId() == 29999 ||
+                gambleItemInfo.getId() == 39999 ||
+                gambleItemInfo.getId() == 49999 ||
+                gambleItemInfo.getId() == 59999 ||
+                gambleItemInfo.getId() == 69999) {
+            for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
+                meta.addEnchant(gambleEnchantInfo.getEnchantment(), gambleEnchantInfo.getMaxLevel(), true);
+            }
+            if (gambleItemInfo.getId() == 39999 ||
+                    gambleItemInfo.getId() == 49999 ||
+                    gambleItemInfo.getId() == 59999 ||
+                    gambleItemInfo.getId() == 69999) {
+                meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true);
+            }
+        } else {
+            for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
+                int randomChoice = (int) (Math.random() * 8);
+                if (randomChoice == 0) {
+                    int randomLevel = (int) (Math.random() * gambleEnchantInfo.getMaxLevel()) + 1;
+                    meta.addEnchant(gambleEnchantInfo.getEnchantment(), randomLevel, true);
+                    displayName += gambleEnchantInfo.getName();
+                }
             }
         }
-        if (gambleItemInfos.getId() == 39999 ||
-                gambleItemInfos.getId() == 49999 ||
-                gambleItemInfos.getId() == 59999 ||
-                gambleItemInfos.getId() == 69999) {
-            meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true);
-        }
-        displayName += gambleItemInfos.getItemName();
+        displayName += gambleItemInfo.getItemName();
         meta.setDisplayName(displayName);
         gambleItem.setItemMeta(meta);
     }
