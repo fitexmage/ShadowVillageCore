@@ -49,7 +49,7 @@ public class ShadowSoul extends CitizensNPC {
 
     void spawn(Player player, Location blockLocation) {
         totalCount = 0;
-        stageCountDown = (int) (Math.random() * 5) + 5;
+        stageCountDown = (int) (Math.random() * 3) + 5;
         stageCount = 0;
         stageNum = 0;
 

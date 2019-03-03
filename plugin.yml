@@ -20,15 +20,18 @@ commands:
     usage: ???
 
 permissions:
+  svc.version:
+    description: Get current version of server. 
+    default: true
+  svc.help:
+    description: Get a helper book.
+    default: true
   svc.empower:
     description: Empower to control the core. 
     default: op
   svc.address:
     description: Get IP address of target player. 
     default: op
-  svc.help:
-    description: Get a helper book.
-    default: true
   svc.debug:
     description: Turn on or off debug mod.
     default: op

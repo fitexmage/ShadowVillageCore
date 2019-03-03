@@ -1,5 +1,6 @@
 package com.github.fitexmage.commands;
 
+import com.github.fitexmage.ShadowVillageCore;
 import com.github.fitexmage.util.Message;
 
 import org.bukkit.Bukkit;
@@ -13,10 +14,11 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class svc extends ShadowVillageCommand {
+    private final ShadowVillageCore plugin;
     public static boolean coreOn;
 
-    public svc() {
-
+    public svc(ShadowVillageCore plugin) {
+        this.plugin = plugin;
     }
 
     @Override
@@ -37,14 +39,16 @@ public class svc extends ShadowVillageCommand {
                 Message.sendMessage(player, "凡人，你为何呼唤我？");
             } else {
                 switch (args[0]) {
+                    case "version":
+                        getVersion(player);
+                    case "help":
+                        help(player);
+                        break;
                     case "empower":
                         empower(args, player);
                         break;
                     case "address":
                         getAddress(args, player);
-                        break;
-                    case "help":
-                        help(player);
                         break;
                     case "debug":
                         turnDebug(player);
@@ -80,30 +84,9 @@ public class svc extends ShadowVillageCommand {
         }
     }
 
-    private void empower(String[] args, Player player) {
-        if (player.hasPermission("svc.empower")) {
-            Message.sendMessage(player, "凡人，从现在起，我将赋予你神的能力！");
-        } else {
-            Message.sendNoPermission(player);
-        }
-    }
-
-    private void getAddress(String[] args, Player player) {
-        if (player.hasPermission("svc.address")) {
-            if (args.length == 1) {
-                Message.sendMessage(player, "请选择想要查的人！");
-            } else if (args.length == 2) {
-                Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
-                if (targetPlayer != null) {
-                    Message.sendMessage(player, "该玩家的地址是" + targetPlayer.getAddress());
-                } else {
-                    Message.sendMessage(player, "未发现该玩家！");
-                }
-            } else {
-                Message.sendUnknown(player);
-            }
-        } else {
-            Message.sendNoPermission(player);
+    private void getVersion(Player player) {
+        if (player.hasPermission("svc.version")) {
+            Message.sendMessage(player, "影之乡核心当前版本：" + plugin.getDescription().getVersion());
         }
     }
 
@@ -167,6 +150,33 @@ public class svc extends ShadowVillageCommand {
 
             helperBook.setItemMeta(bookMeta);
             player.getInventory().addItem(helperBook);
+        }
+    }
+
+    private void empower(String[] args, Player player) {
+        if (player.hasPermission("svc.empower")) {
+            Message.sendMessage(player, "凡人，从现在起，我将赋予你神的能力！");
+        } else {
+            Message.sendNoPermission(player);
+        }
+    }
+
+    private void getAddress(String[] args, Player player) {
+        if (player.hasPermission("svc.address")) {
+            if (args.length == 1) {
+                Message.sendMessage(player, "请选择想要查的人！");
+            } else if (args.length == 2) {
+                Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
+                if (targetPlayer != null) {
+                    Message.sendMessage(player, "该玩家的地址是" + targetPlayer.getAddress());
+                } else {
+                    Message.sendMessage(player, "未发现该玩家！");
+                }
+            } else {
+                Message.sendUnknown(player);
+            }
+        } else {
+            Message.sendNoPermission(player);
         }
     }
 
