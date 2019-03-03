@@ -46,6 +46,14 @@ Players can spend shadow stone on:
 
 Shadow Village Core provides basic functions for the plugin. 
 
+* /svc version
+
+  Get current version of server.
+
+* /svc help
+
+  Get a helper book.
+
 * /svc empower
 
   Nothing happens.
@@ -53,10 +61,6 @@ Shadow Village Core provides basic functions for the plugin.
 * /svc address [player]
 
   Get IP address of target player.
-  
-* /svc help
-
-  Get a helper book.
   
 * /svc debug
 
