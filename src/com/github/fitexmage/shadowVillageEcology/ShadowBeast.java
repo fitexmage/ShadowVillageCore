@@ -19,7 +19,7 @@ import java.util.*;
 public class ShadowBeast extends ShadowEntity {
     private static final int id = 10002;
     private static final String name = "影灵";
-    private final double health = 200.0;
+    private final double health = 300.0;
     private final float speed = 1.0f;
 
     private final int maxPrepareCountDown = (int) (1200 / ShadowManSpawner.interval); // 60秒
@@ -105,8 +105,10 @@ public class ShadowBeast extends ShadowEntity {
 
     @Override
     public void dropItem() {
-        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 2) + 1);
-        getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
+        if ((int) (Math.random() * 3) == 0) {
+            ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 2) + 1);
+            getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
+        }
 
         if ((int) (Math.random() * 3) == 0) {
             ItemStack dropItem2 = ShadowItem.shadowSoulBook();

@@ -51,7 +51,7 @@ public class GambleSystem {
         }
         StringBuilder possibilities = new StringBuilder();
         for (int i = 0; i < gambleItemInfos.length; i++) {
-            possibilities.append(gambleItemInfos[i].getItemName() + ": " + ((double) weights[i] / sum) * 100 + "%\n");
+            possibilities.append(gambleItemInfos[i].getItemName() + ": " + ((float) weights[i] / sum) * 100 + "%\n");
         }
         Message.sendMessage(player, possibilities.toString());
     }
