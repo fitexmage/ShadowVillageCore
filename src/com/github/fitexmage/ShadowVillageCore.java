@@ -34,9 +34,9 @@ public class ShadowVillageCore extends JavaPlugin implements Listener {
         svb.tradeOn = true;
 
         //指令
-        this.getCommand("svc").setExecutor(new svc());
+        this.getCommand("svc").setExecutor(new svc(this));
         this.getCommand("sve").setExecutor(new sve(this));
-        this.getCommand("svb").setExecutor(new svb(this));
+        this.getCommand("svb").setExecutor(new svb());
 
         //注册事件
         Bukkit.getPluginManager().registerEvents(this, this);
