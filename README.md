@@ -98,21 +98,25 @@ Shadow Village Black Market provides functions about items.
 
 * /svb gamble 1 [number] (/svb g 1 [number])
 
-  Gamble on weapon. (use diamond as cost)
+  Gamble on sword. (use diamond as cost)
 
 * /svb gamble 2 [number] (/svb g 2 [number])
 
-  Gamble on helmet.
-
+  Gamble on bow.
+  
 * /svb gamble 3 [number] (/svb g 3 [number])
 
-  Gamble on chestplate.
+  Gamble on helmet.
 
 * /svb gamble 4 [number] (/svb g 4 [number])
 
-  Gamble on leggings.
+  Gamble on chestplate.
 
 * /svb gamble 5 [number] (/svb g 5 [number])
+
+  Gamble on leggings.
+
+* /svb gamble 6 [number] (/svb g 6 [number])
 
   Gamble on boots.
 
@@ -148,7 +152,9 @@ Shadow Village Black Market provides functions about items.
 
 * svb.lookup.possibilities -- OP
 
-* svb.gamble.weapon -- Everyone
+* svb.gamble.sword -- Everyone
+
+* svb.gamble.bow -- Everyone
 
 * svb.gamble.helmet -- Everyone
 
