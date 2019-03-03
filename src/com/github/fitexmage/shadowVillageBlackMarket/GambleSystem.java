@@ -123,7 +123,7 @@ public class GambleSystem {
                 gambleItemInfo.getId() == 59999 ||
                 gambleItemInfo.getId() == 69999) {
             for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
-                meta.addEnchant(gambleEnchantInfo.getEnchantment(), gambleEnchantInfo.getMaxLevel(), true);
+                meta.addEnchant(gambleEnchantInfo.getEnchantment(), 10, true);
             }
             if (gambleItemInfo.getId() == 39999 ||
                     gambleItemInfo.getId() == 49999 ||
