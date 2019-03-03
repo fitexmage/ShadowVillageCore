@@ -135,7 +135,7 @@ public class svc extends ShadowVillageCommand {
 
             StringBuilder text301 = new StringBuilder();
             text301.append("      影之乡黑市系统\n\n");
-            text301.append("1. 武器抽奖：\n");
+            text301.append("1. 剑抽奖：\n");
             text301.append("/svb g 1 钻石数\n\n");
             text301.append("2. 弓抽奖：\n");
             text301.append("/svb g 2 钻石数\n\n");

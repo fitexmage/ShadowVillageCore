@@ -90,7 +90,7 @@ public class GambleSystem {
                 gambleItem = new ItemStack(gambleItemInfo.getMaterial()); //确定物品品质
                 randomEnchant(gambleItem, gambleItemInfo, type); //随机附魔
                 if (type == 1) {
-                    gambleItem = getChangedGambleWeapon(gambleItem, gambleItemInfo); //改变攻击
+                    gambleItem = getChangedGambleSword(gambleItem, gambleItemInfo); //改变攻击
                 }
                 if (gambleItemInfo.getId() == 19999 ||
                         gambleItemInfo.getId() == 29999 ||
@@ -146,18 +146,18 @@ public class GambleSystem {
         gambleItem.setItemMeta(meta);
     }
 
-    private ItemStack getChangedGambleWeapon(ItemStack gambleWeapon, GambleItemInfo itemInfo) {
+    private ItemStack getChangedGambleSword(ItemStack gambleSword, GambleItemInfo itemInfo) {
         int damage;
         if (itemInfo.getId() == 19999) {
             damage = 9999;
         } else {
             damage = (int) (Math.random() * (Math.pow(itemInfo.getData(), 2) * 1.5 - (itemInfo.getData() / 2))) + itemInfo.getData() / 2;
         }
-        gambleWeapon = NBTUtil.getNBTTagItem(gambleWeapon, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
-        return gambleWeapon;
+        gambleSword = NBTUtil.getNBTTagItem(gambleSword, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
+        return gambleSword;
     }
 
-    private void exchangeDiamond(Player player, int cost, int diamondBlockCount, ItemStack gambleWeapon) {
+    private void exchangeDiamond(Player player, int cost, int diamondBlockCount, ItemStack gambleSword) {
         Inventory inventory = player.getInventory();
         if (cost <= diamondBlockCount * 9) {
             inventory.removeItem(new ItemStack(Material.DIAMOND_BLOCK, cost / 9));
@@ -168,6 +168,6 @@ public class GambleSystem {
         } else {
             inventory.removeItem(new ItemStack(Material.DIAMOND, cost));
         }
-        inventory.addItem(gambleWeapon);
+        inventory.addItem(gambleSword);
     }
 }

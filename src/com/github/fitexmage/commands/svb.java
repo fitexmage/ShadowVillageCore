@@ -189,7 +189,7 @@ public class svb extends ShadowVillageCommand {
             GambleSystem gambleSystem = new GambleSystem();
             switch (args[1]) {
                 case "1":
-                    if (player.hasPermission("svb.gamble.weapon")) {
+                    if (player.hasPermission("svb.gamble.sword")) {
                         if (args.length == 2) {
                             gambleSystem.gambleItem(player, 1, "diamond", 1);
                         } else {

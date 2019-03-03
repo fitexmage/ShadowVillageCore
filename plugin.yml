@@ -53,7 +53,7 @@ permissions:
   svb.lookup.possibilities:
       description: Look up possibilities of gamble items.
       default: op
-  svb.gamble.weapon:
+  svb.gamble.sword:
     description: Gamble on weapon.
     default: true
   svb.gamble.helmet:
