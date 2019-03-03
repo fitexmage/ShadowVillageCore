@@ -146,12 +146,12 @@ public class GambleSystem {
         gambleItem.setItemMeta(meta);
     }
 
-    private ItemStack getChangedGambleSword(ItemStack gambleSword, GambleItemInfo itemInfo) {
+    private ItemStack getChangedGambleSword(ItemStack gambleSword, GambleItemInfo gambleItemInfo) {
         int damage;
-        if (itemInfo.getId() == 19999) {
+        if (gambleItemInfo.getId() == 19999) {
             damage = 9999;
         } else {
-            damage = (int) (Math.random() * (Math.pow(itemInfo.getData(), 2) * 1.5 - (itemInfo.getData() / 2))) + itemInfo.getData() / 2;
+            damage = (int) (Math.random() * (Math.pow(gambleItemInfo.getData(), 2) * 1.5 - (gambleItemInfo.getData() / 2))) + gambleItemInfo.getData() / 2;
         }
         gambleSword = NBTUtil.getNBTTagItem(gambleSword, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
         return gambleSword;
