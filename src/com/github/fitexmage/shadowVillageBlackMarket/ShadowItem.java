@@ -1,14 +1,16 @@
 package com.github.fitexmage.shadowVillageBlackMarket;
 
-
+import com.github.fitexmage.util.NBTUtil;
+import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collections;
 
 public class ShadowItem {
-    public static ItemStack shadowStone(int amount) {
+    public static ItemStack getShadowStone(int amount) {
         ItemStack shadowStone = new ItemStack(Material.EMERALD, amount);
         ItemMeta meta = shadowStone.getItemMeta();
         meta.setDisplayName("§5影之石");
@@ -26,7 +28,7 @@ public class ShadowItem {
         return false;
     }
 
-    public static ItemStack shadowSoulBook() {
+    public static ItemStack getShadowSoulBook() {
         ItemStack shadowSoulBook = new ItemStack(Material.BOOK, 1);
         ItemMeta itemMeta = shadowSoulBook.getItemMeta();
         itemMeta.setDisplayName("§5影魂之书");
@@ -44,7 +46,7 @@ public class ShadowItem {
         return false;
     }
 
-    public static ItemStack shadowSpiritBook() {
+    public static ItemStack getShadowSpiritBook() {
         ItemStack shadowSpiritBook = new ItemStack(Material.BOOK, 1);
         ItemMeta itemMeta = shadowSpiritBook.getItemMeta();
         itemMeta.setDisplayName("§0影魄之书");
@@ -60,5 +62,30 @@ public class ShadowItem {
             }
         }
         return false;
+    }
+
+    public static ItemStack getServerEquipment(int type) {
+        GambleItemInfo gambleItemInfo = GambleItemInfo.getServerEquipmentInfo(type);
+        GambleEnchantInfo[] gambleEnchantInfos = GambleEnchantInfo.getGambleEnchants(type);
+        ItemStack serverEquipment = new ItemStack(gambleItemInfo.getMaterial());
+
+        ItemMeta meta = serverEquipment.getItemMeta();
+        for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
+            meta.addEnchant(gambleEnchantInfo.getEnchantment(), 10, true);
+        }
+        if (type == 3 ||
+                type == 4 ||
+                type == 5 ||
+                type == 6) {
+            meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true);
+        }
+        meta.setDisplayName(gambleItemInfo.getItemName());
+        serverEquipment.setItemMeta(meta);
+
+        if (type == 1) {
+            serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.damageTag(9999)});
+        }
+        serverEquipment = NBTUtil.getUnbreakableItem(serverEquipment);
+        return serverEquipment;
     }
 }

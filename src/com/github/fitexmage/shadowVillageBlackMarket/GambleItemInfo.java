@@ -1,6 +1,7 @@
 package com.github.fitexmage.shadowVillageBlackMarket;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 class GambleItemInfo {
     private int id;
@@ -19,8 +20,8 @@ class GambleItemInfo {
         this.data = data;
     }
 
-    static GambleItemInfo[] getGambleItemInfos(int gambleType) {
-        switch (gambleType) {
+    static GambleItemInfo[] getGambleItemInfos(int type) {
+        switch (type) {
             case 1:
                 return new GambleItemInfo[]{
                         new GambleItemInfo(10001, "影之木剑", Material.WOOD_SWORD, 100, 0, 4),
@@ -65,6 +66,12 @@ class GambleItemInfo {
             default:
                 return new GambleItemInfo[]{};
         }
+    }
+
+    static GambleItemInfo getServerEquipmentInfo(int type) {
+        GambleItemInfo[] gambleItemInfos = getGambleItemInfos(type);
+        GambleItemInfo gambleItemInfo = gambleItemInfos[gambleItemInfos.length - 1];
+        return gambleItemInfo;
     }
 
     int getId() {

@@ -97,9 +97,9 @@ public class svb extends ShadowVillageCommand {
                     if (player.hasPermission("svb.give.shadowstone")) {
                         ItemStack shadowStone;
                         if (args.length == 2) {
-                            shadowStone = ShadowItem.shadowStone(1);
+                            shadowStone = ShadowItem.getShadowStone(1);
                         } else {
-                            shadowStone = ShadowItem.shadowStone(Tool.getNumber(args[2]));
+                            shadowStone = ShadowItem.getShadowStone(Tool.getNumber(args[2]));
                         }
                         player.getInventory().addItem(shadowStone);
                     } else {
@@ -108,7 +108,19 @@ public class svb extends ShadowVillageCommand {
                     break;
                 case "shadowsoulbook":
                     if (player.hasPermission("svb.give.shadowsoulbook")) {
-                        player.getInventory().addItem(ShadowItem.shadowSoulBook());
+                        player.getInventory().addItem(ShadowItem.getShadowSoulBook());
+                    } else {
+                        Message.sendNoPermission(player);
+                    }
+                    break;
+                case "serverequipment":
+                    if (player.hasPermission("svb.give.serverequipment")) {
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(1));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(2));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(3));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(4));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(5));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(6));
                     } else {
                         Message.sendNoPermission(player);
                     }

@@ -88,21 +88,23 @@ public class GambleSystem {
         for (int i = 0; i < gambleItemInfos.length; i++) {
             if (randomType < weights[i]) {
                 GambleItemInfo gambleItemInfo = gambleItemInfos[i];
-                gambleItem = new ItemStack(gambleItemInfo.getMaterial()); //确定物品品质
-                randomEnchant(gambleItem, gambleItemInfo, type); //随机附魔
-                if (type == 1) {
-                    gambleItem = getChangedGambleSword(gambleItem, gambleItemInfo); //改变攻击
-                }
                 if (gambleItemInfo.getId() == 19999 ||
                         gambleItemInfo.getId() == 29999 ||
                         gambleItemInfo.getId() == 39999 ||
                         gambleItemInfo.getId() == 49999 ||
                         gambleItemInfo.getId() == 59999 ||
                         gambleItemInfo.getId() == 69999) {
-                    gambleItem = NBTUtil.getUnbreakableItem(gambleItem);
+                    gambleItem = ShadowItem.getServerEquipment(type);
                     Message.broadcastMessage("腐竹的力量重现于世！");
-                } else if ((int) (Math.random() * 50) == 0) {
-                    gambleItem = NBTUtil.getUnbreakableItem(gambleItem);
+                } else {
+                    gambleItem = new ItemStack(gambleItemInfo.getMaterial()); //确定物品品质
+                    randomEnchant(gambleItem, gambleItemInfo, type); //随机附魔
+                    if (type == 1) {
+                        gambleItem = getChangedGambleSword(gambleItem, gambleItemInfo); //改变攻击
+                    }
+                    if ((int) (Math.random() * 50) == 0) {
+                        gambleItem = NBTUtil.getUnbreakableItem(gambleItem);
+                    }
                 }
                 break;
             }
@@ -117,29 +119,12 @@ public class GambleSystem {
         String displayName = "";
         ItemMeta meta = gambleItem.getItemMeta();
 
-        if (gambleItemInfo.getId() == 19999 ||
-                gambleItemInfo.getId() == 29999 ||
-                gambleItemInfo.getId() == 39999 ||
-                gambleItemInfo.getId() == 49999 ||
-                gambleItemInfo.getId() == 59999 ||
-                gambleItemInfo.getId() == 69999) {
-            for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
-                meta.addEnchant(gambleEnchantInfo.getEnchantment(), 10, true);
-            }
-            if (gambleItemInfo.getId() == 39999 ||
-                    gambleItemInfo.getId() == 49999 ||
-                    gambleItemInfo.getId() == 59999 ||
-                    gambleItemInfo.getId() == 69999) {
-                meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true);
-            }
-        } else {
-            for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
-                int randomChoice = (int) (Math.random() * 8);
-                if (randomChoice == 0) {
-                    int randomLevel = (int) (Math.random() * gambleEnchantInfo.getMaxLevel()) + 1;
-                    meta.addEnchant(gambleEnchantInfo.getEnchantment(), randomLevel, true);
-                    displayName += gambleEnchantInfo.getName();
-                }
+        for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
+            int randomChoice = (int) (Math.random() * 8);
+            if (randomChoice == 0) {
+                int randomLevel = (int) (Math.random() * gambleEnchantInfo.getMaxLevel()) + 1;
+                meta.addEnchant(gambleEnchantInfo.getEnchantment(), randomLevel, true);
+                displayName += gambleEnchantInfo.getName();
             }
         }
         displayName += gambleItemInfo.getItemName();
@@ -149,11 +134,8 @@ public class GambleSystem {
 
     private ItemStack getChangedGambleSword(ItemStack gambleSword, GambleItemInfo gambleItemInfo) {
         int damage;
-        if (gambleItemInfo.getId() == 19999) {
-            damage = 9999;
-        } else {
-            damage = (int) (Math.random() * (Math.pow(gambleItemInfo.getData(), 2) * 1.5 - (gambleItemInfo.getData() / 2))) + gambleItemInfo.getData() / 2;
-        }
+        damage = (int) (Math.random() * (Math.pow(gambleItemInfo.getData(), 2) * 1.5 - (gambleItemInfo.getData() / 2))) + gambleItemInfo.getData() / 2;
+
         gambleSword = NBTUtil.getNBTTagItem(gambleSword, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
         return gambleSword;
     }

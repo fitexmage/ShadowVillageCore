@@ -50,6 +50,9 @@ permissions:
   svb.give.shadowsoulbook:
     description: Give self a shadow soul book.
     default: op
+  svb.give.serverequipment:
+    description: Give self all server equipment.
+    default: op
   svb.lookup.shadowstone:
     description: Look up amount of shadow stones in inventory.
     default: true
