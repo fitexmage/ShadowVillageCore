@@ -118,7 +118,6 @@ public class GambleSystem {
 
         String displayName = "";
         ItemMeta meta = gambleItem.getItemMeta();
-
         for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
             int randomChoice = (int) (Math.random() * 8);
             if (randomChoice == 0) {

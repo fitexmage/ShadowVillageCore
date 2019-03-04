@@ -73,10 +73,7 @@ public class ShadowItem {
         for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
             meta.addEnchant(gambleEnchantInfo.getEnchantment(), 10, true);
         }
-        if (type == 3 ||
-                type == 4 ||
-                type == 5 ||
-                type == 6) {
+        if (type == 3 || type == 4 || type == 5 || type == 6) {
             meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true);
         }
         meta.setDisplayName(gambleItemInfo.getItemName());
