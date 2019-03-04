@@ -49,7 +49,8 @@ public class GambleSystem {
         for (int weight : weights) {
             sum += weight;
         }
-        StringBuilder possibilities = new StringBuilder();
+        StringBuilder possibilities = new StringBuilder("");
+        possibilities.append("花费" + cost + "钻石的概率一览：\n");
         for (int i = 0; i < gambleItemInfos.length; i++) {
             possibilities.append(gambleItemInfos[i].getItemName() + ": " + ((float) weights[i] / sum) * 100 + "%\n");
         }

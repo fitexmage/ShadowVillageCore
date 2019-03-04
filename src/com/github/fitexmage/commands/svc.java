@@ -86,7 +86,7 @@ public class svc extends ShadowVillageCommand {
 
     private void getVersion(Player player) {
         if (player.hasPermission("svc.version")) {
-            Message.sendMessage(player, "影之乡核心当前版本：" + plugin.getDescription().getVersion());
+            Message.sendMessage(player, "当前版本：" + plugin.getDescription().getVersion());
         }
     }
 
@@ -100,7 +100,9 @@ public class svc extends ShadowVillageCommand {
 
             StringBuilder text101 = new StringBuilder();
             text101.append("      影之乡核心系统\n\n");
-            text101.append("1. 获得《影之乡核心百科》：\n");
+            text101.append("1. 获取插件版本号：\n");
+            text101.append("/svc version\n\n");
+            text101.append("2. 获得《影之乡核心百科》（没错就是你看的这个）：\n");
             text101.append("/svc help\n\n");
             bookMeta.addPage(text101.toString());
 
@@ -143,7 +145,6 @@ public class svc extends ShadowVillageCommand {
             text303.append("影之石:\n\n");
             text303.append("影之石是影之乡服务器的通用货币，可通过赞助获得。\n");
             text303.append("1影之石 = 1RMB。\n");
-            text303.append("每个玩家在拿到白名单后都可以获得一块影之石。\n");
             text303.append("影之石可以用于购买各种增值道具。\n");
             text303.append("服务器换周目时，影之石将通过某种方式保存至新周目使用。");
             bookMeta.addPage(text303.toString());

@@ -29,8 +29,7 @@ class GambleEnchantInfo {
                         new GambleEnchantInfo(Enchantment.ARROW_FIRE, "火矢之", 1),
                         new GambleEnchantInfo(Enchantment.ARROW_INFINITE, "无限之", 1),
                         new GambleEnchantInfo(Enchantment.ARROW_DAMAGE, "力量之", 5),
-                        new GambleEnchantInfo(Enchantment.ARROW_KNOCKBACK, "冲击之", 2),
-                        new GambleEnchantInfo(Enchantment.ARROW_KNOCKBACK, "耐久之", 3)
+                        new GambleEnchantInfo(Enchantment.ARROW_KNOCKBACK, "冲击之", 2)
                 };
             case 3:
                 return new GambleEnchantInfo[]{ //头盔
