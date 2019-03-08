@@ -184,6 +184,8 @@ Shadow Village Black Market provides functions about items.
 
 * Fix tons of bugs.
 
+* Optimize the ecology system and black market system.
+
 * Add shadow soul.
 
 * Add bow to gamble system.
