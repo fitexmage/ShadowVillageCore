@@ -297,6 +297,23 @@ public class svb extends ShadowVillageCommand {
                         Message.sendNoPermission(player);
                     }
                     break;
+                case "health":
+                    if (player.hasPermission("svb.set.health")) {
+                        if (args.length != 2) {
+                            int health = Tool.getNumber(args[2]);
+                            health = health > 100 ? 100 : health;
+                            ItemStack itemInHand = player.getItemInHand();
+                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                                itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.healthTag(health)});
+                                player.setItemInHand(itemInHand);
+                            } else {
+                                Message.sendMessage(player, "你的手上没有东西！");
+                            }
+                        } else {
+                            Message.sendMessage(player, "请输入生命值！");
+                        }
+                    }
+                    break;
                 case "name":
                     if (player.hasPermission("svb.set.name")) {
                         if (args.length != 2) {

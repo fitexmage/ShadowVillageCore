@@ -96,7 +96,7 @@ public class ShadowItem {
             serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.healthTag(100)});
 
             if (type == 4) {
-                serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.resistantceTag(1)});
+                serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.resistanceTag(1)});
             }
             if (type == 6) {
                 serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.speedTag(0.5)});

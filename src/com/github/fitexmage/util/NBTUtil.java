@@ -35,29 +35,31 @@ public class NBTUtil {
         damageCompound.set("Operation", new NBTTagInt(0));
         damageCompound.set("UUIDLeast", new NBTTagInt(1));
         damageCompound.set("UUIDMost", new NBTTagInt(1));
+        damageCompound.set("Slot", new NBTTagString("mainhand"));
         return damageCompound;
     }
 
     public static NBTTagCompound healthTag(int health) {
-        NBTTagCompound damageCompound = new NBTTagCompound();
-        damageCompound.set("AttributeName", new NBTTagString("generic.maxHealth"));
-        damageCompound.set("Name", new NBTTagString("health"));
-        damageCompound.set("Amount", new NBTTagInt(health));
-        damageCompound.set("Operation", new NBTTagInt(0));
-        damageCompound.set("UUIDLeast", new NBTTagInt(2));
-        damageCompound.set("UUIDMost", new NBTTagInt(2));
-        return damageCompound;
+        NBTTagCompound healthCompound = new NBTTagCompound();
+        healthCompound.set("AttributeName", new NBTTagString("generic.maxHealth"));
+        healthCompound.set("Name", new NBTTagString("health"));
+        healthCompound.set("Amount", new NBTTagInt(health));
+        healthCompound.set("Operation", new NBTTagInt(0));
+        healthCompound.set("UUIDLeast", new NBTTagInt(2));
+        healthCompound.set("UUIDMost", new NBTTagInt(2));
+        return healthCompound;
     }
 
-    public static NBTTagCompound resistantceTag(int chance) {
-        NBTTagCompound damageCompound = new NBTTagCompound();
-        damageCompound.set("AttributeName", new NBTTagString("generic.knockbackResistance"));
-        damageCompound.set("Name", new NBTTagString("resistance"));
-        damageCompound.set("Amount", new NBTTagInt(chance));
-        damageCompound.set("Operation", new NBTTagInt(0));
-        damageCompound.set("UUIDLeast", new NBTTagInt(2));
-        damageCompound.set("UUIDMost", new NBTTagInt(2));
-        return damageCompound;
+    public static NBTTagCompound resistanceTag(int chance) {
+        NBTTagCompound resistanceCompound = new NBTTagCompound();
+        resistanceCompound.set("AttributeName", new NBTTagString("generic.knockbackResistance"));
+        resistanceCompound.set("Name", new NBTTagString("resistance"));
+        resistanceCompound.set("Amount", new NBTTagInt(chance));
+        resistanceCompound.set("Operation", new NBTTagInt(0));
+        resistanceCompound.set("UUIDLeast", new NBTTagInt(2));
+        resistanceCompound.set("UUIDMost", new NBTTagInt(2));
+        resistanceCompound.set("Slot", new NBTTagString("chest"));
+        return resistanceCompound;
     }
 
     public static NBTTagCompound speedTag(double speed) {
@@ -68,6 +70,7 @@ public class NBTUtil {
         damageCompound.set("Operation", new NBTTagInt(1));
         damageCompound.set("UUIDLeast", new NBTTagInt(3));
         damageCompound.set("UUIDMost", new NBTTagInt(3));
+        damageCompound.set("Slot", new NBTTagString("feet"));
         return damageCompound;
     }
 }
