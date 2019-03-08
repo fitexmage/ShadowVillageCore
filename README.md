@@ -92,6 +92,10 @@ Shadow Village Black Market provides functions about items.
 
   Give self a shadow soul book.
 
+* /svb give serverequipment
+
+  Give self all server equipment.
+
 * /svb lookup shadowstone (/svb l shadowstone)
 
   Look up amount of shadow stones in inventory.
@@ -152,9 +156,11 @@ Shadow Village Black Market provides functions about items.
 
 * svb.give.shadowsoulbook -- OP
 
+* svb.give.serverequipment -- OP
+
 * svb.lookup.shadowstone -- Everyone
 
-* svb.lookup.possibilities -- OP
+* svb.lookup.possibilities -- Everyone
 
 * svb.gamble.sword -- Everyone
 
@@ -171,3 +177,21 @@ Shadow Village Black Market provides functions about items.
 * svb.set.damage -- OP
 
 * svb.set.name -- OP
+
+## Changelog
+
+### 1.0.1
+
+* Fix tons of bugs.
+
+* Optimize the ecology system and black market system.
+
+* Add shadow soul.
+
+* Add bow to gamble system.
+
+### 1.0.0
+
+* Add shadow man and shadow beast.
+
+* Add gamble system.
