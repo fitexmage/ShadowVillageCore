@@ -80,6 +80,9 @@ permissions:
   svb.set.damage:
     description: Set the damage of item in hand.
     default: op
+  svb.set.health:
+    description: Set the health buff of item in hand.
+    default: op
   svb.set.name:
     description: Set the name of item in hand.
     default: op
