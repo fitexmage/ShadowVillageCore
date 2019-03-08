@@ -115,12 +115,12 @@ public class svb extends ShadowVillageCommand {
                     break;
                 case "serverequipment":
                     if (player.hasPermission("svb.give.serverequipment")) {
-                        player.getInventory().addItem(ShadowItem.getServerEquipment(1));
-                        player.getInventory().addItem(ShadowItem.getServerEquipment(2));
-                        player.getInventory().addItem(ShadowItem.getServerEquipment(3));
-                        player.getInventory().addItem(ShadowItem.getServerEquipment(4));
-                        player.getInventory().addItem(ShadowItem.getServerEquipment(5));
-                        player.getInventory().addItem(ShadowItem.getServerEquipment(6));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(1, false));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(2, false));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(3, false));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(4, false));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(5, false));
+                        player.getInventory().addItem(ShadowItem.getServerEquipment(6, false));
                     } else {
                         Message.sendNoPermission(player);
                     }

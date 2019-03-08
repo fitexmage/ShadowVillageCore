@@ -6,7 +6,6 @@ import com.github.fitexmage.util.Tool;
 
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -50,7 +49,7 @@ public class GambleSystem {
             sum += weight;
         }
         StringBuilder possibilities = new StringBuilder("");
-        possibilities.append("花费" + cost + "钻石的概率一览：\n");
+        possibilities.append("花费" + cost + "钻石所获得的装备概率一览：\n");
         for (int i = 0; i < gambleItemInfos.length; i++) {
             possibilities.append(gambleItemInfos[i].getItemName() + ": " + ((float) weights[i] / sum) * 100 + "%\n");
         }
@@ -94,13 +93,18 @@ public class GambleSystem {
                         gambleItemInfo.getId() == 49999 ||
                         gambleItemInfo.getId() == 59999 ||
                         gambleItemInfo.getId() == 69999) {
-                    gambleItem = ShadowItem.getServerEquipment(type);
+                    gambleItem = ShadowItem.getServerEquipment(type, true);
                     Message.broadcastMessage("腐竹的力量重现于世！");
                 } else {
                     gambleItem = new ItemStack(gambleItemInfo.getMaterial()); //确定物品品质
                     randomEnchant(gambleItem, gambleItemInfo, type); //随机附魔
                     if (type == 1) {
                         gambleItem = getChangedGambleSword(gambleItem, gambleItemInfo); //改变攻击
+                    } else if (type == 3 ||
+                            type == 4 ||
+                            type == 5 ||
+                            type == 6) {
+                        gambleItem = getChangedGambleArmor(gambleItem, gambleItemInfo, type); //改变最大生命
                     }
                     if ((int) (Math.random() * 50) == 0) {
                         gambleItem = NBTUtil.getUnbreakableItem(gambleItem);
@@ -132,11 +136,20 @@ public class GambleSystem {
     }
 
     private ItemStack getChangedGambleSword(ItemStack gambleSword, GambleItemInfo gambleItemInfo) {
-        int damage;
-        damage = (int) (Math.random() * (Math.pow(gambleItemInfo.getData(), 2) * 1.5 - (gambleItemInfo.getData() / 2))) + gambleItemInfo.getData() / 2;
+        int damage = (int) (Math.random() * (Math.pow(gambleItemInfo.getData(), 2) * 1.5 - (gambleItemInfo.getData() / 2))) + gambleItemInfo.getData() / 2;
 
         gambleSword = NBTUtil.getNBTTagItem(gambleSword, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
         return gambleSword;
+    }
+
+    private ItemStack getChangedGambleArmor(ItemStack gambleArmor, GambleItemInfo gambleItemInfo, int type) {
+        int health = (int) (Math.random() * (gambleItemInfo.getData() + 1)) + gambleItemInfo.getData();
+        gambleArmor = NBTUtil.getNBTTagItem(gambleArmor, new NBTTagCompound[]{NBTUtil.healthTag(health)});
+        if (type == 6) {
+            double speed = (double) gambleItemInfo.getData() / 20;
+            gambleArmor = NBTUtil.getNBTTagItem(gambleArmor, new NBTTagCompound[]{NBTUtil.speedTag(speed)});
+        }
+        return gambleArmor;
     }
 
     private void exchangeDiamond(Player player, int cost, int diamondBlockCount, ItemStack gambleSword) {

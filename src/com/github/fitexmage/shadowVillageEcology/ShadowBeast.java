@@ -64,15 +64,9 @@ public class ShadowBeast extends ShadowEntity {
             prepareCountDown--;
         } else {
             if (teleportCountDown == 0) {
-                List<Player> onlinePlayers = Bukkit.getWorld("world").getPlayers();
-                List<Player> realOnlinePlayers = new ArrayList<>();
-                for (Player player : onlinePlayers) {
-                    if (!player.hasMetadata("NPC")) {
-                        realOnlinePlayers.add(player);
-                    }
-                }
+                List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
                 if (realOnlinePlayers.size() != 0) {
-                    teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 1;
+                    teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 3;
                     int random = (int) (Math.random() * realOnlinePlayers.size());
                     Player targetPlayer = realOnlinePlayers.get(random);
                     teleport(targetPlayer);

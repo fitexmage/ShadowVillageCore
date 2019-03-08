@@ -1,6 +1,7 @@
 package com.github.fitexmage.shadowVillageBlackMarket;
 
 import com.github.fitexmage.util.NBTUtil;
+
 import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -64,23 +65,42 @@ public class ShadowItem {
         return false;
     }
 
-    public static ItemStack getServerEquipment(int type) {
+    public static ItemStack getServerEquipment(int type, boolean random) {
         GambleItemInfo gambleItemInfo = GambleItemInfo.getServerEquipmentInfo(type);
         GambleEnchantInfo[] gambleEnchantInfos = GambleEnchantInfo.getGambleEnchants(type);
         ItemStack serverEquipment = new ItemStack(gambleItemInfo.getMaterial());
 
         ItemMeta meta = serverEquipment.getItemMeta();
         for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
-            meta.addEnchant(gambleEnchantInfo.getEnchantment(), 10, true);
+            if (random) {
+                meta.addEnchant(gambleEnchantInfo.getEnchantment(), (int) (Math.random() * 5) + 6, true);
+            } else {
+                meta.addEnchant(gambleEnchantInfo.getEnchantment(), 10, true);
+            }
         }
-        if (type == 3 || type == 4 || type == 5 || type == 6) {
-            meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true);
+        if (!random) {
+            if (type == 3 || type == 4 || type == 5 || type == 6) {
+                meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true);
+                meta.addEnchant(Enchantment.THORNS, 30, true);
+            }
         }
         meta.setDisplayName(gambleItemInfo.getItemName());
         serverEquipment.setItemMeta(meta);
 
         if (type == 1) {
             serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.damageTag(9999)});
+        } else if (type == 3 ||
+                type == 4 ||
+                type == 5 ||
+                type == 6) {
+            serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.healthTag(100)});
+
+            if (type == 4) {
+                serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.resistantceTag(1)});
+            }
+            if (type == 6) {
+                serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.speedTag(0.5)});
+            }
         }
         serverEquipment = NBTUtil.getUnbreakableItem(serverEquipment);
         return serverEquipment;

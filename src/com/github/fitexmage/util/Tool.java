@@ -20,9 +20,8 @@ public class Tool {
     }
 
     public static List<Player> getRealPlayers(World world) {
-        List<Player> onlinePlayers = world.getPlayers();
         List<Player> realOnlinePlayers = new ArrayList<>();
-        for (Player player : onlinePlayers) {
+        for (Player player : world.getPlayers()) {
             if (!player.hasMetadata("NPC")) {
                 realOnlinePlayers.add(player);
             }

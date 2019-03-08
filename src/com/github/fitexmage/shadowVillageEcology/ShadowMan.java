@@ -73,12 +73,7 @@ public class ShadowMan extends ShadowEntity {
             prepareCountDown--;
         } else {
             if (teleportCountDown == 0) {
-                List<Player> realOnlinePlayers = new ArrayList<>();
-                for (Player player : Bukkit.getWorld("world").getPlayers()) {
-                    if (!player.hasMetadata("NPC")) {
-                        realOnlinePlayers.add(player);
-                    }
-                }
+                List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
                 if (realOnlinePlayers.size() != 0) {
                     int random = (int) (Math.random() * realOnlinePlayers.size());
                     Player targetPlayer = realOnlinePlayers.get(random);
@@ -88,7 +83,7 @@ public class ShadowMan extends ShadowEntity {
                             targetPlayer.getItemInHand().getItemMeta().getLore().get(0).equals("影无法靠近你。")) {
                         count--;
                     } else {
-                        teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 1;
+                        teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 3;
                         teleport(targetPlayer);
                     }
 

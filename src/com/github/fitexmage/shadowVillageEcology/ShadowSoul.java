@@ -24,7 +24,7 @@ public class ShadowSoul extends CitizensNPC {
     private static final int id = 10011;
     private static final String name = "影魂";
     public static int deathReason = 0;
-    private final double health = 6000.0;
+    private final double health = 10000.0;
     private final float speed = 1.1f;
     private final double range = 20.0;
 
@@ -49,7 +49,7 @@ public class ShadowSoul extends CitizensNPC {
 
     void spawn(Player player, Location blockLocation) {
         totalCount = 0;
-        stageCountDown = (int) (Math.random() * 3) + 5;
+        stageCountDown = (int) (Math.random() * 3) + 6;
         stageCount = 0;
         stageNum = 0;
 
@@ -102,8 +102,13 @@ public class ShadowSoul extends CitizensNPC {
                 else if (stageNum == 2) stage2(2);
                 else if (stageNum == 3) stage3(2);
                 else if (stageNum == 4) stage4(2);
-                stageCountDown = (int) (Math.random() * 5) + 3; //到下一阶段时间
-                stageNum = -1;
+                if (totalCount < 150) {
+                    stageCountDown = (int) (Math.random() * 5) + 6 - totalCount / 30;
+                } else {
+                    stageCountDown = 1;
+                }
+                //到下一阶段时间
+                stageNum = 0;
             }
         }
     }
@@ -122,7 +127,7 @@ public class ShadowSoul extends CitizensNPC {
     private void stage2(int subStage) {
         if (subStage == 1) {
             Message.broadcastMessage("§4" + name + "正在召唤空之力！");
-            stageCount = (int) (Math.random() * 2) + 1;
+            stageCount = 1;
         } else {
             setNuke();
         }
@@ -141,7 +146,7 @@ public class ShadowSoul extends CitizensNPC {
             for (Player player : getNearPlayers()) {
                 Location playerLocation = player.getLocation();
                 if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
-                    Tool.damagePlayer(player, 20);
+                    Tool.damagePlayer(player, 25 + totalCount);
                 }
             }
             Message.broadcastMessage("§4磁场扭曲了！");
@@ -151,7 +156,7 @@ public class ShadowSoul extends CitizensNPC {
     private void stage4(int subStage) {
         if (subStage == 1) {
             Message.broadcastMessage("§4" + name + "正在召唤咒之力！");
-            stageCount = (int) (Math.random() * 2) + 2;
+            stageCount = 1;
         } else {
             dispel();
             for (Player player : getNearPlayers()) {
@@ -194,7 +199,7 @@ public class ShadowSoul extends CitizensNPC {
     private void removePotionEffect(Player player) {
         if (!player.getActivePotionEffects().isEmpty()) {
             for (PotionEffect potionEffect : player.getActivePotionEffects()) {
-                if ((int) (Math.random() * 3) == 0) {
+                if ((int) (Math.random() * 2) == 0) {
                     player.removePotionEffect(potionEffect.getType());
                 }
             }

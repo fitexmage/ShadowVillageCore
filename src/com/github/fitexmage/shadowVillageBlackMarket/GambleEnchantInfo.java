@@ -39,7 +39,7 @@ class GambleEnchantInfo {
                         new GambleEnchantInfo(Enchantment.PROTECTION_PROJECTILE, "弹射物保护之", 10),
                         new GambleEnchantInfo(Enchantment.PROTECTION_ENVIRONMENTAL, "保护之", 10),
                         new GambleEnchantInfo(Enchantment.OXYGEN, "水下呼吸之", 3),
-                        new GambleEnchantInfo(Enchantment.THORNS, "荆棘之", 3),
+                        new GambleEnchantInfo(Enchantment.THORNS, "荆棘之", 5),
                         new GambleEnchantInfo(Enchantment.DURABILITY, "耐久之", 3)
                 };
             case 4:
@@ -48,7 +48,7 @@ class GambleEnchantInfo {
                         new GambleEnchantInfo(Enchantment.PROTECTION_FIRE, "火焰保护之", 7),
                         new GambleEnchantInfo(Enchantment.PROTECTION_PROJECTILE, "弹射物保护之", 10),
                         new GambleEnchantInfo(Enchantment.PROTECTION_ENVIRONMENTAL, "保护之", 10),
-                        new GambleEnchantInfo(Enchantment.THORNS, "荆棘之", 3),
+                        new GambleEnchantInfo(Enchantment.THORNS, "荆棘之", 5),
                         new GambleEnchantInfo(Enchantment.DURABILITY, "耐久之", 3)
                 };
             case 5:
@@ -57,7 +57,7 @@ class GambleEnchantInfo {
                         new GambleEnchantInfo(Enchantment.PROTECTION_FIRE, "火焰保护之", 7),
                         new GambleEnchantInfo(Enchantment.PROTECTION_PROJECTILE, "弹射物保护之", 10),
                         new GambleEnchantInfo(Enchantment.PROTECTION_ENVIRONMENTAL, "保护之", 10),
-                        new GambleEnchantInfo(Enchantment.THORNS, "荆棘之", 3),
+                        new GambleEnchantInfo(Enchantment.THORNS, "荆棘之", 5),
                         new GambleEnchantInfo(Enchantment.DURABILITY, "耐久之", 3)
                 };
             case 6:
@@ -67,7 +67,7 @@ class GambleEnchantInfo {
                         new GambleEnchantInfo(Enchantment.PROTECTION_FIRE, "火焰保护之", 7),
                         new GambleEnchantInfo(Enchantment.PROTECTION_PROJECTILE, "弹射物保护之", 10),
                         new GambleEnchantInfo(Enchantment.PROTECTION_ENVIRONMENTAL, "保护之", 10),
-                        new GambleEnchantInfo(Enchantment.THORNS, "荆棘之", 3),
+                        new GambleEnchantInfo(Enchantment.THORNS, "荆棘之", 5),
                         new GambleEnchantInfo(Enchantment.DURABILITY, "耐久之", 3)
                 };
             default:
