@@ -177,3 +177,19 @@ Shadow Village Black Market provides functions about items.
 * svb.set.damage -- OP
 
 * svb.set.name -- OP
+
+## Changelog
+
+### 1.0.1
+
+* Fix tons of bugs.
+
+* Add shadow soul.
+
+* Add bow to gamble system.
+
+### 1.0.0
+
+* Add shadow man and shadow beast.
+
+* Add gamble system.
