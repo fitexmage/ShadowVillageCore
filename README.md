@@ -6,7 +6,7 @@ This is a plugin working on Shadow Village Minecraft Server written by Shengguan
 
 The plugin is based on Minecraft 1.7.10.
 
-Version: 1.0.1
+Version: 1.0.2
 
 ## Library
 
