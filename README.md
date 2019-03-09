@@ -50,17 +50,9 @@ Shadow Village Core provides basic functions for the plugin.
 
   Get current version of server.
 
-* /svc help
-
-  Get a helper book.
-
 * /svc empower
 
   Nothing happens.
-
-* /svc address [player]
-
-  Get IP address of target player.
   
 * /svc debug
 
@@ -139,22 +131,31 @@ Shadow Village Black Market provides functions about items.
 * /svb set name [name]
 
   Set the name of item in hand.
+  
+### Shadow Village Support
+Shadow Village Support provides functions for supporting.
+
+* /svs help
+
+  Get a helper book.
+
+* /svs address [player]
+
+  Get IP address of target player.
 
 ## Permissions
 
+* svc.version -- Everyone
+
 * svc.empower -- OP
-
-* svc.address -- OP
-
-* svc.help -- Everyone
 
 * svc.debug -- OP
 
 * sve.summon.shadowman -- OP
 
-* svc.summon.shadowbeast -- OP
+* sve.summon.shadowbeast -- OP
 
-* svc.summon.shadowsoul -- OP
+* sve.summon.shadowsoul -- OP
 
 * svb.give.shadowstone -- OP
 
@@ -183,6 +184,10 @@ Shadow Village Black Market provides functions about items.
 * svb.set.health -- OP
 
 * svb.set.name -- OP
+
+* svs.help -- Everyone
+
+* svs.address -- OP
 
 ## Changelog
 
