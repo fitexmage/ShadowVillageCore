@@ -1,6 +1,6 @@
 name: ShadowVillageCore
 main: com.github.fitexmage.ShadowVillageCore
-version: 1.0.1
+version: 1.0.2
 description: This is the Shadow Village Core.
 depend: [Citizens]
 author: Fitexmage
