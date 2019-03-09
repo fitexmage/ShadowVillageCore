@@ -33,7 +33,7 @@ public class SpawnerController {
         Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
             @Override
             public void run() {
-                if (svc.coreOn) {
+                if (svc.commandOn) {
                     int currertMinute = (new Date()).getMinutes();
                     if (recordedMinute != currertMinute) {
                         recordedMinute = currertMinute;

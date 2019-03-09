@@ -9,28 +9,22 @@ commands:
   svc:
     description: Shadow village core system.
     usage: ???
-  svs:
-    description: Shadow village support system.
-    usage: ???
   sve:
     description: Shadow village ecology system.
     usage: ???
   svb:
     description: Shadow village black market.
     usage: ???
+  svs:
+    description: Shadow village support system.
+    usage: ???
 
 permissions:
   svc.version:
     description: Get current version of server. 
     default: true
-  svc.help:
-    description: Get a helper book.
-    default: true
   svc.empower:
     description: Empower to control the core. 
-    default: op
-  svc.address:
-    description: Get IP address of target player. 
     default: op
   svc.debug:
     description: Turn on or off debug mod.
@@ -85,4 +79,10 @@ permissions:
     default: op
   svb.set.name:
     description: Set the name of item in hand.
+    default: op
+  svs.help:
+    description: Get a helper book.
+    default: true
+  svs.address:
+    description: Get IP address of target player. 
     default: op

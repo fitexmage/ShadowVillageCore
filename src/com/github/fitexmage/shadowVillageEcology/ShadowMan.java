@@ -143,7 +143,7 @@ public class ShadowMan extends ShadowEntity {
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
         }
 
-        if ((int) (Math.random() * 3) == 0) {
+        if ((int) (Math.random() * 5) == 0) {
             ItemStack dropItem2 = ShadowItem.getShadowSoulBook();
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem2);
         }
