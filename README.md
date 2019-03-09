@@ -35,7 +35,7 @@ Players can spend shadow stone on:
 
 * Get Minecraft money (need Vault plugin)
 * Summon Boss
-* Get equipment
+* Get powerful equipment
 * Get the permission of flying
 * Get the permission of creative mod
 * Get the permission of OP
@@ -132,6 +132,10 @@ Shadow Village Black Market provides functions about items.
 
   Set the damage of item in hand.
   
+* /svb set health [number]
+
+  Set the health buff of item in hand.
+  
 * /svb set name [name]
 
   Set the name of item in hand.
@@ -175,6 +179,8 @@ Shadow Village Black Market provides functions about items.
 * svb.gamble.boots -- Everyone
 
 * svb.set.damage -- OP
+
+* svb.set.health -- OP
 
 * svb.set.name -- OP
 
