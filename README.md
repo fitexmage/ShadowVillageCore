@@ -191,6 +191,10 @@ Shadow Village Support provides functions for supporting.
 
 ## Changelog
 
+### 1.0.2
+
+* Add support system.
+
 ### 1.0.1
 
 * Fix tons of bugs.
@@ -203,6 +207,8 @@ Shadow Village Support provides functions for supporting.
 
 ### 1.0.0
 
-* Add shadow man and shadow beast.
+* Add core system, ecology system, and black market system.
 
-* Add gamble system.
+* Add shadow man and shadow beast in ecology system.
+
+* Add gamble system in black market system.
