@@ -142,8 +142,9 @@ public class svs extends ShadowVillageCommand {
             } else {
                 String fakeName = args[1];
                 if (!fakeSet.contains(fakeName)) {
+                    hidePlayerList();
                     fakeSet.add(fakeName);
-                    refreshPlayerList();
+                    showPlayerList();
                     Message.sendMessage(player, "添加成功!");
                 } else {
                     Message.sendMessage(player, "该名字已在列表中!");
@@ -160,8 +161,9 @@ public class svs extends ShadowVillageCommand {
             } else {
                 String fakeName = args[1];
                 if (fakeSet.contains(fakeName)) {
+                    hidePlayerList();
                     fakeSet.remove(fakeName);
-                    refreshPlayerList();
+                    showPlayerList();
                     Message.sendMessage(player, "移除成功!");
                 } else {
                     Message.sendMessage(player, "该名字不在列表中!");
@@ -170,7 +172,7 @@ public class svs extends ShadowVillageCommand {
         }
     }
 
-    public static void refreshPlayerList() {
+    public static void hidePlayerList() {
         for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
             sendAllPlayerPacket(onlinePlayer.getPlayerListName(), false, 0);
         }
@@ -178,7 +180,9 @@ public class svs extends ShadowVillageCommand {
         for (String fakePlayerName : fakeSet) {
             sendAllPlayerPacket("§2" + fakePlayerName, false, 0);
         }
+    }
 
+    public static void showPlayerList() {
         for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
             sendAllPlayerPacket(onlinePlayer.getPlayerListName(), true, ((CraftPlayer) onlinePlayer).getHandle().ping);
         }

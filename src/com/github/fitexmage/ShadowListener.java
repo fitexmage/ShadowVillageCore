@@ -22,7 +22,8 @@ public class ShadowListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Message.sendMessage(player, "影之乡核心正在运行");
-        svs.refreshPlayerList();
+        svs.hidePlayerList();
+        svs.showPlayerList();
     }
 
     @EventHandler
