@@ -1,9 +1,14 @@
 package com.github.fitexmage.commands;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.PacketContainer;
 import com.github.fitexmage.ShadowVillageCore;
 import com.github.fitexmage.util.Message;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -19,7 +24,7 @@ public class svc extends ShadowVillageCommand {
     @Override
     void playerCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        if (commandOn) {
+        if (enable) {
             if (args.length == 0) {
                 Message.sendMessage(player, "凡人，你为何呼唤我？");
             } else {

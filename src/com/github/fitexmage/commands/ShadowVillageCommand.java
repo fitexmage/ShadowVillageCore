@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 class ShadowVillageCommand implements CommandExecutor {
     String name;
-    public static boolean commandOn;
+    public static boolean enable;
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -30,11 +30,11 @@ class ShadowVillageCommand implements CommandExecutor {
         } else {
             switch (args[0]) {
                 case "start":
-                    commandOn = true;
+                    enable = true;
                     Message.sendMessage(sender, name + "已启动！");
                     break;
                 case "stop":
-                    commandOn = false;
+                    enable = false;
                     Message.sendMessage(sender, name + "已关闭。");
                     break;
                 default:

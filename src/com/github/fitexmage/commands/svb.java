@@ -22,7 +22,7 @@ public class svb extends ShadowVillageCommand {
     @Override
     void playerCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        if (commandOn) {
+        if (enable) {
             if (args.length == 0) {
                 Message.sendMessage(player, "这里是" + name + "！");
             } else {
@@ -57,7 +57,7 @@ public class svb extends ShadowVillageCommand {
 
     private void give(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendMessage(player, "请选择要给予的物品！");
+            Message.sendMessage(player, "请输入要给予的物品！");
         } else {
             switch (args[1]) {
                 case "shadowstone":
@@ -101,7 +101,7 @@ public class svb extends ShadowVillageCommand {
 
     private void lookup(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendMessage(player, "请选择要查询的物品！");
+            Message.sendMessage(player, "请输入要查询的物品！");
         } else {
             switch (args[1]) {
                 case "shadowstone":
@@ -163,7 +163,7 @@ public class svb extends ShadowVillageCommand {
 
     private void gamble(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendMessage(player, "请选择要得到的物品！");
+            Message.sendMessage(player, "请输入想要得到的物品！");
         } else {
             GambleSystem gambleSystem = new GambleSystem();
             switch (args[1]) {
@@ -242,7 +242,7 @@ public class svb extends ShadowVillageCommand {
 
     private void set(String[] args, Player player) {
         if (args.length == 1) {
-            Message.sendMessage(player, "请选择想要设置的属性!");
+            Message.sendMessage(player, "请输入想要设置的属性!");
         } else {
             switch (args[1]) {
                 case "damage":

@@ -1,14 +1,22 @@
 package com.github.fitexmage.commands;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.PacketContainer;
 import com.github.fitexmage.util.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
+
 public class svs extends ShadowVillageCommand {
+    private static HashSet<String> fakeSet = new HashSet<>();
 
     public svs() {
         name = "影之乡辅助系统";
@@ -17,7 +25,7 @@ public class svs extends ShadowVillageCommand {
     @Override
     void playerCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        if (commandOn) {
+        if (enable) {
             if (args.length == 0) {
                 Message.sendMessage(player, "这里是" + name + "！");
             } else {
@@ -27,6 +35,12 @@ public class svs extends ShadowVillageCommand {
                         break;
                     case "address":
                         getAddress(args, player);
+                        break;
+                    case "addplayer":
+                        addPlayer(args, player);
+                        break;
+                    case "removeplayer":
+                        removePlayer(args, player);
                         break;
                     default:
                         Message.sendUnknown(player);
@@ -105,11 +119,11 @@ public class svs extends ShadowVillageCommand {
     private void getAddress(String[] args, Player player) {
         if (player.hasPermission("svs.address")) {
             if (args.length == 1) {
-                Message.sendMessage(player, "请选择想要查的人！");
+                Message.sendMessage(player, "请选择想要查询的人！");
             } else if (args.length == 2) {
                 Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
                 if (targetPlayer != null) {
-                    Message.sendMessage(player, "该玩家的地址是" + targetPlayer.getAddress());
+                    Message.sendMessage(player, "该玩家的IP地址是" + targetPlayer.getAddress());
                 } else {
                     Message.sendMessage(player, "未发现该玩家！");
                 }
@@ -118,6 +132,74 @@ public class svs extends ShadowVillageCommand {
             }
         } else {
             Message.sendNoPermission(player);
+        }
+    }
+
+    private void addPlayer(String[] args, Player player) {
+        if (player.hasPermission("svs.addplayer")) {
+            if (args.length == 1) {
+                Message.sendMessage(player, "请输入名字!");
+            } else {
+                String fakeName = args[1];
+                if (!fakeSet.contains(fakeName)) {
+                    fakeSet.add(fakeName);
+                    refreshPlayerList();
+                    Message.sendMessage(player, "添加成功!");
+                } else {
+                    Message.sendMessage(player, "该名字已在列表中!");
+                }
+
+            }
+        }
+    }
+
+    private void removePlayer(String[] args, Player player) {
+        if (player.hasPermission("svs.removeplayer")) {
+            if (args.length == 1) {
+                Message.sendMessage(player, "请输入名字!");
+            } else {
+                String fakeName = args[1];
+                if (fakeSet.contains(fakeName)) {
+                    fakeSet.remove(fakeName);
+                    refreshPlayerList();
+                    Message.sendMessage(player, "移除成功!");
+                } else {
+                    Message.sendMessage(player, "该名字不在列表中!");
+                }
+            }
+        }
+    }
+
+    public static void refreshPlayerList() {
+        for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
+            sendAllPlayerPacket(onlinePlayer.getPlayerListName(), false, 0);
+        }
+
+        for (String fakePlayerName : fakeSet) {
+            sendAllPlayerPacket("§2" + fakePlayerName, false, 0);
+        }
+
+        for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
+            sendAllPlayerPacket(onlinePlayer.getPlayerListName(), true, ((CraftPlayer) onlinePlayer).getHandle().ping);
+        }
+
+        for (String fakeName : fakeSet) {
+            sendAllPlayerPacket("§2" + fakeName, true, 10);
+        }
+    }
+
+    private static void sendAllPlayerPacket(String playerName, boolean online, int ping) {
+        PacketContainer playerPacket = ProtocolLibrary.getProtocolManager().createPacket(PacketType.Play.Server.PLAYER_INFO);
+        playerPacket.getStrings().write(0, playerName);
+        playerPacket.getBooleans().write(0, online);
+        playerPacket.getIntegers().write(0, ping);
+
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            try {
+                ProtocolLibrary.getProtocolManager().sendServerPacket(player, playerPacket);
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ name: ShadowVillageCore
 main: com.github.fitexmage.ShadowVillageCore
 version: 1.0.2
 description: This is the Shadow Village Core.
-depend: [Citizens]
+depend: [Citizens, ProtocolLib]
 author: Fitexmage
 
 commands:
@@ -85,4 +85,10 @@ permissions:
     default: true
   svs.address:
     description: Get IP address of target player. 
+    default: op
+  svs.addplayer:
+    description: Add a fake player to tab list. 
+    default: op
+  svs.removeplayer:
+    description: Remove a fake player from tab list. 
     default: op

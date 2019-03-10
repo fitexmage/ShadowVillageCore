@@ -1,5 +1,6 @@
 package com.github.fitexmage;
 
+import com.github.fitexmage.commands.svs;
 import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.shadowVillageEcology.ShadowBeast;
 import com.github.fitexmage.shadowVillageEcology.ShadowMan;
@@ -9,12 +10,6 @@ import com.github.fitexmage.util.Message;
 
 import net.citizensnpcs.api.event.NPCDamageByEntityEvent;
 import net.citizensnpcs.api.event.NPCDamageEntityEvent;
-import net.minecraft.server.v1_7_R4.*;
-import net.minecraft.util.com.mojang.authlib.GameProfile;
-import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_7_R4.CraftServer;
-import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +22,7 @@ public class ShadowListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Message.sendMessage(player, "影之乡核心正在运行");
+        svs.refreshPlayerList();
     }
 
     @EventHandler

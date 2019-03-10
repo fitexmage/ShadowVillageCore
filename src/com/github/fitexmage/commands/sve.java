@@ -17,7 +17,7 @@ public class sve extends ShadowVillageCommand {
     @Override
     void playerCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        if (commandOn) {
+        if (enable) {
             if (args.length == 0) {
                 Message.sendMessage(player, "这里是" + name + "！");
             } else {
