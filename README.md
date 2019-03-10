@@ -14,6 +14,8 @@ Version: 1.0.2
 
 * Citizens 2.0.13
 
+* ProtocolLib 3.6.4
+
 ## Instruction
 
 ### Shadow Man and Shadow Beast
