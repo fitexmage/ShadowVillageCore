@@ -142,6 +142,14 @@ Shadow Village Support provides functions for supporting.
 * /svs address [player]
 
   Get IP address of target player.
+  
+* /svs addplayer [name]
+
+  Add a fake player to tab list.
+  
+* /svs removeplayer [name]
+
+  Remove a fake player from tab list.
 
 ## Permissions
 
@@ -189,6 +197,10 @@ Shadow Village Support provides functions for supporting.
 
 * svs.address -- OP
 
+* svs.addplayer -- OP
+
+* svs.removeplayer -- OP
+
 ## Changelog
 
 ### 1.0.2
@@ -203,7 +215,7 @@ Shadow Village Support provides functions for supporting.
 
 * Add shadow soul.
 
-* Add bow to gamble system.
+* Improve gamble system.
 
 ### 1.0.0
 
