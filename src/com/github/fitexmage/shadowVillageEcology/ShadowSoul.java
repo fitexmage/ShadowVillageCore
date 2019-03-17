@@ -1,5 +1,6 @@
 package com.github.fitexmage.shadowVillageEcology;
 
+import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.util.Message;
 import com.github.fitexmage.util.Tool;
 
@@ -14,6 +15,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -254,5 +256,15 @@ public class ShadowSoul extends CitizensNPC {
             }
         }
         return nearestPlayer;
+    }
+
+    public void dropItem() {
+        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 5) + 1);
+        getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
+
+        if ((int) (Math.random() * 5) == 0) {
+            ItemStack dropItem2 = ShadowItem.getShadowLordBookTop();
+            getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem2);
+        }
     }
 }

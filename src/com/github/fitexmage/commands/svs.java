@@ -1,5 +1,6 @@
 package com.github.fitexmage.commands;
 
+import com.github.fitexmage.shadowVillageEcology.ShadowMan;
 import com.github.fitexmage.util.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

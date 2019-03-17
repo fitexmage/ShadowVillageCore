@@ -57,6 +57,7 @@ public class ShadowMan extends ShadowEntity {
             count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
             prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 10;
         }
+        teleportCountDown = 0;
 
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         getTrait(LookClose.class).lookClose(true);
@@ -85,7 +86,6 @@ public class ShadowMan extends ShadowEntity {
                         teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 3;
                         teleport(targetPlayer);
                     }
-
                 } else {
                     count = 0;
                 }
@@ -138,7 +138,7 @@ public class ShadowMan extends ShadowEntity {
     @Override
     public void dropItem() {
         if ((int) (Math.random() * 3) == 0) {
-            ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 2) + 1);
+            ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 3) + 1);
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
         }
 

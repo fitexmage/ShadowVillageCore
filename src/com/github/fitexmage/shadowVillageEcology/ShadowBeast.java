@@ -100,7 +100,7 @@ public class ShadowBeast extends ShadowEntity {
     @Override
     public void dropItem() {
         if ((int) (Math.random() * 3) == 0) {
-            ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 2) + 1);
+            ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 3) + 1);
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
         }
 
