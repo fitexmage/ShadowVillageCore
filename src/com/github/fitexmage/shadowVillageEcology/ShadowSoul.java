@@ -174,7 +174,8 @@ public class ShadowSoul extends CitizensNPC {
             for (int j = -2; j <= 2; j++) {
                 if (Math.abs(i) + Math.abs(j) == 0 && !blockLocation.getBlock().getType().equals(Material.REDSTONE_BLOCK) ||
                         (Math.abs(i) + Math.abs(j) == 1 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.DIAMOND_BLOCK)) ||
-                        (Math.abs(i) + Math.abs(j) == 2 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.BEDROCK))) {
+                        (Math.abs(i) + Math.abs(j) == 2 && !blockLocation.clone().add(i, 0, j).getBlock().getType().equals(Material.BEDROCK)) ||
+                        (Math.abs(i) + Math.abs(j) == 2 && !blockLocation.clone().add(i, -1, j).getBlock().getType().equals(Material.DIAMOND_BLOCK))) {
                     return false;
                 }
             }
