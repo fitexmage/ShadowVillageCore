@@ -48,7 +48,6 @@ public class ShadowMan extends ShadowEntity {
         addTrait(shadowManTrait);
     }
 
-    @Override
     void spawn(boolean force) {
         if (force) {
             count = 5;

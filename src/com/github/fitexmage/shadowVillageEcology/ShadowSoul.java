@@ -35,7 +35,7 @@ public class ShadowSoul extends CitizensNPC {
     private int minHeight; //最小安全高度
 
     ShadowSoul() {
-        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.PIG), CitizensAPI.getNPCRegistry());
+        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.CHICKEN), CitizensAPI.getNPCRegistry());
 
         totalCount = 0;
         stageCountDown = 0;

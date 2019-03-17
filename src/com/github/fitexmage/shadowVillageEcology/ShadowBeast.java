@@ -40,8 +40,7 @@ public class ShadowBeast extends ShadowEntity {
         addTrait(shadowBeastTrait);
     }
 
-    @Override
-    void spawn(boolean force) {
+    void spawn(boolean force, EntityType type) {
         if (force) {
             count = 5;
             prepareCountDown = 1;
@@ -52,6 +51,7 @@ public class ShadowBeast extends ShadowEntity {
         }
 
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
+        setBukkitEntityType(type);
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);

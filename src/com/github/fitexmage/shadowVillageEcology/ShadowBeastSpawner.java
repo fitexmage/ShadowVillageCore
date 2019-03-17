@@ -15,13 +15,13 @@ public class ShadowBeastSpawner {
 
     ShadowBeastSpawner(ShadowVillageCore plugin) {
         this.plugin = plugin;
-        shadowBeast = new ShadowBeast(getRandomType());
+        shadowBeast = new ShadowBeast(EntityType.PIG);
     }
 
     private EntityType getRandomType() {
         int randomType = (int) (Math.random() * 3);
         if (randomType == 0) {
-            return EntityType.CHICKEN;
+            return EntityType.PIG;
         } else if (randomType == 1) {
             return EntityType.SHEEP;
         } else {
@@ -31,7 +31,7 @@ public class ShadowBeastSpawner {
 
     public void spawnShadowBeast(boolean force) {
         if (!shadowBeast.isSpawned()) {
-            shadowBeast.spawn(force);
+            shadowBeast.spawn(force, getRandomType());
             Message.broadcastMessage("§0影§c即将降临。");
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();

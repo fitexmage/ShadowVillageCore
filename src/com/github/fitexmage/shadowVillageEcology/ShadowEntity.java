@@ -5,6 +5,7 @@ import com.github.fitexmage.util.Tool;
 import net.citizensnpcs.api.npc.NPCRegistry;
 import net.citizensnpcs.npc.CitizensNPC;
 import net.citizensnpcs.npc.EntityController;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -17,8 +18,6 @@ public abstract class ShadowEntity extends CitizensNPC {
     ShadowEntity(UUID uuid, int id, String name, EntityController entityController, NPCRegistry registry) {
         super(uuid, id, name, entityController, registry);
     }
-
-    abstract void spawn(boolean force);
 
     abstract void action();
 
