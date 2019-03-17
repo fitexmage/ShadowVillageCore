@@ -105,7 +105,7 @@ public class ShadowBeast extends ShadowEntity {
         }
 
         if ((int) (Math.random() * 5) == 0) {
-            ItemStack dropItem2 = ShadowItem.getShadowSoulBook();
+            ItemStack dropItem2 = ShadowItem.getShadowSpiritBook();
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem2);
         }
     }

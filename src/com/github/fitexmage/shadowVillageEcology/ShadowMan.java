@@ -56,7 +56,7 @@ public class ShadowMan extends ShadowEntity {
         } else {
             List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
             count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
-            prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
+            prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 10;
         }
 
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));

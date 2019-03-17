@@ -54,8 +54,10 @@ public class ShadowListener implements Listener {
             if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
                 if (npc instanceof ShadowMan) {
                     ((ShadowMan) npc).dropItem();
+                    Message.broadcastMessage("§0影§c消散了，但总感觉它仍注视着你......");
                 } else if (npc instanceof ShadowBeast) {
                     ((ShadowBeast) npc).dropItem();
+                    Message.broadcastMessage("§0影§c消散了，但总感觉它仍注视着你......");
                 } else if (npc instanceof ShadowSoul) {
                     org.bukkit.inventory.ItemStack dropItem = new org.bukkit.inventory.ItemStack(org.bukkit.Material.APPLE, 1);
                     ShadowSoul.deathReason = 1;
@@ -82,3 +84,4 @@ public class ShadowListener implements Listener {
         }
     }
 }
+
