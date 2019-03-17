@@ -25,7 +25,8 @@ import java.util.UUID;
 public class ShadowSoul extends CitizensNPC {
     private static final int id = 10011;
     private static final String name = "影魂";
-    public static int deathReason = 0;
+    public static int despawnReason = 0;
+
     private final double health = 10000.0;
     private final float speed = 1.1f;
     private final double range = 20.0;
@@ -69,7 +70,7 @@ public class ShadowSoul extends CitizensNPC {
         if (totalCount % 10 == 0) {
             Player nearestPlayer = getNearestPlayer();
             if (nearestPlayer == null) {
-                deathReason = 2;
+                despawnReason = 2;
                 despawn();
                 return;
             } else {

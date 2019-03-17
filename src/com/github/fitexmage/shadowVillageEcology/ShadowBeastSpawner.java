@@ -42,6 +42,7 @@ public class ShadowBeastSpawner {
                         shadowBeast.action();
                     } else {
                         shadowBeast.count = 0;
+                        ShadowBeast.despawnReason = 1;
                         shadowBeast.despawn();
                         scheduler.cancelTask(taskID);
                     }

@@ -19,6 +19,8 @@ import java.util.*;
 public class ShadowBeast extends ShadowEntity {
     private static final int id = 10002;
     private static final String name = "影灵";
+    public static int despawnReason = 0;
+
     private final double health = 300.0;
     private final float speed = 1.0f;
 
@@ -50,6 +52,7 @@ public class ShadowBeast extends ShadowEntity {
             prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
         }
         teleportCountDown = 0;
+        despawnReason = 0;
 
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         setBukkitEntityType(type);

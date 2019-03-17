@@ -58,7 +58,7 @@ public class ShadowListener implements Listener {
                     ((ShadowBeast) npc).dropItem();
                 } else if (npc instanceof ShadowSoul) {
                     ((ShadowSoul) npc).dropItem();
-                    ShadowSoul.deathReason = 1;
+                    ShadowSoul.despawnReason = 1;
                 }
                 npc.despawn();
             }
