@@ -49,6 +49,7 @@ public class ShadowBeast extends ShadowEntity {
             count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
             prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
         }
+        teleportCountDown = 0;
 
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
         setBukkitEntityType(type);
