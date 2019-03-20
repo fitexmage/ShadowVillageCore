@@ -32,7 +32,8 @@ public class ShadowBeastSpawner {
     public void spawnShadowBeast(boolean force) {
         if (!shadowBeast.isSpawned()) {
             shadowBeast.spawn(force, getRandomType());
-            Message.broadcastMessage("§0影§c即将降临。");
+            Message.broadcastMessage("§0影灵§c即将降临。");
+            Message.violetBroadcastMessage("影灵会攻击它所接触到的玩家，有可能会偷走东西，请前往主城避开它！");
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {

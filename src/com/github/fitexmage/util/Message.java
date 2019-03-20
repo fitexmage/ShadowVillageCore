@@ -7,14 +7,19 @@ import org.bukkit.entity.Player;
 public class Message {
     public static boolean debug = false;
 
-    private static String kernelTitle = "§c[影之乡核心]";
+    private static String coreTitle = "§c[影之乡核心]";
+    private static String violetTitle = "§5[小紫]";
 
     public static void sendMessage(CommandSender sender, String message) {
-        sender.sendMessage(kernelTitle + message);
+        sender.sendMessage(coreTitle + message);
     }
 
     public static void broadcastMessage(String message) {
-        Bukkit.getServer().broadcastMessage(kernelTitle + message);
+        Bukkit.getServer().broadcastMessage(coreTitle + message);
+    }
+
+    public static void violetBroadcastMessage(String message) {
+        Bukkit.getServer().broadcastMessage(violetTitle + message);
     }
 
     public static void sendUnknown(CommandSender sender) {

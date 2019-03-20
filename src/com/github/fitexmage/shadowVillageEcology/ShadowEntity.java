@@ -28,7 +28,7 @@ public abstract class ShadowEntity extends CitizensNPC {
     public void randomShadowAttack(Player player) {
         String name = getFullName();
         String playerName = player.getDisplayName();
-        switch ((int) (Math.random() * 8)) {
+        switch ((int) (Math.random() * 7)) {
             case 0:
                 player.setFireTicks(200);
                 Message.broadcastMessage("§4" + playerName + "被" + name + "点燃了!");
@@ -38,15 +38,15 @@ public abstract class ShadowEntity extends CitizensNPC {
                 Message.broadcastMessage("§4" + playerName + "被" + name + "榨干了!");
                 break;
             case 2:
-                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 1200, 100));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 600, 100));
                 Message.broadcastMessage("§4" + playerName + "被" + name + "致盲了!");
                 break;
             case 3:
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 1200, 3));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 3));
                 Message.broadcastMessage("§4" + playerName + "被" + name + "缠住了!");
                 break;
             case 4:
-                player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1200, 3));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 600, 3));
                 Message.broadcastMessage("§4" + playerName + "被" + name + "缠住了!");
                 break;
             case 5:

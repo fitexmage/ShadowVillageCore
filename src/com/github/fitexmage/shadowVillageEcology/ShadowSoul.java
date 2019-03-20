@@ -29,7 +29,7 @@ public class ShadowSoul extends CitizensNPC {
 
     private final double health = 10000.0;
     private final float speed = 1.1f;
-    private final double range = 20.0;
+    private final double range = 10.0;
 
     private int totalCount; //总计时
     private int stageCountDown; //距离下一阶段开始时间
@@ -149,7 +149,7 @@ public class ShadowSoul extends CitizensNPC {
             for (Player player : getNearPlayers()) {
                 Location playerLocation = player.getLocation();
                 if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
-                    Tool.damagePlayer(player, 25 + totalCount);
+                    Tool.damagePlayer(player, 10 + totalCount);
                 }
             }
             Message.broadcastMessage("§4磁场扭曲了！");
@@ -267,6 +267,11 @@ public class ShadowSoul extends CitizensNPC {
         if ((int) (Math.random() * 5) == 0) {
             ItemStack dropItem2 = ShadowItem.getShadowLordBookTop();
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem2);
+        }
+
+        if ((int) (Math.random() * 35) == 0) {
+            ItemStack dropItem3 = ShadowItem.getShadowStone((int) (Math.random() * 10) + 1);
+            getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem3);
         }
     }
 }

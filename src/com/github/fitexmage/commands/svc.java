@@ -7,9 +7,11 @@ import com.github.fitexmage.ShadowVillageCore;
 import com.github.fitexmage.util.Message;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -36,6 +38,9 @@ public class svc extends ShadowVillageCommand {
                         break;
                     case "debug":
                         turnDebug(player);
+                        break;
+                    case "test":
+                        Message.sendMessage(player, "测试");
                         break;
                     default:
                         penalty(player);

@@ -8,8 +8,7 @@ import com.github.fitexmage.shadowVillageEcology.ShadowSoul;
 import com.github.fitexmage.shadowVillageEcology.SpawnerController;
 import com.github.fitexmage.util.Message;
 
-import net.citizensnpcs.api.event.NPCDamageByEntityEvent;
-import net.citizensnpcs.api.event.NPCDamageEntityEvent;
+import net.citizensnpcs.api.event.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -47,18 +46,25 @@ public class ShadowListener implements Listener {
         }
     }
 
+
     @EventHandler
-    public void onNPCDamaged(NPCDamageByEntityEvent event) {
+    public void onNPCDamaged(NPCDamageEvent event) {
         net.citizensnpcs.api.npc.NPC npc = event.getNPC();
         if (!npc.isProtected()) {
             if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
-                if (npc instanceof ShadowMan) {
-                    ((ShadowMan) npc).dropItem();
-                } else if (npc instanceof ShadowBeast) {
-                    ((ShadowBeast) npc).dropItem();
-                } else if (npc instanceof ShadowSoul) {
-                    ((ShadowSoul) npc).dropItem();
-                    ShadowSoul.despawnReason = 1;
+                if (event instanceof NPCDamageByEntityEvent) {
+                    if (npc instanceof ShadowMan) {
+                        ((ShadowMan) npc).dropItem();
+                    } else if (npc instanceof ShadowBeast) {
+                        ((ShadowBeast) npc).dropItem();
+                    } else if (npc instanceof ShadowSoul) {
+                        ((ShadowSoul) npc).dropItem();
+                        ShadowSoul.despawnReason = 1;
+                    }
+                } else {
+                    if (npc instanceof ShadowSoul) {
+                        ShadowSoul.despawnReason = 2;
+                    }
                 }
                 npc.despawn();
             }

@@ -21,8 +21,8 @@ public class ShadowBeast extends ShadowEntity {
     private static final String name = "影灵";
     public static int despawnReason = 0;
 
-    private final double health = 300.0;
-    private final float speed = 1.0f;
+    private final double health = 150.0;
+    private final float speed = 0.8f;
 
     private final int maxPrepareCountDown = (int) (1200 / ShadowManSpawner.interval); // 60秒
     private final int maxTeleportCountDown = (int) (400 / ShadowManSpawner.interval); // 20秒
@@ -45,16 +45,16 @@ public class ShadowBeast extends ShadowEntity {
     void spawn(boolean force, EntityType type) {
         if (force) {
             count = 5;
-            prepareCountDown = 1;
+            prepareCountDown = 5;
         } else {
             List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
             count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
-            prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 1;
+            prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 10;
         }
         teleportCountDown = 0;
         despawnReason = 0;
 
-        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 35, 0));
+        spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 25, 0));
         setBukkitEntityType(type);
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
@@ -70,11 +70,15 @@ public class ShadowBeast extends ShadowEntity {
             if (teleportCountDown == 0) {
                 List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
                 if (realOnlinePlayers.size() != 0) {
-                    teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 3;
                     int random = (int) (Math.random() * realOnlinePlayers.size());
                     Player targetPlayer = realOnlinePlayers.get(random);
-                    teleport(targetPlayer);
-                    getNavigator().setTarget(targetPlayer, true);
+                    if (targetPlayer.getLocation().distance(Bukkit.getWorld("world").getSpawnLocation()) <= 50) {
+                        count--;
+                    } else {
+                        teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 3;
+                        teleport(targetPlayer);
+                        getNavigator().setTarget(targetPlayer, true);
+                    }
                 } else {
                     count = 0;
                 }
