@@ -20,7 +20,7 @@ Version: 1.0.2
 
 ### Shadow Man and Shadow Beast
 
-At a specific minute every hour, shadow man or shadow beast will appear and teleport random times. 
+At a certain time, shadow man or shadow beast will appear and teleport random times. 
 
 * Shadow Man
 Shadow man will teleport to the back of a random player. It never move or attack, and just gaze at target player.
@@ -31,9 +31,9 @@ Shadow beast will teleport to nearby place of a random player. It will appear as
 
 ### Shadow Stone
 
-A special currency which can only get by donating.
+A special currency which can only get by special activity.
 
-Players can spend shadow stone on:
+Players can use shadow stone on:
 
 * Get Minecraft money (need Vault plugin)
 * Summon Boss
