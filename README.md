@@ -51,6 +51,10 @@ Shadow Village Core provides basic functions for the plugin.
 * /svc version
 
   Get current version of server.
+  
+* /svc help
+
+  Get a helper book.
 
 * /svc empower
 
@@ -137,10 +141,6 @@ Shadow Village Black Market provides functions about items.
 ### Shadow Village Support
 Shadow Village Support provides functions for supporting.
 
-* /svs help
-
-  Get a helper book.
-
 * /svs address [player]
 
   Get IP address of target player.
@@ -152,10 +152,20 @@ Shadow Village Support provides functions for supporting.
 * /svs removeplayer [name]
 
   Remove a fake player from tab list.
+  
+* /svs synchat true
+
+  Begin to receive message from group chat.
+
+* /svs synchat false
+
+  Stop to receive message from group chat
 
 ## Permissions
 
 * svc.version -- Everyone
+
+* svc.help -- Everyone
 
 * svc.empower -- OP
 
@@ -195,13 +205,13 @@ Shadow Village Support provides functions for supporting.
 
 * svb.set.name -- OP
 
-* svs.help -- Everyone
-
 * svs.address -- OP
 
 * svs.addplayer -- OP
 
 * svs.removeplayer -- OP
+
+* svs.synchat -- Everyone
 
 ## Changelog
 
