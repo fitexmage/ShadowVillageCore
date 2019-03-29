@@ -1,14 +1,15 @@
 package com.github.fitexmage;
 
-import com.github.fitexmage.commands.svs;
 import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.shadowVillageEcology.ShadowBeast;
 import com.github.fitexmage.shadowVillageEcology.ShadowMan;
 import com.github.fitexmage.shadowVillageEcology.ShadowSoul;
 import com.github.fitexmage.shadowVillageEcology.SpawnerController;
 import com.github.fitexmage.util.Message;
+import com.github.fitexmage.util.Tool;
 
 import net.citizensnpcs.api.event.*;
+import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,8 +22,8 @@ public class ShadowListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Message.sendMessage(player, "影之乡核心正在运行");
-        svs.hidePlayerList();
-        svs.showPlayerList();
+        Tool.hidePlayerList();
+        Tool.showPlayerList();
     }
 
     @EventHandler
@@ -46,10 +47,9 @@ public class ShadowListener implements Listener {
         }
     }
 
-
     @EventHandler
     public void onNPCDamaged(NPCDamageEvent event) {
-        net.citizensnpcs.api.npc.NPC npc = event.getNPC();
+        NPC npc = event.getNPC();
         if (!npc.isProtected()) {
             if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
                 if (event instanceof NPCDamageByEntityEvent) {

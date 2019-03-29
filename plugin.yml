@@ -23,6 +23,9 @@ permissions:
   svc.version:
     description: Get current version of server. 
     default: true
+  svs.help:
+    description: Get a helper book.
+    default: true
   svc.empower:
     description: Empower to control the core. 
     default: op
@@ -80,9 +83,6 @@ permissions:
   svb.set.name:
     description: Set the name of item in hand.
     default: op
-  svs.help:
-    description: Get a helper book.
-    default: true
   svs.address:
     description: Get IP address of target player. 
     default: op
@@ -92,3 +92,6 @@ permissions:
   svs.removeplayer:
     description: Remove a fake player from tab list. 
     default: op
+  svs.synchat:
+    description: Turn on or off syn chat. 
+    default: true

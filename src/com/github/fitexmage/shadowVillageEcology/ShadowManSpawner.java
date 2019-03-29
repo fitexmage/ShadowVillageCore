@@ -21,7 +21,7 @@ public class ShadowManSpawner {
         if (!shadowMan.isSpawned()) {
             shadowMan.spawn(force);
             Message.broadcastMessage("§0影者§c即将降临。");
-            Message.violetBroadcastMessage("影者会攻击正在移动的玩家，有可能会偷走东西，请前往主城避开它！");
+            Message.violetBroadcastMessage("影者会攻击正在移动的玩家，有可能会偷走你最宝贵的物品，请前往主城避开它！");
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {

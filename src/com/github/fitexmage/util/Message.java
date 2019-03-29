@@ -4,11 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.HashSet;
+
 public class Message {
     public static boolean debug = false;
 
     private static String coreTitle = "§c[影之乡核心]";
     private static String violetTitle = "§5[小紫]";
+
+    public static HashSet<String> synSet = new HashSet<>();
 
     public static void sendMessage(CommandSender sender, String message) {
         sender.sendMessage(coreTitle + message);
@@ -20,6 +24,14 @@ public class Message {
 
     public static void violetBroadcastMessage(String message) {
         Bukkit.getServer().broadcastMessage(violetTitle + message);
+    }
+
+    public static void violetSynMessage(String message) {
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            if (synSet.contains(player.getName())) {
+                player.sendMessage(message);
+            }
+        }
     }
 
     public static void sendUnknown(CommandSender sender) {
