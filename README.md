@@ -66,7 +66,7 @@ Shadow Village Core provides basic functions for the plugin.
   
 * /svc test
   
-  For testing.
+  For testing if needed.
 
 ### Shadow Village Ecology
 Shadow Village Ecology provides functions about entities.
