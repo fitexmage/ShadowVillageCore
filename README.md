@@ -98,33 +98,13 @@ Shadow Village Black Market provides functions about items.
 
   Look up amount of shadow stones in inventory.
   
-* /svb lookup possibilities (/svb l shadowstone)
+* /svb lookup possibilities [1-6] [number] (/svb l possibilities [1-6] [number])
 
   Look up possibilities of gamble items.
 
-* /svb gamble 1 [number] (/svb g 1 [number])
+* /svb gamble [1-6] [number] (/svb g [1-6] [number])
 
-  Gamble on sword. (use diamond as cost)
-
-* /svb gamble 2 [number] (/svb g 2 [number])
-
-  Gamble on bow.
-  
-* /svb gamble 3 [number] (/svb g 3 [number])
-
-  Gamble on helmet.
-
-* /svb gamble 4 [number] (/svb g 4 [number])
-
-  Gamble on chestplate.
-
-* /svb gamble 5 [number] (/svb g 5 [number])
-
-  Gamble on leggings.
-
-* /svb gamble 6 [number] (/svb g 6 [number])
-
-  Gamble on boots.
+  Gamble on sword(1), bow(2), helmet(3), chestplate(4), leggings(5), boots(6). (use diamond as cost)
 
 * /svb set damage [number]
 
