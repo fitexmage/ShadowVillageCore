@@ -18,7 +18,7 @@ Version: 1.0.2
 
 ## Instruction
 
-### Shadow Man and Shadow Beast
+### Shadow Entity
 
 At a certain time, shadow man or shadow beast will appear and teleport random times. 
 
@@ -63,6 +63,10 @@ Shadow Village Core provides basic functions for the plugin.
 * /svc debug
 
   Turn on or off debug mod.
+  
+* /svc test
+  
+  For testing.
 
 ### Shadow Village Ecology
 Shadow Village Ecology provides functions about entities.
