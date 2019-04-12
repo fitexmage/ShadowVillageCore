@@ -26,16 +26,16 @@ public class svs extends ShadowVillageCommand {
             } else {
                 switch (args[0]) {
                     case "address":
-                        getAddress(args, player);
+                        getAddress(player, args);
                         break;
                     case "addplayer":
-                        addPlayer(args, player);
+                        addPlayer(player, args);
                         break;
                     case "removeplayer":
-                        removePlayer(args, player);
+                        removePlayer(player, args);
                         break;
                     case "synchat":
-                        turnSynChat(args, player);
+                        turnSynChat(player, args);
                         break;
                     default:
                         Message.sendUnknown(player);
@@ -71,7 +71,7 @@ public class svs extends ShadowVillageCommand {
         }
     }
 
-    private void getAddress(String[] args, Player player) {
+    private void getAddress(Player player, String[] args) {
         if (player.hasPermission("svs.address")) {
             if (args.length == 1) {
                 Message.sendMessage(player, "请选择想要查询的人！");
@@ -90,7 +90,7 @@ public class svs extends ShadowVillageCommand {
         }
     }
 
-    private void addPlayer(String[] args, Player player) {
+    private void addPlayer(Player player, String[] args) {
         if (player.hasPermission("svs.addplayer")) {
             if (args.length == 1) {
                 Message.sendMessage(player, "请输入名字!");
@@ -109,7 +109,7 @@ public class svs extends ShadowVillageCommand {
         }
     }
 
-    private void removePlayer(String[] args, Player player) {
+    private void removePlayer(Player player, String[] args) {
         if (player.hasPermission("svs.removeplayer")) {
             if (args.length == 1) {
                 Message.sendMessage(player, "请输入名字!");
@@ -128,7 +128,7 @@ public class svs extends ShadowVillageCommand {
     }
 
 
-    private void turnSynChat(String[] args, Player player) {
+    private void turnSynChat(Player player, String[] args) {
         if (player.hasPermission("svs.synchat")) {
             if (args.length == 1) {
                 Message.sendMessage(player, "请选择开或关！");

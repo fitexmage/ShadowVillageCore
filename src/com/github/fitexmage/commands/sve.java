@@ -23,7 +23,7 @@ public class sve extends ShadowVillageCommand {
             } else {
                 switch (args[0]) {
                     case "summon":
-                        summon(args, player);
+                        summon(player, args);
                         break;
                     default:
                         Message.sendUnknown(player);
@@ -35,7 +35,7 @@ public class sve extends ShadowVillageCommand {
         }
     }
 
-    private void summon(String[] args, Player player) {
+    private void summon(Player player, String[] args) {
         if (args.length == 1) {
             Message.sendMessage(player, "请选择要生成的生物！");
         } else if (args.length == 2) {

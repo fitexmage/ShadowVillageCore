@@ -28,22 +28,22 @@ public class svb extends ShadowVillageCommand {
             } else {
                 switch (args[0]) {
                     case "give":
-                        give(args, player);
+                        give(player, args);
                         break;
                     case "lookup":
-                        lookup(args, player);
+                        lookup(player, args);
                         break;
                     case "l":
-                        lookup(args, player);
+                        lookup(player, args);
                         break;
                     case "gamble":
-                        gamble(args, player);
+                        gamble(player, args);
                         break;
                     case "g":
-                        gamble(args, player);
+                        gamble(player, args);
                         break;
                     case "set":
-                        set(args, player);
+                        set(player, args);
                         break;
                     default:
                         Message.sendUnknown(player);
@@ -55,7 +55,7 @@ public class svb extends ShadowVillageCommand {
         }
     }
 
-    private void give(String[] args, Player player) {
+    private void give(Player player, String[] args) {
         if (args.length == 1) {
             Message.sendMessage(player, "请输入要给予的物品！");
         } else {
@@ -99,7 +99,7 @@ public class svb extends ShadowVillageCommand {
         }
     }
 
-    private void lookup(String[] args, Player player) {
+    private void lookup(Player player, String[] args) {
         if (args.length == 1) {
             Message.sendMessage(player, "请输入要查询的物品！");
         } else {
@@ -161,7 +161,7 @@ public class svb extends ShadowVillageCommand {
         }
     }
 
-    private void gamble(String[] args, Player player) {
+    private void gamble(Player player, String[] args) {
         if (args.length == 1) {
             Message.sendMessage(player, "请输入想要得到的物品！");
         } else {
@@ -240,7 +240,7 @@ public class svb extends ShadowVillageCommand {
         }
     }
 
-    private void set(String[] args, Player player) {
+    private void set(Player player, String[] args) {
         if (args.length == 1) {
             Message.sendMessage(player, "请输入想要设置的属性!");
         } else {

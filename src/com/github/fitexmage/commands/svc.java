@@ -38,7 +38,7 @@ public class svc extends ShadowVillageCommand {
                         help(player);
                         break;
                     case "empower":
-                        empower(args, player);
+                        empower(player);
                         break;
                     case "debug":
                         turnDebug(player);
@@ -134,7 +134,7 @@ public class svc extends ShadowVillageCommand {
         }
     }
 
-    private void empower(String[] args, Player player) {
+    private void empower(Player player) {
         if (player.hasPermission("svc.empower")) {
             Message.sendMessage(player, "凡人，从现在起，我将赋予你神的能力！");
         } else {

@@ -37,7 +37,7 @@ public class SpawnerController {
                     int currertMinute = (new Date()).getMinutes();
                     if (recordedMinute != currertMinute) {
                         recordedMinute = currertMinute;
-                        if (recordedMinute == 42 && (Math.random() * 3) == 0) {
+                        if (recordedMinute == 42 && ((int) (Math.random() * 3) == 0)) {
                             if ((int) (Math.random() * 2) == 0) {
                                 shadowManSpawner.spawnShadowMan(false);
                             } else {

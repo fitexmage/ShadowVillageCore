@@ -93,5 +93,5 @@ permissions:
     description: Remove a fake player from tab list. 
     default: op
   svs.synchat:
-    description: Turn on or off syn chat. 
+    description: Begin or stop to receive message from group chat. 
     default: true
