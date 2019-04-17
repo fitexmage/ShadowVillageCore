@@ -16,23 +16,15 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
-public class ShadowBeast extends ShadowEntity {
+public class ShadowBeast extends ShadowLiving {
     private static final int id = 10002;
     private static final String name = "影灵";
-    public static int despawnReason = 0;
 
-    private final double health = 150.0;
-    private final float speed = 0.8f;
+    private double health = 200.0;
+    private float speed = 0.8f;
 
-    private final int maxPrepareCountDown = (int) (1200 / ShadowManSpawner.interval); // 60秒
-    private final int maxTeleportCountDown = (int) (400 / ShadowManSpawner.interval); // 20秒
-
-    int count;
-    private int prepareCountDown;
-    private int teleportCountDown;
-
-    ShadowBeast(EntityType type) {
-        super(UUID.randomUUID(), id, name, EntityControllers.createForType(type), CitizensAPI.getNPCRegistry());
+    ShadowBeast() {
+        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.PIG), CitizensAPI.getNPCRegistry());
 
         count = 0;
         prepareCountDown = 0;
@@ -42,24 +34,25 @@ public class ShadowBeast extends ShadowEntity {
         addTrait(shadowBeastTrait);
     }
 
-    void spawn(boolean force, EntityType type) {
-        if (force) {
-            count = 5;
-            prepareCountDown = 5;
-        } else {
-            List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
-            count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
-            prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 10;
-        }
-        teleportCountDown = 0;
-        despawnReason = 0;
-
+    void spawn(boolean force) {
+        prepare(force);
+        setBukkitEntityType(getRandomType());
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 25, 0));
-        setBukkitEntityType(type);
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
         getNavigator().getLocalParameters().speedModifier(speed);
+    }
+
+    private EntityType getRandomType() {
+        int randomType = (int) (Math.random() * 3);
+        if (randomType == 0) {
+            return EntityType.PIG;
+        } else if (randomType == 1) {
+            return EntityType.SHEEP;
+        } else {
+            return EntityType.COW;
+        }
     }
 
     @Override
@@ -72,10 +65,10 @@ public class ShadowBeast extends ShadowEntity {
                 if (realOnlinePlayers.size() != 0) {
                     int random = (int) (Math.random() * realOnlinePlayers.size());
                     Player targetPlayer = realOnlinePlayers.get(random);
-                    if (targetPlayer.getLocation().distance(Bukkit.getWorld("world").getSpawnLocation()) <= 50) {
+                    if (targetPlayer.getLocation().distance(Bukkit.getWorld("world").getSpawnLocation()) <= 30) {
                         count--;
                     } else {
-                        teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 3;
+                        teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + basicTeleportCountDown;
                         teleport(targetPlayer);
                         getNavigator().setTarget(targetPlayer, true);
                     }
@@ -107,7 +100,7 @@ public class ShadowBeast extends ShadowEntity {
 
     @Override
     public void dropItem() {
-        if ((int) (Math.random() * 3) == 0) {
+        if ((int) (Math.random() * 2) == 0) {
             ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 3) + 1);
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
         }

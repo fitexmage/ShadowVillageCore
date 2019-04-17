@@ -21,7 +21,7 @@ public class ShadowItem {
     }
 
     public static boolean isShadowStone(ItemStack item) {
-        if (item.getType().equals(Material.EMERALD)) {
+        if (item != null && item.getType().equals(Material.EMERALD)) {
             if (item.hasItemMeta() && item.getItemMeta().getLore().get(0).equals("影之乡货币")) {
                 return true;
             }
@@ -39,7 +39,7 @@ public class ShadowItem {
     }
 
     public static boolean isShadowSoulBook(ItemStack item) {
-        if (item.getType().equals(Material.BOOK)) {
+        if (item != null && item.getType().equals(Material.BOOK)) {
             if (item.hasItemMeta() && item.getItemMeta().getLore().get(0).equals("以虚空为影，以力量为魂。")) {
                 return true;
             }
@@ -57,7 +57,7 @@ public class ShadowItem {
     }
 
     public static boolean isShadowSpiritBook(ItemStack item) {
-        if (item.getType().equals(Material.BOOK)) {
+        if (item != null && item.getType().equals(Material.BOOK)) {
             if (item.hasItemMeta() && item.getItemMeta().getLore().get(0).equals("以混沌为影，以源能为魄。")) {
                 return true;
             }
@@ -75,7 +75,7 @@ public class ShadowItem {
     }
 
     public static boolean isShadowLordBookTop(ItemStack item) {
-        if (item.getType().equals(Material.BOOK)) {
+        if (item != null && item.getType().equals(Material.BOOK)) {
             if (item.hasItemMeta() && item.getItemMeta().getLore().get(0).equals("驾影之锋芒，驭影之寒霜。")) {
                 return true;
             }
@@ -93,7 +93,7 @@ public class ShadowItem {
     }
 
     public static boolean isShadowLordBookBottom(ItemStack item) {
-        if (item.getType().equals(Material.BOOK)) {
+        if (item != null && item.getType().equals(Material.BOOK)) {
             if (item.hasItemMeta() && item.getItemMeta().getLore().get(0).equals("主影之河山，宰影之天下")) {
                 return true;
             }
@@ -125,12 +125,8 @@ public class ShadowItem {
 
         if (type == 1) {
             serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.damageTag(9999)});
-        } else if (type == 3 ||
-                type == 4 ||
-                type == 5 ||
-                type == 6) {
+        } else if (type == 3 || type == 4 || type == 5 || type == 6) {
             serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.healthTag(100)});
-
             if (type == 4) {
                 serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.resistanceTag(1)});
             }

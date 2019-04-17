@@ -23,7 +23,7 @@ permissions:
   svc.version:
     description: Get current version of server. 
     default: true
-  svs.help:
+  svc.help:
     description: Get a helper book.
     default: true
   svc.empower:
@@ -47,15 +47,33 @@ permissions:
   svb.give.shadowsoulbook:
     description: Give self a shadow soul book.
     default: op
+  svb.give.shadowspiritbook:
+    description: Give self a shadow spirit book.
+    default: op
+  svb.give.shadowloardbooktop:
+    description: Give self the top version of shadow lord book.
+    default: op
+  svb.give.shadowloardbookbottom:
+    description: Give self the bottom version of shadow lord book.
+    default: op
   svb.give.serverequipment:
     description: Give self all server equipment.
+    default: op
+  svb.set.damage:
+    description: Set the damage of item in hand.
+    default: op
+  svb.set.health:
+    description: Set the health buff of item in hand.
+    default: op
+  svb.set.name:
+    description: Set the name of item in hand.
     default: op
   svb.lookup.shadowstone:
     description: Look up amount of shadow stones in inventory.
     default: true
   svb.lookup.possibilities:
-      description: Look up possibilities of gamble items.
-      default: true
+    description: Look up possibilities of gamble items.
+    default: true
   svb.gamble.sword:
     description: Gamble on sword.
     default: true
@@ -74,15 +92,9 @@ permissions:
   svb.gamble.boots:
     description: Gamble on boots.
     default: true
-  svb.set.damage:
-    description: Set the damage of item in hand.
-    default: op
-  svb.set.health:
-    description: Set the health buff of item in hand.
-    default: op
-  svb.set.name:
-    description: Set the name of item in hand.
-    default: op
+  svb.bound:
+    description: Bound an item.
+    default: true
   svs.address:
     description: Get IP address of target player. 
     default: op

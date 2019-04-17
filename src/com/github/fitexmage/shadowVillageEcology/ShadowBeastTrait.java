@@ -14,8 +14,6 @@ public class ShadowBeastTrait extends Trait {
 
     @Override
     public void onDespawn() {
-        if (ShadowBeast.despawnReason == 1) {
-            Message.broadcastMessage("§0影§c消散了，但总感觉它仍注视着你......");
-        }
+        Message.broadcastMessage("§0影§c消散了，但总感觉它仍注视着你......");
     }
 }

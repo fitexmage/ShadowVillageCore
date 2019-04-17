@@ -30,19 +30,16 @@ public class SpawnerController {
     private static void countTime(ShadowVillageCore plugin) {
         recordedMinute = (new Date()).getMinutes();
 
-        Bukkit.getScheduler().runTaskTimer(plugin, new Runnable() {
-            @Override
-            public void run() {
-                if (svc.enable) {
-                    int currertMinute = (new Date()).getMinutes();
-                    if (recordedMinute != currertMinute) {
-                        recordedMinute = currertMinute;
-                        if (recordedMinute == 42 && ((int) (Math.random() * 3) == 0)) {
-                            if ((int) (Math.random() * 2) == 0) {
-                                shadowManSpawner.spawnShadowMan(false);
-                            } else {
-                                shadowBeastSpawner.spawnShadowBeast(false);
-                            }
+        Bukkit.getScheduler().runTaskTimer(plugin, () -> {
+            if (svc.enable) {
+                int currertMinute = (new Date()).getMinutes();
+                if (recordedMinute != currertMinute) {
+                    recordedMinute = currertMinute;
+                    if (recordedMinute == 42 && ((int) (Math.random() * 1.5) == 0)) {
+                        if ((int) (Math.random() * 2) == 0) {
+                            shadowManSpawner.spawnEntity(false);
+                        } else {
+                            shadowBeastSpawner.spawnEntity(false);
                         }
                     }
                 }

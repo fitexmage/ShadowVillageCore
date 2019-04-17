@@ -42,14 +42,14 @@ public class sve extends ShadowVillageCommand {
             switch (args[1]) {
                 case "shadowman":
                     if (player.hasPermission("sve.summon.shadowman")) {
-                        SpawnerController.shadowManSpawner.spawnShadowMan(true);
+                        SpawnerController.shadowManSpawner.spawnEntity(true);
                     } else {
                         Message.sendNoPermission(player);
                     }
                     break;
                 case "shadowbeast":
                     if (player.hasPermission("sve.summon.shadowbeast")) {
-                        SpawnerController.shadowBeastSpawner.spawnShadowBeast(true);
+                        SpawnerController.shadowBeastSpawner.spawnEntity(true);
                     } else {
                         Message.sendNoPermission(player);
                     }

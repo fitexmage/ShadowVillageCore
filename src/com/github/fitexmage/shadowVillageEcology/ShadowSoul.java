@@ -22,7 +22,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.LinkedList;
 import java.util.UUID;
 
-public class ShadowSoul extends CitizensNPC {
+public class ShadowSoul extends ShadowEntity {
     private static final int id = 10011;
     private static final String name = "影魂";
     public static int despawnReason = 0;

@@ -19,17 +19,11 @@ import org.bukkit.util.Vector;
 
 import java.util.*;
 
-public class ShadowMan extends ShadowEntity {
+public class ShadowMan extends ShadowLiving {
     private static final int id = 10001;
     private static final String name = "影者";
-    private final double health = 150.0;
 
-    private final int maxPrepareCountDown = (int) (1200 / ShadowManSpawner.interval); // 60秒
-    private final int maxTeleportCountDown = (int) (200 / ShadowManSpawner.interval); // 10秒
-
-    int count;
-    private int prepareCountDown;
-    private int teleportCountDown;
+    private double health = 200.0;
 
     private Player targetPlayer;
     private Location recordLocation;
@@ -49,16 +43,7 @@ public class ShadowMan extends ShadowEntity {
     }
 
     void spawn(boolean force) {
-        if (force) {
-            count = 5;
-            prepareCountDown = 5;
-        } else {
-            List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
-            count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
-            prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + 10;
-        }
-        teleportCountDown = 0;
-
+        prepare(force);
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 25, 0));
         getTrait(LookClose.class).lookClose(true);
         getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.SKULL_ITEM, 1, (short) 1));
@@ -77,15 +62,10 @@ public class ShadowMan extends ShadowEntity {
                 if (realOnlinePlayers.size() != 0) {
                     int random = (int) (Math.random() * realOnlinePlayers.size());
                     Player targetPlayer = realOnlinePlayers.get(random);
-//                    if (targetPlayer.getItemInHand().hasItemMeta() &&
-//                            targetPlayer.getItemInHand().getItemMeta().hasLore() &&
-//                            targetPlayer.getItemInHand().getItemMeta().getLore().get(0).equals("影无法靠近你。")) {
-//                        count--;
-//                    }
-                    if (targetPlayer.getLocation().distance(Bukkit.getWorld("world").getSpawnLocation()) <= 50) {
+                    if (targetPlayer.getLocation().distance(Bukkit.getWorld("world").getSpawnLocation()) <= 30) {
                         count--;
                     } else {
-                        teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + 3;
+                        teleportCountDown = (int) (Math.random() * maxTeleportCountDown) + basicTeleportCountDown;
                         teleport(targetPlayer);
                     }
                 } else {
@@ -104,7 +84,6 @@ public class ShadowMan extends ShadowEntity {
                 }
             }
         }
-
     }
 
     @Override
@@ -140,7 +119,7 @@ public class ShadowMan extends ShadowEntity {
 
     @Override
     public void dropItem() {
-        if ((int) (Math.random() * 3) == 0) {
+        if ((int) (Math.random() * 2) == 0) {
             ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 3) + 1);
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
         }

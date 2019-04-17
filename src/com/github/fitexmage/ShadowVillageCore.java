@@ -27,7 +27,7 @@ public class ShadowVillageCore extends JavaPlugin {
 
 
         //注册事件
-        ShadowListener shadowListener = new ShadowListener();
+        ShadowListener shadowListener = new ShadowListener(this);
         Bukkit.getPluginManager().registerEvents(shadowListener, this);
     }
 

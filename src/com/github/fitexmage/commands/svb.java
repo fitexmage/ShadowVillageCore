@@ -13,6 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Collections;
+
 public class svb extends ShadowVillageCommand {
 
     public svb() {
@@ -30,6 +32,9 @@ public class svb extends ShadowVillageCommand {
                     case "give":
                         give(player, args);
                         break;
+                    case "set":
+                        set(player, args);
+                        break;
                     case "lookup":
                         lookup(player, args);
                         break;
@@ -42,8 +47,8 @@ public class svb extends ShadowVillageCommand {
                     case "g":
                         gamble(player, args);
                         break;
-                    case "set":
-                        set(player, args);
+                    case "bound":
+                        bound(player, args);
                         break;
                     default:
                         Message.sendUnknown(player);
@@ -69,6 +74,7 @@ public class svb extends ShadowVillageCommand {
                             shadowStone = ShadowItem.getShadowStone(Tool.getNumber(args[2]));
                         }
                         player.getInventory().addItem(shadowStone);
+                        Message.sendMessage(player, "已获得影之石！");
                     } else {
                         Message.sendNoPermission(player);
                     }
@@ -76,6 +82,31 @@ public class svb extends ShadowVillageCommand {
                 case "shadowsoulbook":
                     if (player.hasPermission("svb.give.shadowsoulbook")) {
                         player.getInventory().addItem(ShadowItem.getShadowSoulBook());
+                        Message.sendMessage(player, "已获得影魂之书！");
+                    } else {
+                        Message.sendNoPermission(player);
+                    }
+                    break;
+                case "shadowspiritbook":
+                    if (player.hasPermission("svb.give.shadowspiritbook")) {
+                        player.getInventory().addItem(ShadowItem.getShadowSpiritBook());
+                        Message.sendMessage(player, "已获得影魄之书！");
+                    } else {
+                        Message.sendNoPermission(player);
+                    }
+                    break;
+                case "shadowlordbooktop":
+                    if (player.hasPermission("svb.give.shadowlordbooktop")) {
+                        player.getInventory().addItem(ShadowItem.getShadowLordBookTop());
+                        Message.sendMessage(player, "已获得影主之书（上）！");
+                    } else {
+                        Message.sendNoPermission(player);
+                    }
+                    break;
+                case "shadowlordbookbottom":
+                    if (player.hasPermission("svb.give.shadowlordbookbottom")) {
+                        player.getInventory().addItem(ShadowItem.getShadowLordBookBottom());
+                        Message.sendMessage(player, "已获得影主之书（下）！");
                     } else {
                         Message.sendNoPermission(player);
                     }
@@ -88,8 +119,76 @@ public class svb extends ShadowVillageCommand {
                         player.getInventory().addItem(ShadowItem.getServerEquipment(4, false));
                         player.getInventory().addItem(ShadowItem.getServerEquipment(5, false));
                         player.getInventory().addItem(ShadowItem.getServerEquipment(6, false));
+                        Message.sendMessage(player, "已获得腐竹套装！");
                     } else {
                         Message.sendNoPermission(player);
+                    }
+                    break;
+                default:
+                    Message.sendUnknown(player);
+                    break;
+            }
+        }
+    }
+
+    private void set(Player player, String[] args) {
+        if (args.length == 1) {
+            Message.sendMessage(player, "请输入想要设置的属性!");
+        } else {
+            switch (args[1]) {
+                case "damage":
+                    if (player.hasPermission("svb.set.damage")) {
+                        if (args.length != 2) {
+                            int damage = Tool.getNumber(args[2]);
+                            damage = damage > 999 ? 999 : damage;
+                            ItemStack itemInHand = player.getItemInHand();
+                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                                itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
+                                player.setItemInHand(itemInHand);
+                            } else {
+                                Message.sendMessage(player, "你的手上没有东西！");
+                            }
+                        } else {
+                            Message.sendMessage(player, "请输入伤害量！");
+                        }
+                    } else {
+                        Message.sendNoPermission(player);
+                    }
+                    break;
+                case "health":
+                    if (player.hasPermission("svb.set.health")) {
+                        if (args.length != 2) {
+                            int health = Tool.getNumber(args[2]);
+                            health = health > 100 ? 100 : health;
+                            ItemStack itemInHand = player.getItemInHand();
+                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                                itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.healthTag(health)});
+                                player.setItemInHand(itemInHand);
+                            } else {
+                                Message.sendMessage(player, "你的手上没有东西！");
+                            }
+                        } else {
+                            Message.sendMessage(player, "请输入生命值！");
+                        }
+                    }
+                    break;
+                case "name":
+                    if (player.hasPermission("svb.set.name")) {
+                        if (args.length != 2) {
+                            String name = args[2];
+                            name = name.replaceAll("&", "§");
+                            ItemStack itemInHand = player.getItemInHand();
+                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                                ItemMeta itemMeta = itemInHand.getItemMeta();
+                                itemMeta.setDisplayName(name);
+                                itemInHand.setItemMeta(itemMeta);
+                                player.setItemInHand(itemInHand);
+                            } else {
+                                Message.sendMessage(player, "你的手上没有东西！");
+                            }
+                        } else {
+                            Message.sendMessage(player, "请输入名字！");
+                        }
                     }
                     break;
                 default:
@@ -240,69 +339,13 @@ public class svb extends ShadowVillageCommand {
         }
     }
 
-    private void set(Player player, String[] args) {
-        if (args.length == 1) {
-            Message.sendMessage(player, "请输入想要设置的属性!");
-        } else {
-            switch (args[1]) {
-                case "damage":
-                    if (player.hasPermission("svb.set.damage")) {
-                        if (args.length != 2) {
-                            int damage = Tool.getNumber(args[2]);
-                            damage = damage > 999 ? 999 : damage;
-                            ItemStack itemInHand = player.getItemInHand();
-                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
-                                itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
-                                player.setItemInHand(itemInHand);
-                            } else {
-                                Message.sendMessage(player, "你的手上没有东西！");
-                            }
-                        } else {
-                            Message.sendMessage(player, "请输入伤害量！");
-                        }
-                    } else {
-                        Message.sendNoPermission(player);
-                    }
-                    break;
-                case "health":
-                    if (player.hasPermission("svb.set.health")) {
-                        if (args.length != 2) {
-                            int health = Tool.getNumber(args[2]);
-                            health = health > 100 ? 100 : health;
-                            ItemStack itemInHand = player.getItemInHand();
-                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
-                                itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.healthTag(health)});
-                                player.setItemInHand(itemInHand);
-                            } else {
-                                Message.sendMessage(player, "你的手上没有东西！");
-                            }
-                        } else {
-                            Message.sendMessage(player, "请输入生命值！");
-                        }
-                    }
-                    break;
-                case "name":
-                    if (player.hasPermission("svb.set.name")) {
-                        if (args.length != 2) {
-                            String name = args[2];
-                            name = name.replaceAll("&", "§");
-                            ItemStack itemInHand = player.getItemInHand();
-                            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
-                                ItemMeta itemMeta = itemInHand.getItemMeta();
-                                itemMeta.setDisplayName(name);
-                                itemInHand.setItemMeta(itemMeta);
-                                player.setItemInHand(itemInHand);
-                            } else {
-                                Message.sendMessage(player, "你的手上没有东西！");
-                            }
-                        } else {
-                            Message.sendMessage(player, "请输入名字！");
-                        }
-                    }
-                    break;
-                default:
-                    Message.sendUnknown(player);
-                    break;
+    private void bound(Player player, String[] args) {
+        if (player.hasPermission("svb.bound")) {
+            ItemStack itemInHand = player.getItemInHand();
+            if (itemInHand != null && itemInHand.getType() != Material.AIR) {
+                ItemMeta meta = itemInHand.getItemMeta();
+                meta.setLore(Collections.singletonList("灵魂绑定"));
+                itemInHand.setItemMeta(meta);
             }
         }
     }

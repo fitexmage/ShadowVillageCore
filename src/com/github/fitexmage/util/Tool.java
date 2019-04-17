@@ -38,6 +38,15 @@ public class Tool {
         return realOnlinePlayers;
     }
 
+    public static Player getPlayer(String name) {
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            if (player.getName().equals(name)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
     public static List<ItemStack> getPlayerItems(Player player) {
         List<ItemStack> playerItems = new ArrayList<>();
         for (ItemStack item : player.getInventory()) {
