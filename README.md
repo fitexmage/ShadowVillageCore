@@ -93,10 +93,34 @@ Shadow Village Black Market provides functions about items.
 * /svb give shadowsoulbook
 
   Give self a shadow soul book.
+  
+* /svb give shadowspiritbook
+
+  Give self a shadow spirit book.
+  
+* /svb give shadowlordbooktop
+
+  Give self the top version of shadow lord book.
+  
+* /svb give shadowlordbookbottom
+
+  Give self the bottom version of shadow lord book.
 
 * /svb give serverequipment
 
-  Give self all server equipment.
+  Give self all server equipments.
+  
+* /svb set damage [number]
+
+  Set the damage of item in hand.
+  
+* /svb set health [number]
+
+  Set the health buff of item in hand.
+  
+* /svb set name [name]
+
+  Set the name of item in hand.
 
 * /svb lookup shadowstone (/svb l shadowstone)
 
@@ -110,17 +134,9 @@ Shadow Village Black Market provides functions about items.
 
   Gamble on sword(1), bow(2), helmet(3), chestplate(4), leggings(5), boots(6). (use diamond as cost)
 
-* /svb set damage [number]
+* /svb bound
 
-  Set the damage of item in hand.
-  
-* /svb set health [number]
-
-  Set the health buff of item in hand.
-  
-* /svb set name [name]
-
-  Set the name of item in hand.
+  Bound an item to self.
   
 ### Shadow Village Support
 Shadow Village Support provides functions for supporting.
@@ -165,7 +181,19 @@ Shadow Village Support provides functions for supporting.
 
 * svb.give.shadowsoulbook -- OP
 
+* svb.give.shadowspiritbook -- OP
+
+* svb.give.shadowloardbooktop -- OP
+
+* svb.give.shadowloardbookbottom -- OP
+
 * svb.give.serverequipment -- OP
+
+* svb.set.damage -- OP
+
+* svb.set.health -- OP
+
+* svb.set.name -- OP
 
 * svb.lookup.shadowstone -- Everyone
 
@@ -183,11 +211,7 @@ Shadow Village Support provides functions for supporting.
 
 * svb.gamble.boots -- Everyone
 
-* svb.set.damage -- OP
-
-* svb.set.health -- OP
-
-* svb.set.name -- OP
+* svb.bound -- Everyone
 
 * svs.address -- OP
 
@@ -200,6 +224,10 @@ Shadow Village Support provides functions for supporting.
 ## Changelog
 
 ### 1.0.2
+
+* Fix bugs
+
+* Improve user experience
 
 * Add support system.
 
