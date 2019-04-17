@@ -1,5 +1,6 @@
 package com.github.fitexmage;
 
+import com.github.fitexmage.commands.svb;
 import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.shadowVillageEcology.*;
 import com.github.fitexmage.util.Message;
@@ -57,14 +58,7 @@ public class ShadowListener implements Listener {
         if (block.getType().equals(Material.WALL_SIGN)) {
             Sign sign = (Sign) block.getState();
             if (sign.getLine(0).equals("[灵魂绑定]")) {
-                if (item.getType() != Material.AIR) {
-                    ItemMeta meta = item.getItemMeta();
-                    meta.setLore(Collections.singletonList("灵魂绑定"));
-                    item.setItemMeta(meta);
-                    Message.sendMessage(player, "灵魂绑定成功！");
-                } else {
-                    Message.sendMessage(player, "请选择要绑定的物品！");
-                }
+                svb.bound(player);
             }
         }
     }

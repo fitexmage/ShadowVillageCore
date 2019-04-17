@@ -48,7 +48,7 @@ public class svb extends ShadowVillageCommand {
                         gamble(player, args);
                         break;
                     case "bound":
-                        bound(player, args);
+                        bound(player);
                         break;
                     default:
                         Message.sendUnknown(player);
@@ -339,13 +339,16 @@ public class svb extends ShadowVillageCommand {
         }
     }
 
-    private void bound(Player player, String[] args) {
+    public static void bound(Player player) {
         if (player.hasPermission("svb.bound")) {
             ItemStack itemInHand = player.getItemInHand();
             if (itemInHand != null && itemInHand.getType() != Material.AIR) {
                 ItemMeta meta = itemInHand.getItemMeta();
                 meta.setLore(Collections.singletonList("灵魂绑定"));
                 itemInHand.setItemMeta(meta);
+                Message.sendMessage(player, "灵魂绑定成功！");
+            } else {
+                Message.sendMessage(player, "请选择要绑定的物品！");
             }
         }
     }
