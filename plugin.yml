@@ -57,7 +57,7 @@ permissions:
     description: Give self the bottom version of shadow lord book.
     default: op
   svb.give.serverequipment:
-    description: Give self all server equipment.
+    description: Give self all server equipments.
     default: op
   svb.set.damage:
     description: Set the damage of item in hand.
@@ -93,7 +93,7 @@ permissions:
     description: Gamble on boots.
     default: true
   svb.bound:
-    description: Bound an item.
+    description: Bound an item to self.
     default: true
   svs.address:
     description: Get IP address of target player. 
