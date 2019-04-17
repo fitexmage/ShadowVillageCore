@@ -225,9 +225,9 @@ Shadow Village Support provides functions for supporting.
 
 ### 1.0.2
 
-* Fix bugs
+* Fix bugs.
 
-* Improve user experience
+* Improve user experience.
 
 * Add support system.
 
