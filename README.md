@@ -235,11 +235,9 @@ Shadow Village Support provides functions for supporting.
 
 * Fix tons of bugs.
 
-* Optimize the ecology system and black market system.
+* Improve user experience.
 
 * Add shadow soul.
-
-* Improve gamble system.
 
 ### 1.0.0
 
