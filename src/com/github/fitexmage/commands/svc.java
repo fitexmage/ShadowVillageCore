@@ -70,13 +70,15 @@ public class svc extends ShadowVillageCommand {
             bookMeta.setAuthor("Fitexmage");
             bookMeta.setTitle("影之乡核心百科");
 
-//            StringBuilder text101 = new StringBuilder();
-//            text101.append("      影之乡核心系统\n\n");
-//            text101.append("1. 获取插件运行情况：\n");
-//            text101.append("/svc\n\n");
-//            text101.append("2. 获取插件版本号：\n");
-//            text101.append("/svc version\n\n");
-//            bookMeta.addPage(text101.toString());
+            StringBuilder text101 = new StringBuilder();
+            text101.append("      影之乡核心系统\n\n");
+            text101.append("1. 获取插件运行情况：\n");
+            text101.append("/svc\n\n");
+            text101.append("2. 获取插件版本号：\n");
+            text101.append("/svc version\n\n");
+            text101.append("3. 获取影之乡核心百科：\n");
+            text101.append("/svc help\n\n");
+            bookMeta.addPage(text101.toString());
 
             StringBuilder text201 = new StringBuilder();
             text201.append("      影之乡生态系统\n\n");
@@ -92,24 +94,23 @@ public class svc extends ShadowVillageCommand {
 
             StringBuilder text301 = new StringBuilder();
             text301.append("      影之乡黑市系统\n\n");
-            text301.append("1. 剑抽奖：\n");
-            text301.append("/svb g 1 钻石数\n\n");
-            text301.append("2. 弓抽奖：\n");
-            text301.append("/svb g 2 钻石数\n\n");
-            text301.append("3. 头盔抽奖：\n");
-            text301.append("/svb g 3 钻石数\n\n");
-            text301.append("4. 胸甲抽奖：\n");
-            text301.append("/svb g 4 钻石数\n\n");
+            text301.append("1. 抽奖：\n");
+            text301.append("/svb g 编号 金钱数\n\n");
+            text301.append("2. 抽奖概率查询：\n");
+            text301.append("/svb l possibilities 编号 金钱数");
+            text301.append("3. 影之石数量查询：\n");
+            text301.append("/svb l shadowstone");
             bookMeta.addPage(text301.toString());
 
             StringBuilder text302 = new StringBuilder();
             text302.append("      影之乡黑市系统\n\n");
-            text302.append("5. 护腿抽奖：\n");
-            text302.append("/svb g 5 钻石数\n\n");
-            text302.append("6. 靴子抽奖：\n");
-            text302.append("/svb g 6 钻石数\n\n");
-            text302.append("7. 影之石数量查询：\n");
-            text302.append("/svb l shadowstone");
+            text302.append("编号：\n");
+            text302.append("1.剑\n");
+            text302.append("2.弓\n");
+            text302.append("3.头盔\n");
+            text302.append("4.胸甲\n");
+            text302.append("5.护腿\n");
+            text302.append("6.靴子\n");
             bookMeta.addPage(text302.toString());
 
 //            StringBuilder text303 = new StringBuilder();
