@@ -97,7 +97,7 @@ public class svc extends ShadowVillageCommand {
             text301.append("1. 抽奖：\n");
             text301.append("/svb g 编号 金钱数\n\n");
             text301.append("2. 抽奖概率查询：\n");
-            text301.append("/svb l possibilities 编号 金钱数");
+            text301.append("/svb l possibilities 编号 金钱数\n\n");
             text301.append("3. 影之石数量查询：\n");
             text301.append("/svb l shadowstone");
             bookMeta.addPage(text301.toString());
@@ -105,12 +105,12 @@ public class svc extends ShadowVillageCommand {
             StringBuilder text302 = new StringBuilder();
             text302.append("      影之乡黑市系统\n\n");
             text302.append("编号：\n");
-            text302.append("1.剑\n");
-            text302.append("2.弓\n");
-            text302.append("3.头盔\n");
-            text302.append("4.胸甲\n");
-            text302.append("5.护腿\n");
-            text302.append("6.靴子\n");
+            text302.append("1. 剑\n");
+            text302.append("2. 弓\n");
+            text302.append("3. 头盔\n");
+            text302.append("4. 胸甲\n");
+            text302.append("5. 护腿\n");
+            text302.append("6. 靴子\n");
             bookMeta.addPage(text302.toString());
 
 //            StringBuilder text303 = new StringBuilder();
@@ -132,6 +132,7 @@ public class svc extends ShadowVillageCommand {
 
             helperBook.setItemMeta(bookMeta);
             player.getInventory().addItem(helperBook);
+            Message.sendMessage(player, "已获得《影之乡核心百科》！");
         }
     }
 
