@@ -1,6 +1,7 @@
 package com.github.fitexmage;
 
 import com.github.fitexmage.commands.*;
+import com.github.fitexmage.util.EconomyUtil;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,10 +30,15 @@ public class ShadowVillageCore extends JavaPlugin {
         //注册事件
         ShadowListener shadowListener = new ShadowListener(this);
         Bukkit.getPluginManager().registerEvents(shadowListener, this);
+
+        //获取Vault插件
+        EconomyUtil.setupEconomy();
     }
 
     @Override
     public void onDisable() {
 
     }
+
+
 }

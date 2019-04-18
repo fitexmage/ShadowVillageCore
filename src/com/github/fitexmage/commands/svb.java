@@ -2,6 +2,7 @@ package com.github.fitexmage.commands;
 
 import com.github.fitexmage.shadowVillageBlackMarket.GambleSystem;
 import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
+import com.github.fitexmage.util.EconomyUtil;
 import com.github.fitexmage.util.Message;
 
 import com.github.fitexmage.util.NBTUtil;
@@ -16,9 +17,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Collections;
 
 public class svb extends ShadowVillageCommand {
+    private GambleSystem gambleSystem;
 
     public svb() {
         name = "影之乡黑市系统";
+        gambleSystem = new GambleSystem();
     }
 
     @Override
@@ -264,14 +267,13 @@ public class svb extends ShadowVillageCommand {
         if (args.length == 1) {
             Message.sendMessage(player, "请输入想要得到的物品！");
         } else {
-            GambleSystem gambleSystem = new GambleSystem();
             switch (args[1]) {
                 case "1":
                     if (player.hasPermission("svb.gamble.sword")) {
                         if (args.length == 2) {
-                            gambleSystem.gambleItem(player, 1, "diamond", 1);
+                            gambleSystem.gambleItem(player, 1, "money", 1);
                         } else {
-                            gambleSystem.gambleItem(player, 1, "diamond", Tool.getNumber(args[2]));
+                            gambleSystem.gambleItem(player, 1, "money", Tool.getNumber(args[2]));
                         }
                     } else {
                         Message.sendNoPermission(player);
@@ -280,9 +282,9 @@ public class svb extends ShadowVillageCommand {
                 case "2":
                     if (player.hasPermission("svb.gamble.bow")) {
                         if (args.length == 2) {
-                            gambleSystem.gambleItem(player, 2, "diamond", 1);
+                            gambleSystem.gambleItem(player, 2, "money", 1);
                         } else {
-                            gambleSystem.gambleItem(player, 2, "diamond", Tool.getNumber(args[2]));
+                            gambleSystem.gambleItem(player, 2, "money", Tool.getNumber(args[2]));
                         }
                     } else {
                         Message.sendNoPermission(player);
@@ -291,9 +293,9 @@ public class svb extends ShadowVillageCommand {
                 case "3":
                     if (player.hasPermission("svb.gamble.helmet")) {
                         if (args.length == 2) {
-                            gambleSystem.gambleItem(player, 3, "diamond", 1);
+                            gambleSystem.gambleItem(player, 3, "money", 1);
                         } else {
-                            gambleSystem.gambleItem(player, 3, "diamond", Tool.getNumber(args[2]));
+                            gambleSystem.gambleItem(player, 3, "money", Tool.getNumber(args[2]));
                         }
                     } else {
                         Message.sendNoPermission(player);
@@ -302,9 +304,9 @@ public class svb extends ShadowVillageCommand {
                 case "4":
                     if (player.hasPermission("svb.gamble.chestplate")) {
                         if (args.length == 2) {
-                            gambleSystem.gambleItem(player, 4, "diamond", 1);
+                            gambleSystem.gambleItem(player, 4, "money", 1);
                         } else {
-                            gambleSystem.gambleItem(player, 4, "diamond", Tool.getNumber(args[2]));
+                            gambleSystem.gambleItem(player, 4, "money", Tool.getNumber(args[2]));
                         }
                     } else {
                         Message.sendNoPermission(player);
@@ -313,9 +315,9 @@ public class svb extends ShadowVillageCommand {
                 case "5":
                     if (player.hasPermission("svb.gamble.leggings")) {
                         if (args.length == 2) {
-                            gambleSystem.gambleItem(player, 5, "diamond", 1);
+                            gambleSystem.gambleItem(player, 5, "money", 1);
                         } else {
-                            gambleSystem.gambleItem(player, 5, "diamond", Tool.getNumber(args[2]));
+                            gambleSystem.gambleItem(player, 5, "money", Tool.getNumber(args[2]));
                         }
                     } else {
                         Message.sendNoPermission(player);
@@ -324,9 +326,9 @@ public class svb extends ShadowVillageCommand {
                 case "6":
                     if (player.hasPermission("svb.gamble.boots")) {
                         if (args.length == 2) {
-                            gambleSystem.gambleItem(player, 6, "diamond", 1);
+                            gambleSystem.gambleItem(player, 6, "money", 1);
                         } else {
-                            gambleSystem.gambleItem(player, 6, "diamond", Tool.getNumber(args[2]));
+                            gambleSystem.gambleItem(player, 6, "money", Tool.getNumber(args[2]));
                         }
                     } else {
                         Message.sendNoPermission(player);
@@ -343,10 +345,15 @@ public class svb extends ShadowVillageCommand {
         if (player.hasPermission("svb.bound")) {
             ItemStack itemInHand = player.getItemInHand();
             if (itemInHand != null && itemInHand.getType() != Material.AIR) {
-                ItemMeta meta = itemInHand.getItemMeta();
-                meta.setLore(Collections.singletonList("灵魂绑定"));
-                itemInHand.setItemMeta(meta);
-                Message.sendMessage(player, "灵魂绑定成功！");
+                if (ShadowItem.isBounded(itemInHand)) {
+                    Message.sendMessage(player, "物品已经被灵魂绑定了！");
+                } else {
+                    ItemMeta meta = itemInHand.getItemMeta();
+                    meta.setLore(Collections.singletonList("灵魂绑定"));
+                    itemInHand.setItemMeta(meta);
+                    EconomyUtil.economy.withdrawPlayer(player, 10);
+                    Message.sendMessage(player, "灵魂绑定成功！花费了10金币！");
+                }
             } else {
                 Message.sendMessage(player, "请选择要绑定的物品！");
             }

@@ -1,5 +1,6 @@
 package com.github.fitexmage.shadowVillageBlackMarket;
 
+import com.github.fitexmage.util.EconomyUtil;
 import com.github.fitexmage.util.NBTUtil;
 import com.github.fitexmage.util.Message;
 import com.github.fitexmage.util.Tool;
@@ -14,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class GambleSystem {
 
     public void gambleItem(Player player, int gambleType, String costType, int cost) {
-        if (cost > 0) {
+        if (cost >= 10) {
             if (costType.equals("diamond")) {
                 int diamondCount = 0;
                 int diamondBlockCount = 0;
@@ -30,14 +31,24 @@ public class GambleSystem {
                     GambleItemInfo[] gambleItemInfos = GambleItemInfo.getGambleItemInfos(gambleType);
                     int[] weights = getWeights(gambleItemInfos, cost); //根据钻石数决定品质的权重
                     ItemStack gambleItem = getGambleItem(gambleItemInfos, weights, gambleType); //根据权重选取物品
-                    exchangeDiamond(player, cost, diamondBlockCount, gambleItem); //给予玩家物品
+                    tradeWithDiamond(player, cost, diamondBlockCount, gambleItem); //给予玩家物品
                     Message.sendMessage(player, "恭喜你！抽到了好东西！");
                 } else {
                     Message.sendMessage(player, "你没有这么多钻石！");
                 }
+            } else if (costType.equals("money")) {
+                if (EconomyUtil.economy.getBalance(player) >= cost) {
+                    GambleItemInfo[] gambleItemInfos = GambleItemInfo.getGambleItemInfos(gambleType);
+                    int[] weights = getWeights(gambleItemInfos, cost);
+                    ItemStack gambleItem = getGambleItem(gambleItemInfos, weights, gambleType);
+                    tradeWithMoney(player, cost, gambleItem);
+                    Message.sendMessage(player, "恭喜你！抽到了好东西！");
+                } else {
+                    Message.sendMessage(player, "你没有这么多钱！");
+                }
             }
         } else {
-            Message.sendMessage(player, "数量必须为正数！");
+            Message.sendMessage(player, "你至少需要花费10金币！");
         }
     }
 
@@ -49,7 +60,7 @@ public class GambleSystem {
             sum += weight;
         }
         StringBuilder possibilities = new StringBuilder("");
-        possibilities.append("花费" + cost + "钻石所获得的装备概率一览：\n");
+        possibilities.append("花费" + cost + "游戏币所获得的装备概率一览：\n");
         for (int i = 0; i < gambleItemInfos.length; i++) {
             possibilities.append(gambleItemInfos[i].getItemName() + ": " + ((float) weights[i] / sum) * 100 + "%\n");
         }
@@ -123,8 +134,7 @@ public class GambleSystem {
         String displayName = "";
         ItemMeta meta = gambleItem.getItemMeta();
         for (GambleEnchantInfo gambleEnchantInfo : gambleEnchantInfos) {
-            int randomChoice = (int) (Math.random() * 8);
-            if (randomChoice == 0) {
+            if ((int) (Math.random() * 6) == 0) {
                 int randomLevel = (int) (Math.random() * gambleEnchantInfo.getMaxLevel()) + 1;
                 meta.addEnchant(gambleEnchantInfo.getEnchantment(), randomLevel, true);
                 displayName += gambleEnchantInfo.getName();
@@ -152,7 +162,7 @@ public class GambleSystem {
         return gambleArmor;
     }
 
-    private void exchangeDiamond(Player player, int cost, int diamondBlockCount, ItemStack gambleSword) {
+    private void tradeWithDiamond(Player player, int cost, int diamondBlockCount, ItemStack gambleItem) {
         Inventory inventory = player.getInventory();
         if (cost <= diamondBlockCount * 9) {
             inventory.removeItem(new ItemStack(Material.DIAMOND_BLOCK, cost / 9));
@@ -163,6 +173,12 @@ public class GambleSystem {
         } else {
             inventory.removeItem(new ItemStack(Material.DIAMOND, cost));
         }
-        inventory.addItem(gambleSword);
+        inventory.addItem(gambleItem);
+    }
+
+    private void tradeWithMoney(Player player, int cost, ItemStack gambleItem) {
+        EconomyUtil.economy.withdrawPlayer(player, cost);
+        Inventory inventory = player.getInventory();
+        inventory.addItem(gambleItem);
     }
 }

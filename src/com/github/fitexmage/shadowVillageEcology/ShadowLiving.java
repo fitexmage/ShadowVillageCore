@@ -1,5 +1,6 @@
 package com.github.fitexmage.shadowVillageEcology;
 
+import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.util.Message;
 import com.github.fitexmage.util.Tool;
 
@@ -77,7 +78,7 @@ public abstract class ShadowLiving extends ShadowEntity {
                 List<ItemStack> targetPlayerItems = Tool.getPlayerItems(player);
                 if (targetPlayerItems.size() != 0) {
                     ItemStack removedItem = targetPlayerItems.get((int) (Math.random() * targetPlayerItems.size()));
-                    if (removedItem.getItemMeta().getLore().get(0).equals("灵魂绑定")) {
+                    if (ShadowItem.isBounded(removedItem)) {
                         Message.broadcastMessage(name + "想要夺取物品，但是失手了！");
                     }else{
                         int removedAmount = (int) (Math.random() * removedItem.getAmount()) + 1;

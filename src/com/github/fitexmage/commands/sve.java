@@ -10,8 +10,8 @@ import org.bukkit.entity.Player;
 public class sve extends ShadowVillageCommand {
 
     public sve(ShadowVillageCore plugin) {
-        SpawnerController.startSpawner(plugin);
         name = "影之乡生态系统";
+        SpawnerController.startSpawner(plugin);
     }
 
     @Override

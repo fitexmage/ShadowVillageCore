@@ -101,6 +101,15 @@ public class ShadowItem {
         return false;
     }
 
+    public static boolean isBounded(ItemStack item) {
+        if (item != null && !item.getType().equals(Material.AIR)) {
+            if (item.hasItemMeta() && item.getItemMeta().getLore().get(0).equals("灵魂绑定")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static ItemStack getServerEquipment(int type, boolean random) {
         GambleItemInfo gambleItemInfo = GambleItemInfo.getServerEquipmentInfo(type);
         GambleEnchantInfo[] gambleEnchantInfos = GambleEnchantInfo.getGambleEnchants(type);

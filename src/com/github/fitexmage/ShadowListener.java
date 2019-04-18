@@ -20,11 +20,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import java.util.Collections;
 
 public class ShadowListener implements Listener {
     private final ShadowVillageCore plugin;
@@ -41,7 +38,7 @@ public class ShadowListener implements Listener {
         Tool.showPlayerList();
     }
 
-    @EventHandler()
+    @EventHandler
     public void onPlayerInteraction(PlayerInteractEvent event) {
         if (event.getAction().equals(Action.LEFT_CLICK_BLOCK) && event.hasItem() && event.hasBlock()) {
             leftClick(event);
