@@ -31,7 +31,7 @@ public class svc extends ShadowVillageCommand {
             if (args.length == 0) {
                 Message.sendMessage(player, name + "已启动！");
             } else {
-                switch (args[0]) {
+                switch (args[0].toLowerCase()) {
                     case "version":
                         getVersion(player);
                     case "help":
@@ -95,9 +95,9 @@ public class svc extends ShadowVillageCommand {
             StringBuilder text301 = new StringBuilder();
             text301.append("      影之乡黑市系统\n\n");
             text301.append("1. 抽奖：\n");
-            text301.append("/svb g 编号 金钱数\n\n");
+            text301.append("/svb g 编号 金钱\n\n");
             text301.append("2. 抽奖概率查询：\n");
-            text301.append("/svb l possibilities 编号 金钱数\n\n");
+            text301.append("/svb l possibilities 编号 金钱\n\n");
             text301.append("3. 影之石数量查询：\n");
             text301.append("/svb l shadowstone");
             bookMeta.addPage(text301.toString());

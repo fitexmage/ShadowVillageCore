@@ -31,7 +31,7 @@ public class svb extends ShadowVillageCommand {
             if (args.length == 0) {
                 Message.sendMessage(player, "这里是" + name + "！");
             } else {
-                switch (args[0]) {
+                switch (args[0].toLowerCase()) {
                     case "give":
                         give(player, args);
                         break;
@@ -349,7 +349,11 @@ public class svb extends ShadowVillageCommand {
                     Message.sendMessage(player, "物品已经被灵魂绑定了！");
                 } else {
                     ItemMeta meta = itemInHand.getItemMeta();
-                    meta.setLore(Collections.singletonList("灵魂绑定"));
+                    if(meta.hasLore()){
+                        meta.getLore().add("灵魂绑定");
+                    }else{
+                        meta.setLore(Collections.singletonList("灵魂绑定"));
+                    }
                     itemInHand.setItemMeta(meta);
                     EconomyUtil.economy.withdrawPlayer(player, 10);
                     Message.sendMessage(player, "灵魂绑定成功！花费了10金币！");

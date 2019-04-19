@@ -24,7 +24,7 @@ public class svs extends ShadowVillageCommand {
             if (args.length == 0) {
                 Message.sendMessage(player, "这里是" + name + "！");
             } else {
-                switch (args[0]) {
+                switch (args[0].toLowerCase()) {
                     case "address":
                         getAddress(player, args);
                         break;

@@ -21,7 +21,7 @@ public class sve extends ShadowVillageCommand {
             if (args.length == 0) {
                 Message.sendMessage(player, "这里是" + name + "！");
             } else {
-                switch (args[0]) {
+                switch (args[0].toLowerCase()) {
                     case "summon":
                         summon(player, args);
                         break;

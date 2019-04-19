@@ -103,7 +103,7 @@ public class ShadowItem {
 
     public static boolean isBounded(ItemStack item) {
         if (item != null && !item.getType().equals(Material.AIR)) {
-            if (item.hasItemMeta() && item.getItemMeta().hasLore() && item.getItemMeta().getLore().get(0).equals("灵魂绑定")) {
+            if (item.hasItemMeta() && item.getItemMeta().hasLore() && item.getItemMeta().getLore().contains("灵魂绑定")) {
                 return true;
             }
         }
