@@ -261,7 +261,7 @@ public class ShadowSoul extends ShadowEntity {
     }
 
     public void dropItem() {
-        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 5) + 1);
+        ItemStack dropItem1 = new ItemStack(Material.DIAMOND_BLOCK, (int) (Math.random() * 11) + 5);
         getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem1);
 
         if ((int) (Math.random() * 5) == 0) {

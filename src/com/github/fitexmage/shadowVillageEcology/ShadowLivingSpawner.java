@@ -23,6 +23,7 @@ public abstract class ShadowLivingSpawner {
         if (!shadowLiving.isSpawned()) {
             shadowLiving.spawn(force);
             Message.broadcastMessage("§0" + shadowLiving.getFullName() + "§c即将降临。");
+            Message.violetBroadcastMessage("影会攻击随机玩家并可能偷走东西，请快前往主城或异世界躲避！");
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             taskID = scheduler.scheduleSyncRepeatingTask(plugin, () -> {
