@@ -98,12 +98,7 @@ public class GambleSystem {
         for (int i = 0; i < gambleItemInfos.length; i++) {
             if (randomType < weights[i]) {
                 GambleItemInfo gambleItemInfo = gambleItemInfos[i];
-                if (gambleItemInfo.getId() == 19999 ||
-                        gambleItemInfo.getId() == 29999 ||
-                        gambleItemInfo.getId() == 39999 ||
-                        gambleItemInfo.getId() == 49999 ||
-                        gambleItemInfo.getId() == 59999 ||
-                        gambleItemInfo.getId() == 69999) {
+                if (gambleItemInfo.getData() == 99) {
                     gambleItem = ShadowItem.getServerEquipment(type, true);
                     Message.broadcastMessage("腐竹的力量重现于世！");
                 } else {
