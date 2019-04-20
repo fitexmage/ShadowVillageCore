@@ -5,6 +5,7 @@ import com.github.fitexmage.util.Message;
 import com.github.fitexmage.util.Tool;
 
 import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.trait.trait.Equipment;
 import net.citizensnpcs.npc.CitizensNPC;
 import net.citizensnpcs.npc.EntityControllers;
 import org.bukkit.GameMode;
@@ -25,9 +26,9 @@ import java.util.UUID;
 public class ShadowSoul extends ShadowEntity {
     private static final int id = 10011;
     private static final String name = "影魂";
-    public static int despawnReason = 0;
+    private static int despawnReason = 0;
 
-    private final double health = 10000.0;
+    private final double health = 3000.0;
     private final float speed = 1.1f;
     private final double range = 10.0;
 
@@ -38,7 +39,7 @@ public class ShadowSoul extends ShadowEntity {
     private int minHeight; //最小安全高度
 
     ShadowSoul() {
-        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.CHICKEN), CitizensAPI.getNPCRegistry());
+        super(UUID.randomUUID(), id, name, EntityControllers.createForType(EntityType.ZOMBIE), CitizensAPI.getNPCRegistry());
 
         totalCount = 0;
         stageCountDown = 0;
@@ -48,6 +49,14 @@ public class ShadowSoul extends ShadowEntity {
 
         ShadowSoulTrait shadowSoulTrait = new ShadowSoulTrait("shadowSoulTrait");
         addTrait(shadowSoulTrait);
+    }
+
+    public static int getDespawnReason() {
+        return despawnReason;
+    }
+
+    public static void setDespawnReason(int despawnReason) {
+        ShadowSoul.despawnReason = despawnReason;
     }
 
     void spawn(Player player, Location blockLocation) {
@@ -60,6 +69,11 @@ public class ShadowSoul extends ShadowEntity {
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
+        getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.DIAMOND_HELMET, 1));
+        getTrait(Equipment.class).set(Equipment.EquipmentSlot.CHESTPLATE, new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+        getTrait(Equipment.class).set(Equipment.EquipmentSlot.LEGGINGS, new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+        getTrait(Equipment.class).set(Equipment.EquipmentSlot.BOOTS, new ItemStack(Material.DIAMOND_BOOTS, 1));
+        getTrait(Equipment.class).set(Equipment.EquipmentSlot.HAND, new ItemStack(Material.DIAMOND_SWORD, 1));
         getNavigator().getLocalParameters().speedModifier(speed);
         getNavigator().setTarget(getNearestPlayer(), true);
         Message.entitySendMessage(name, player, "为了埃索泰尔！");

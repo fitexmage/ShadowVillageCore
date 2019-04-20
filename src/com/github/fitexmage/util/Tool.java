@@ -21,13 +21,23 @@ public class Tool {
     public static HashSet<String> fakeSet = new HashSet<>();
 
     public static int getNumber(String number) {
-        if(number.length() < 10){
+        if (number.length() < 10) {
             Pattern pattern = Pattern.compile("[0-9]*");
             if (pattern.matcher(number).matches()) {
                 return Integer.parseInt(number);
             }
         }
         return 1;
+    }
+
+    public static List<Player> getRealPlayers() {
+        List<Player> realOnlinePlayers = new ArrayList<>();
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+            if (!player.hasMetadata("NPC")) {
+                realOnlinePlayers.add(player);
+            }
+        }
+        return realOnlinePlayers;
     }
 
     public static List<Player> getRealPlayers(World world) {

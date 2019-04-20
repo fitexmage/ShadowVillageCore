@@ -14,7 +14,7 @@ public class ShadowSoulTrait extends Trait {
 
     @Override
     public void onDespawn() {
-        if (ShadowSoul.despawnReason == 1) {
+        if (ShadowSoul.getDespawnReason() == 1) {
             Message.broadcastMessage("§0影§c消散了！勇士，你成功的证明了自己！");
         } else {
             Message.broadcastMessage("§0影§c消散了......");

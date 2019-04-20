@@ -7,7 +7,7 @@ public class ShadowBeastSpawner extends ShadowLivingSpawner {
         super(plugin);
     }
 
-    ShadowLiving newEntity() {
+    ShadowLiving newLiving() {
         return new ShadowBeast();
     }
 }

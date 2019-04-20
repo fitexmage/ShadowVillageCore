@@ -29,6 +29,9 @@ permissions:
   svc.empower:
     description: Empower to control the core. 
     default: op
+  svc.violet:
+    description: About Violet. 
+    default: op
   svc.debug:
     description: Turn on or off debug mod.
     default: op

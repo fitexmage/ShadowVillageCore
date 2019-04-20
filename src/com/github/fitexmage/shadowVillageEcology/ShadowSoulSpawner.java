@@ -6,15 +6,10 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
-public class ShadowSoulSpawner {
-    private final ShadowVillageCore plugin;
+public class ShadowSoulSpawner extends ShadowEntitySpawner{
     private ShadowSoul shadowSoul;
-
-    static final long interval = 20L; // 20L = 1s
-    private int taskID = -1;
-
     ShadowSoulSpawner(ShadowVillageCore plugin) {
-        this.plugin = plugin;
+        super(plugin);
         shadowSoul = new ShadowSoul();
     }
 
@@ -24,15 +19,12 @@ public class ShadowSoulSpawner {
             shadowSoul.spawn(player, blockLocation);
 
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
-            taskID = scheduler.scheduleSyncRepeatingTask(plugin, new Runnable() {
-                @Override
-                public void run() {
-                    if (shadowSoul.isSpawned()) {
-                        shadowSoul.action();
-                    } else {
-                        shadowSoul.despawn();
-                        scheduler.cancelTask(taskID);
-                    }
+            taskID = scheduler.scheduleSyncRepeatingTask(plugin, () -> {
+                if (shadowSoul.isSpawned()) {
+                    shadowSoul.action();
+                } else {
+                    shadowSoul.despawn();
+                    scheduler.cancelTask(taskID);
                 }
             }, 0L, interval);
         }

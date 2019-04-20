@@ -5,19 +5,14 @@ import com.github.fitexmage.util.Message;
 
 import org.bukkit.scheduler.BukkitScheduler;
 
-public abstract class ShadowLivingSpawner {
-    private final ShadowVillageCore plugin;
+public abstract class ShadowLivingSpawner extends ShadowEntitySpawner{
     private ShadowLiving shadowLiving;
-    static final long interval = 20L; // 20L = 1s
-
-    private int taskID = -1;
-
     ShadowLivingSpawner(ShadowVillageCore plugin) {
-        this.plugin = plugin;
-        shadowLiving = newEntity();
+        super(plugin);
+        shadowLiving = newLiving();
     }
 
-    abstract ShadowLiving newEntity();
+    abstract ShadowLiving newLiving();
 
     public void spawnEntity(boolean force) {
         if (!shadowLiving.isSpawned()) {

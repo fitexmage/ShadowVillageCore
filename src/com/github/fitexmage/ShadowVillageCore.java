@@ -39,6 +39,4 @@ public class ShadowVillageCore extends JavaPlugin {
     public void onDisable() {
 
     }
-
-
 }

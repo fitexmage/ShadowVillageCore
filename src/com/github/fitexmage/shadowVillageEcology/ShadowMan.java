@@ -45,11 +45,11 @@ public class ShadowMan extends ShadowLiving {
     void spawn(boolean force) {
         prepare(force);
         spawn(Bukkit.getWorld("world").getSpawnLocation().add(0, 25, 0));
-        getTrait(LookClose.class).lookClose(true);
-        getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.SKULL_ITEM, 1, (short) 1));
         setProtected(false);
         getBukkitEntity().setMaxHealth(health);
         getBukkitEntity().setHealth(health);
+        getTrait(LookClose.class).lookClose(true);
+        getTrait(Equipment.class).set(Equipment.EquipmentSlot.HELMET, new ItemStack(Material.SKULL_ITEM, 1, (short) 1));
     }
 
     @Override

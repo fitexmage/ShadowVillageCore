@@ -1,7 +1,8 @@
 package com.github.fitexmage.shadowVillageEcology;
 
 import com.github.fitexmage.ShadowVillageCore;
-import com.github.fitexmage.commands.svc;
+import com.github.fitexmage.Violet;
+import com.github.fitexmage.VioletSpawner;
 import org.bukkit.Bukkit;
 
 import java.util.Date;
@@ -24,23 +25,20 @@ public class SpawnerController {
         if (shadowSoulSpawner == null) {
             shadowSoulSpawner = new ShadowSoulSpawner(plugin);
         }
-        countTime(plugin);
     }
 
-    private static void countTime(ShadowVillageCore plugin) {
+    public static void startTimer(ShadowVillageCore plugin) {
         recordedMinute = (new Date()).getMinutes();
 
         Bukkit.getScheduler().runTaskTimer(plugin, () -> {
-            if (svc.enable) {
-                int currertMinute = (new Date()).getMinutes();
-                if (recordedMinute != currertMinute) {
-                    recordedMinute = currertMinute;
-                    if (recordedMinute == 42 && ((int) (Math.random() * 1.5) == 0)) {
-                        if ((int) (Math.random() * 2) == 0) {
-                            shadowManSpawner.spawnEntity(false);
-                        } else {
-                            shadowBeastSpawner.spawnEntity(false);
-                        }
+            int currertMinute = (new Date()).getMinutes();
+            if (recordedMinute != currertMinute) {
+                recordedMinute = currertMinute;
+                if (recordedMinute == 42 && ((int) (Math.random() * 2) == 0)) {
+                    if ((int) (Math.random() * 2) == 0) {
+                        shadowManSpawner.spawnEntity(false);
+                    } else {
+                        shadowBeastSpawner.spawnEntity(false);
                     }
                 }
             }

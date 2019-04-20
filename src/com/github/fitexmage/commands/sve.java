@@ -12,6 +12,7 @@ public class sve extends ShadowVillageCommand {
     public sve(ShadowVillageCore plugin) {
         name = "影之乡生态系统";
         SpawnerController.startSpawner(plugin);
+        SpawnerController.startTimer(plugin);
     }
 
     @Override

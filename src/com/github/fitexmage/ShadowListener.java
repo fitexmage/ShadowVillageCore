@@ -103,17 +103,26 @@ public class ShadowListener implements Listener {
         NPC npc = event.getNPC();
         if (!npc.isProtected()) {
             if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
-                if (npc instanceof ShadowMan) {
-                    ((ShadowMan) npc).dropItem();
-                } else if (npc instanceof ShadowBeast) {
-                    ((ShadowBeast) npc).dropItem();
-                } else if (npc instanceof ShadowSoul) {
-                    ((ShadowSoul) npc).dropItem();
-                    ShadowSoul.despawnReason = 1;
+                if (npc instanceof Violet) {
+                    ((Violet) npc).reborn();
+                } else {
+                    if (npc instanceof ShadowMan) {
+                        ((ShadowMan) npc).dropItem();
+                    } else if (npc instanceof ShadowBeast) {
+                        ((ShadowBeast) npc).dropItem();
+                    } else if (npc instanceof ShadowSoul) {
+                        ((ShadowSoul) npc).dropItem();
+                        ShadowSoul.setDespawnReason(1);
+                    }
+                    npc.despawn();
                 }
-                npc.despawn();
             }
         }
+    }
+
+    @EventHandler
+    public void onNPCDeath(NPCDeathEvent event){
+
     }
 
     @EventHandler
