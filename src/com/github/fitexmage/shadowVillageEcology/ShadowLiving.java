@@ -35,7 +35,7 @@ public abstract class ShadowLiving extends ShadowEntity {
             count = 5;
             prepareCountDown = 5;
         } else {
-            List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
+            List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"), null);
             count = (int) (Math.random() * realOnlinePlayers.size()) + 1;
             prepareCountDown = (int) (Math.random() * maxPrepareCountDown) + basicPrepareCountDown;
         }

@@ -18,6 +18,9 @@ commands:
   svs:
     description: Shadow village support system.
     usage: ???
+  zs:
+    description: Violet.
+    usage: ???
 
 permissions:
   svc.version:
@@ -28,9 +31,6 @@ permissions:
     default: true
   svc.empower:
     description: Empower to control the core. 
-    default: op
-  svc.violet:
-    description: About Violet. 
     default: op
   svc.debug:
     description: Turn on or off debug mod.
@@ -110,3 +110,15 @@ permissions:
   svs.synchat:
     description: Begin or stop to receive message from group chat. 
     default: true
+  zs.spawn:
+    description: Spawn Violet.
+    default: op
+  zs.despawn:
+    description: Despawn Violet.
+    default: op
+  zs.tp:
+    description: Teleport to Violet.
+    default: op
+  zs.tphere:
+    description: Teleport Violet to self.
+    default: op

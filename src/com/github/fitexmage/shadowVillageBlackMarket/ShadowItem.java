@@ -68,7 +68,7 @@ public class ShadowItem {
     public static ItemStack getShadowLordBookTop() {
         ItemStack shadowLordBook = new ItemStack(Material.BOOK, 1);
         ItemMeta itemMeta = shadowLordBook.getItemMeta();
-        itemMeta.setDisplayName("§0影主之书（上）");
+        itemMeta.setDisplayName("§0影主之书(上)");
         itemMeta.setLore(Collections.singletonList("驾影之锋芒，驭影之寒霜。"));
         shadowLordBook.setItemMeta(itemMeta);
         return shadowLordBook;
@@ -86,7 +86,7 @@ public class ShadowItem {
     public static ItemStack getShadowLordBookBottom() {
         ItemStack shadowLordBook = new ItemStack(Material.BOOK, 1);
         ItemMeta itemMeta = shadowLordBook.getItemMeta();
-        itemMeta.setDisplayName("§0影主之书（下）");
+        itemMeta.setDisplayName("§0影主之书(下)");
         itemMeta.setLore(Collections.singletonList("主影之河山，宰影之天下"));
         shadowLordBook.setItemMeta(itemMeta);
         return shadowLordBook;

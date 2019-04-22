@@ -61,7 +61,7 @@ public class ShadowBeast extends ShadowLiving {
             prepareCountDown--;
         } else {
             if (teleportCountDown == 0) {
-                List<Player> realOnlinePlayers = Tool.getRealPlayers(Bukkit.getWorld("world"));
+                List<Player> realOnlinePlayers = Tool.getRealPlayers(getBukkitEntity().getWorld(), null);
                 if (realOnlinePlayers.size() != 0) {
                     int random = (int) (Math.random() * realOnlinePlayers.size());
                     Player targetPlayer = realOnlinePlayers.get(random);

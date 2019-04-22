@@ -1,6 +1,11 @@
 package com.github.fitexmage;
 
+import com.github.fitexmage.util.Message;
+import com.github.fitexmage.util.Tool;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -21,7 +26,13 @@ public class VioletSpawner {
             BukkitScheduler scheduler = plugin.getServer().getScheduler();
             scheduler.scheduleSyncRepeatingTask(plugin, () -> {
                 if (violet.isSpawned()) {
-                    violet.randomMove();
+                    if (violet.getFightCountDown() > 0) {
+                        violet.setFightCountDown(violet.getFightCountDown() - 1);
+                    } else {
+                        violet.setAngryDegree(0);
+                        violet.randomMove();
+                    }
+                    violet.heal();
                 }
             }, 0L, interval);
         }
@@ -32,10 +43,39 @@ public class VioletSpawner {
     }
 
     public Location getVioletLocation() {
-        return violet.getStoredLocation();
+        if (violet.isSpawned()) {
+            return violet.getStoredLocation();
+        } else {
+            return null;
+        }
     }
 
-    public void teleportViolet(Location location) {
-        violet.teleport(location, TeleportCause.PLUGIN);
+    public boolean teleportViolet(Location location) {
+        if (violet.isSpawned()) {
+            violet.teleport(location, TeleportCause.PLUGIN);
+            violet.randomMove();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    void fight(Entity damager) {
+        if (violet.getAngryDegree() == 5) {
+            Location violetLocation = violet.getBukkitEntity().getLocation();
+            for (Player player : Tool.getRealPlayers(null, GameMode.SURVIVAL)) {
+                if (violetLocation.distance(player.getLocation()) <= 20) {
+                    player.setHealth(0.0);
+                }
+            }
+            violet.setFightCountDown(0);
+            violet.setAngryDegree(0);
+            violet.randomMove();
+            Message.violetBroadcastMessage("哼，不理你们了！");
+        } else {
+            violet.setFightCountDown(2);
+            violet.setAngryDegree(violet.getAngryDegree() + 1);
+            violet.getNavigator().setTarget(damager, true);
+        }
     }
 }

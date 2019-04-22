@@ -1,6 +1,7 @@
 package com.github.fitexmage;
 
 import com.github.fitexmage.commands.svb;
+import com.github.fitexmage.commands.zs;
 import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.shadowVillageEcology.*;
 import com.github.fitexmage.util.Message;
@@ -91,38 +92,49 @@ public class ShadowListener implements Listener {
 
     @EventHandler
     public void onNPCDamaged(NPCDamageEvent event) {
-        checkDespawn(event);
+        if (event.getNPC() instanceof Violet) {
+            violetDamaged(event);
+        } else {
+            checkDespawn(event);
+        }
     }
 
     @EventHandler
     public void onNPCDamagedByEntity(NPCDamageByEntityEvent event) {
-        checkDespawn(event);
+        if (event.getNPC() instanceof Violet) {
+            violetDamaged(event);
+        } else {
+            checkDespawn(event);
+        }
     }
 
     private void checkDespawn(NPCDamageEvent event) {
         NPC npc = event.getNPC();
         if (!npc.isProtected()) {
             if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
-                if (npc instanceof Violet) {
-                    ((Violet) npc).reborn();
-                } else {
-                    if (npc instanceof ShadowMan) {
-                        ((ShadowMan) npc).dropItem();
-                    } else if (npc instanceof ShadowBeast) {
-                        ((ShadowBeast) npc).dropItem();
-                    } else if (npc instanceof ShadowSoul) {
-                        ((ShadowSoul) npc).dropItem();
-                        ShadowSoul.setDespawnReason(1);
-                    }
-                    npc.despawn();
+                if (npc instanceof ShadowMan) {
+                    ((ShadowMan) npc).dropItem();
+                } else if (npc instanceof ShadowBeast) {
+                    ((ShadowBeast) npc).dropItem();
+                } else if (npc instanceof ShadowSoul) {
+                    ((ShadowSoul) npc).dropItem();
+                    ShadowSoul.setDespawnReason(1);
                 }
+                npc.despawn();
             }
         }
     }
 
-    @EventHandler
-    public void onNPCDeath(NPCDeathEvent event){
-
+    private void violetDamaged(NPCDamageEvent event) {
+        NPC npc = event.getNPC();
+        if (npc instanceof Violet) {
+            if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
+                ((Violet) npc).reborn();
+            }
+            if (event instanceof NPCDamageByEntityEvent) {
+                zs.violetSpawner.fight(((NPCDamageByEntityEvent) event).getDamager());
+            }
+        }
     }
 
     @EventHandler

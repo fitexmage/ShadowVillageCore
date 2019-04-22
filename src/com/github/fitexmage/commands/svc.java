@@ -1,13 +1,11 @@
 package com.github.fitexmage.commands;
 
 import com.github.fitexmage.ShadowVillageCore;
-import com.github.fitexmage.VioletSpawner;
 import com.github.fitexmage.util.Message;
 
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.potion.PotionEffect;
@@ -15,12 +13,10 @@ import org.bukkit.potion.PotionEffectType;
 
 public class svc extends ShadowVillageCommand {
     private final ShadowVillageCore plugin;
-    private static VioletSpawner violetSpawner;
 
     public svc(ShadowVillageCore plugin) {
         this.plugin = plugin;
         name = "影之乡核心系统";
-        violetSpawner = new VioletSpawner(plugin);
     }
 
     @Override
@@ -38,9 +34,6 @@ public class svc extends ShadowVillageCommand {
                         break;
                     case "empower":
                         empower(player);
-                        break;
-                    case "violet":
-                        violet(player, args);
                         break;
                     case "debug":
                         turnDebug(player);
@@ -140,29 +133,6 @@ public class svc extends ShadowVillageCommand {
     private void empower(Player player) {
         if (player.hasPermission("svc.empower")) {
             Message.sendMessage(player, "凡人，从现在起，我将赋予你神的能力！");
-        } else {
-            Message.sendNoPermission(player);
-        }
-    }
-
-    private void violet(Player player, String[] args) {
-        if (player.hasPermission("svc.violet")) {
-            if (args.length == 2) {
-                switch (args[1]) {
-                    case "spawn":
-                        violetSpawner.spawnViolet();
-                        break;
-                    case "despawn":
-                        violetSpawner.despawnViolet();
-                        break;
-                    case "tp":
-                        player.teleport(violetSpawner.getVioletLocation(), TeleportCause.PLUGIN);
-                        break;
-                    case "tphere":
-                        violetSpawner.teleportViolet(player.getLocation());
-                        break;
-                }
-            }
         } else {
             Message.sendNoPermission(player);
         }

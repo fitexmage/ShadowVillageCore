@@ -67,8 +67,7 @@ class GambleItemInfo {
 
     static GambleItemInfo getServerEquipmentInfo(int type) {
         GambleItemInfo[] gambleItemInfos = getGambleItemInfos(type);
-        GambleItemInfo gambleItemInfo = gambleItemInfos[gambleItemInfos.length - 1];
-        return gambleItemInfo;
+        return gambleItemInfos[gambleItemInfos.length - 1];
     }
 
     String getItemName() {

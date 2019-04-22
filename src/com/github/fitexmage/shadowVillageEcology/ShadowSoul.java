@@ -51,14 +51,6 @@ public class ShadowSoul extends ShadowEntity {
         addTrait(shadowSoulTrait);
     }
 
-    public static int getDespawnReason() {
-        return despawnReason;
-    }
-
-    public static void setDespawnReason(int despawnReason) {
-        ShadowSoul.despawnReason = despawnReason;
-    }
-
     void spawn(Player player, Location blockLocation) {
         totalCount = 0;
         stageCountDown = (int) (Math.random() * 3) + 6;
@@ -159,7 +151,7 @@ public class ShadowSoul extends ShadowEntity {
             Message.broadcastMessage(message.toString());
             stageCount = (int) (Math.random() * 2) + 3;
         } else {
-            Location location = this.getBukkitEntity().getLocation();
+            Location location = getBukkitEntity().getLocation();
             for (Player player : getNearPlayers()) {
                 Location playerLocation = player.getLocation();
                 if (location.getY() + minHeight > playerLocation.getY() || location.getY() + minHeight + 3 < playerLocation.getY()) {
@@ -245,7 +237,7 @@ public class ShadowSoul extends ShadowEntity {
     }
 
     private LinkedList<Player> getNearPlayers() {
-        Location location = this.getBukkitEntity().getLocation();
+        Location location = getBukkitEntity().getLocation();
         LinkedList<Player> list = new LinkedList<>();
         for (Player player : location.getWorld().getPlayers()) {
             if (!player.hasMetadata("NPC") && player.getGameMode().equals(GameMode.SURVIVAL)) {
@@ -287,5 +279,13 @@ public class ShadowSoul extends ShadowEntity {
             ItemStack dropItem3 = ShadowItem.getShadowStone((int) (Math.random() * 10) + 1);
             getEntity().getWorld().dropItem(getEntity().getLocation(), dropItem3);
         }
+    }
+
+    public static int getDespawnReason() {
+        return despawnReason;
+    }
+
+    public static void setDespawnReason(int despawnReason) {
+        ShadowSoul.despawnReason = despawnReason;
     }
 }

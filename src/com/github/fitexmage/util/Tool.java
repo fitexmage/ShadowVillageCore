@@ -4,6 +4,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
@@ -30,21 +31,23 @@ public class Tool {
         return 1;
     }
 
-    public static List<Player> getRealPlayers() {
+    public static List<Player> getRealPlayers(World world, GameMode gamemode) {
         List<Player> realOnlinePlayers = new ArrayList<>();
-        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            if (!player.hasMetadata("NPC")) {
-                realOnlinePlayers.add(player);
+        if (world != null) {
+            for (Player player : world.getPlayers()) {
+                if (!player.hasMetadata("NPC")) {
+                    if (gamemode == null || player.getGameMode().equals(gamemode)) {
+                        realOnlinePlayers.add(player);
+                    }
+                }
             }
-        }
-        return realOnlinePlayers;
-    }
-
-    public static List<Player> getRealPlayers(World world) {
-        List<Player> realOnlinePlayers = new ArrayList<>();
-        for (Player player : world.getPlayers()) {
-            if (!player.hasMetadata("NPC")) {
-                realOnlinePlayers.add(player);
+        } else {
+            for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+                if (!player.hasMetadata("NPC")) {
+                    if (gamemode == null || player.getGameMode().equals(gamemode)) {
+                        realOnlinePlayers.add(player);
+                    }
+                }
             }
         }
         return realOnlinePlayers;
@@ -73,7 +76,7 @@ public class Tool {
         if (player.getHealth() > damage) {
             player.setHealth(player.getHealth() - damage);
         } else {
-            player.setHealth(0);
+            player.setHealth(0.0);
         }
     }
 
