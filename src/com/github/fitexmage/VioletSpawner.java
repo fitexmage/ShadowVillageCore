@@ -68,9 +68,7 @@ public class VioletSpawner {
                     player.setHealth(0.0);
                 }
             }
-            violet.setFightCountDown(0);
-            violet.setAngryDegree(0);
-            violet.randomMove();
+            violet.reborn();
             Message.violetBroadcastMessage("哼，不理你们了！");
         } else {
             violet.setFightCountDown(2);

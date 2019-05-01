@@ -1,12 +1,13 @@
 package com.github.fitexmage;
 
-import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.util.Message;
 
+import com.github.fitexmage.util.NBTUtil;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.trait.Equipment;
 import net.citizensnpcs.npc.CitizensNPC;
 import net.citizensnpcs.npc.EntityControllers;
+import net.minecraft.server.v1_7_R4.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -38,16 +39,13 @@ public class Violet extends CitizensNPC {
         getTrait(Equipment.class).set(Equipment.EquipmentSlot.CHESTPLATE, new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
         getTrait(Equipment.class).set(Equipment.EquipmentSlot.LEGGINGS, new ItemStack(Material.DIAMOND_LEGGINGS, 1));
         getTrait(Equipment.class).set(Equipment.EquipmentSlot.BOOTS, new ItemStack(Material.DIAMOND_BOOTS, 1));
-        getTrait(Equipment.class).set(Equipment.EquipmentSlot.HAND, ShadowItem.getServerEquipment(1, false));
+        ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
+        sword = NBTUtil.getNBTTagItem(sword, new NBTTagCompound[]{NBTUtil.attackTag(9999)});
+        getTrait(Equipment.class).set(Equipment.EquipmentSlot.HAND, sword);
         getNavigator().getDefaultParameters().range(200.0f);
         getNavigator().getDefaultParameters().avoidWater(true);
         fightCountDown = 0;
         angryDegree = 0;
-    }
-
-    void randomMove() {
-        Location randomLocation = getRandomLocation();
-        getNavigator().setTarget(randomLocation);
     }
 
     private Location getRandomLocation() {
@@ -55,10 +53,14 @@ public class Violet extends CitizensNPC {
         return randomLocation;
     }
 
+    void randomMove() {
+        getNavigator().setTarget(getRandomLocation());
+    }
+
     void reborn() {
         despawn();
         spawn();
-        getNavigator().setTarget(getRandomLocation());
+        randomMove();
         fightCountDown = 0;
         angryDegree = 0;
     }

@@ -139,14 +139,14 @@ public class svb extends ShadowVillageCommand {
             Message.sendMessage(player, "请输入想要设置的属性!");
         } else {
             switch (args[1]) {
-                case "damage":
-                    if (player.hasPermission("svb.set.damage")) {
+                case "attack":
+                    if (player.hasPermission("svb.set.attack")) {
                         if (args.length != 2) {
-                            int damage = Tool.getNumber(args[2]);
-                            damage = damage > 999 ? 999 : damage;
+                            int attack = Tool.getNumber(args[2]);
+                            attack = attack > 999 ? 999 : attack;
                             ItemStack itemInHand = player.getItemInHand();
                             if (itemInHand != null && itemInHand.getType() != Material.AIR) {
-                                itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
+                                itemInHand = NBTUtil.getNBTTagItem(itemInHand, new NBTTagCompound[]{NBTUtil.attackTag(attack)});
                                 player.setItemInHand(itemInHand);
                             } else {
                                 Message.sendMessage(player, "你的手上没有东西！");

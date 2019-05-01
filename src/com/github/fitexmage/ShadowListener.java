@@ -13,10 +13,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -132,13 +136,19 @@ public class ShadowListener implements Listener {
                 ((Violet) npc).reborn();
             }
             if (event instanceof NPCDamageByEntityEvent) {
+                Entity damager = ((NPCDamageByEntityEvent) event).getDamager();
+                if (damager instanceof Player) {
+                    zs.violetSpawner.fight(damager);
+                } else if (damager instanceof Projectile) {
+                    zs.violetSpawner.fight(((Projectile) damager).getShooter());
+                }
                 zs.violetSpawner.fight(((NPCDamageByEntityEvent) event).getDamager());
             }
         }
     }
 
     @EventHandler
-    public void onEntityAttack(NPCDamageEntityEvent event) {
+    public void onNPCAttack(NPCDamageEntityEvent event) {
         NPC npc = event.getNPC();
         if (npc instanceof ShadowLiving) {
             if (event.getDamaged() instanceof Player) {
@@ -149,6 +159,18 @@ public class ShadowListener implements Listener {
             if (event.getDamaged() instanceof Player) {
                 Player player = (Player) event.getDamaged();
                 player.getWorld().strikeLightning(player.getLocation());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onEntityDeath(EntityDeathEvent event) {
+        Entity deathEntity = event.getEntity();
+        if (deathEntity instanceof Skeleton) {
+            Player killer = ((Skeleton) deathEntity).getKiller();
+            if (killer.getItemInHand().getType().equals(Material.getMaterial(5044))) {
+                ItemStack dropItem = new ItemStack(Material.SKULL_ITEM, 1, (short) 1);
+                deathEntity.getWorld().dropItem(deathEntity.getLocation(), dropItem);
             }
         }
     }

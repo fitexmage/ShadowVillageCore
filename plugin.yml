@@ -62,8 +62,8 @@ permissions:
   svb.give.serverequipment:
     description: Give self all server equipments.
     default: op
-  svb.set.damage:
-    description: Set the damage of item in hand.
+  svb.set.attack:
+    description: Set the attack damage of item in hand.
     default: op
   svb.set.health:
     description: Set the health buff of item in hand.

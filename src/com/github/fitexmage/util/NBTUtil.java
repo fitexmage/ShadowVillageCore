@@ -27,16 +27,16 @@ public class NBTUtil {
         return item;
     }
 
-    public static NBTTagCompound damageTag(int damage) {
-        NBTTagCompound damageCompound = new NBTTagCompound();
-        damageCompound.set("AttributeName", new NBTTagString("generic.attackDamage"));
-        damageCompound.set("Name", new NBTTagString("damage"));
-        damageCompound.set("Amount", new NBTTagInt(damage));
-        damageCompound.set("Operation", new NBTTagInt(0));
-        damageCompound.set("UUIDLeast", new NBTTagInt(1));
-        damageCompound.set("UUIDMost", new NBTTagInt(1));
-        damageCompound.set("Slot", new NBTTagString("mainhand"));
-        return damageCompound;
+    public static NBTTagCompound attackTag(int damage) {
+        NBTTagCompound attackCompound = new NBTTagCompound();
+        attackCompound.set("AttributeName", new NBTTagString("generic.attackDamage"));
+        attackCompound.set("Name", new NBTTagString("attack"));
+        attackCompound.set("Amount", new NBTTagInt(damage));
+        attackCompound.set("Operation", new NBTTagInt(0));
+        attackCompound.set("UUIDLeast", new NBTTagInt(1));
+        attackCompound.set("UUIDMost", new NBTTagInt(1));
+        attackCompound.set("Slot", new NBTTagString("mainhand"));
+        return attackCompound;
     }
 
     public static NBTTagCompound healthTag(int health) {
