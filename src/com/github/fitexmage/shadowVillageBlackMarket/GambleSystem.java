@@ -143,7 +143,7 @@ public class GambleSystem {
     private ItemStack getChangedGambleSword(ItemStack gambleSword, GambleItemInfo gambleItemInfo) {
         int damage = (int) (Math.random() * (Math.pow(gambleItemInfo.getData(), 2) * 1.5 - (gambleItemInfo.getData() / 2))) + gambleItemInfo.getData() / 2;
 
-        gambleSword = NBTUtil.getNBTTagItem(gambleSword, new NBTTagCompound[]{NBTUtil.damageTag(damage)});
+        gambleSword = NBTUtil.getNBTTagItem(gambleSword, new NBTTagCompound[]{NBTUtil.attackTag(damage)});
         return gambleSword;
     }
 

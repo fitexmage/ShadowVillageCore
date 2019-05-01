@@ -133,7 +133,7 @@ public class ShadowItem {
         serverEquipment.setItemMeta(meta);
 
         if (type == 1) {
-            serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.damageTag(9999)});
+            serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.attackTag(9999)});
         } else if (type == 3 || type == 4 || type == 5 || type == 6) {
             serverEquipment = NBTUtil.getNBTTagItem(serverEquipment, new NBTTagCompound[]{NBTUtil.healthTag(100)});
             if (type == 4) {
