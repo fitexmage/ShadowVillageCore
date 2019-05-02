@@ -110,9 +110,9 @@ Shadow Village Black Market provides functions about items.
 
   Give self all server equipments.
   
-* /svb set damage [number]
+* /svb set attack [number]
 
-  Set the damage of item in hand.
+  Set the attack damage of item in hand.
   
 * /svb set health [number]
 
