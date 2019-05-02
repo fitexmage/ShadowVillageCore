@@ -347,11 +347,13 @@ public class svb extends ShadowVillageCommand {
             if (itemInHand != null && itemInHand.getType() != Material.AIR) {
                 if (ShadowItem.isBounded(itemInHand)) {
                     Message.sendMessage(player, "物品已经被灵魂绑定了！");
+                } else if (EconomyUtil.economy.getBalance(player) >= 10) {
+                    Message.sendMessage(player, "你的金钱不足！");
                 } else {
                     ItemMeta meta = itemInHand.getItemMeta();
-                    if(meta.hasLore()){
+                    if (meta.hasLore()) {
                         meta.getLore().add("灵魂绑定");
-                    }else{
+                    } else {
                         meta.setLore(Collections.singletonList("灵魂绑定"));
                     }
                     itemInHand.setItemMeta(meta);
