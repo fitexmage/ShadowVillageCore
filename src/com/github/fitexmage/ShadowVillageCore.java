@@ -19,14 +19,12 @@ public class ShadowVillageCore extends JavaPlugin {
         sve.enable = true;
         svb.enable = true;
         svs.enable = true;
-        zs.enable = true;
 
         //指令
         getCommand("svc").setExecutor(new svc(this));
         getCommand("sve").setExecutor(new sve(this));
         getCommand("svb").setExecutor(new svb());
         getCommand("svs").setExecutor(new svs());
-        getCommand("zs").setExecutor(new zs(this));
 
         //注册事件
         ShadowListener shadowListener = new ShadowListener(this);

@@ -1,7 +1,6 @@
 package com.github.fitexmage;
 
 import com.github.fitexmage.commands.svb;
-import com.github.fitexmage.commands.zs;
 import com.github.fitexmage.shadowVillageBlackMarket.ShadowItem;
 import com.github.fitexmage.shadowVillageEcology.*;
 import com.github.fitexmage.util.Message;
@@ -96,20 +95,12 @@ public class ShadowListener implements Listener {
 
     @EventHandler
     public void onNPCDamaged(NPCDamageEvent event) {
-        if (event.getNPC() instanceof Violet) {
-            violetDamaged(event);
-        } else {
-            checkDespawn(event);
-        }
+        checkDespawn(event);
     }
 
     @EventHandler
     public void onNPCDamagedByEntity(NPCDamageByEntityEvent event) {
-        if (event.getNPC() instanceof Violet) {
-            violetDamaged(event);
-        } else {
-            checkDespawn(event);
-        }
+        checkDespawn(event);
     }
 
     private void checkDespawn(NPCDamageEvent event) {
@@ -125,24 +116,6 @@ public class ShadowListener implements Listener {
                     ShadowSoul.setDespawnReason(1);
                 }
                 npc.despawn();
-            }
-        }
-    }
-
-    private void violetDamaged(NPCDamageEvent event) {
-        NPC npc = event.getNPC();
-        if (npc instanceof Violet) {
-            if (event.getDamage() >= npc.getBukkitEntity().getHealth()) {
-                ((Violet) npc).reborn();
-            }
-            if (event instanceof NPCDamageByEntityEvent) {
-                Entity damager = ((NPCDamageByEntityEvent) event).getDamager();
-                if (damager instanceof Player) {
-                    zs.violetSpawner.fight(damager);
-                } else if (damager instanceof Projectile) {
-                    zs.violetSpawner.fight(((Projectile) damager).getShooter());
-                }
-                zs.violetSpawner.fight(((NPCDamageByEntityEvent) event).getDamager());
             }
         }
     }
